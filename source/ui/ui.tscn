@@ -12,18 +12,18 @@ unique_name_in_owner = true
 position = Vector2(900, 520)
 
 [node name="ShipDetails" type="Panel" parent="."]
-offset_left = 1464.0
-offset_top = 74.0
-offset_right = 1864.0
-offset_bottom = 874.0
+offset_left = 74.0
+offset_top = 73.0
+offset_right = 474.0
+offset_bottom = 873.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource("3_q76rh")
 
 [node name="MarginContainer" type="MarginContainer" parent="ShipDetails"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-theme = ExtResource("3_q76rh")
 
 [node name="Box" type="VBoxContainer" parent="ShipDetails/MarginContainer"]
 layout_mode = 2
@@ -33,3 +33,30 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Ship Name: "
+
+[node name="Status" type="Label" parent="ShipDetails/MarginContainer/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Ship Name: "
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 168.0
+offset_top = 895.0
+offset_right = 342.0
+offset_bottom = 935.0
+
+[node name="ApproveButton" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_q76rh")
+text = "Approve"
+
+[node name="RejectButton" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_q76rh")
+text = "Reject"
+
+[connection signal="pressed" from="HBoxContainer/ApproveButton" to="." method="_on_approve_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/RejectButton" to="." method="_on_reject_button_pressed"]
