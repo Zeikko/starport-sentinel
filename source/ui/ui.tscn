@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://t13h716inaso"]
+
+[ext_resource type="PackedScene" uid="uid://cjos4upoylry0" path="res://source/radar/radar.tscn" id="1_75arv"]
+[ext_resource type="Script" path="res://source/ui/ui.gd" id="1_wpl0o"]
+
+[node name="Ui" type="Node2D"]
+script = ExtResource("1_wpl0o")
+
+[node name="Radar" parent="." instance=ExtResource("1_75arv")]
+unique_name_in_owner = true
+position = Vector2(900, 520)
