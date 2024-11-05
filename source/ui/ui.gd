@@ -1,3 +1,3 @@
 extends Node2D
 
-@onready var radar = %Radar
+@onready var radar: Node2D = %Radar
