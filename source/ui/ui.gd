@@ -1,15 +1,15 @@
 extends Node2D
 
-@onready var radar: Node2D = %Radar
-@onready var ship_name: Label = %ShipName
-@onready var status: Label = %Status
-
 var selected_ship: Ship:
 	set (value):
 		selected_ship = value
 		update_ship_details()
 	get:
 		return selected_ship
+@onready var radar: Node2D = %Radar
+@onready var ship_name: Label = %ShipName
+@onready var status: Label = %Status
+
 
 func update_ship_details() -> void:
 	ship_name.set_text(selected_ship.ship_name)
@@ -19,6 +19,7 @@ func update_ship_details() -> void:
 		status.set_text('Rejected')
 	else:
 		status.set_text('Undecided')
+
 
 func _on_approve_button_pressed() -> void:
 	selected_ship.status = Ship.Status.APPROVED
