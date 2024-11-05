@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://t13h716inaso"]
+[gd_scene load_steps=4 format=3 uid="uid://t13h716inaso"]
 
 [ext_resource type="PackedScene" uid="uid://cjos4upoylry0" path="res://source/radar/radar.tscn" id="1_75arv"]
 [ext_resource type="Script" path="res://source/ui/ui.gd" id="1_wpl0o"]
+[ext_resource type="Theme" uid="uid://cbimufccfad2e" path="res://source/theme.tres" id="3_q76rh"]
 
 [node name="Ui" type="Node2D"]
 script = ExtResource("1_wpl0o")
@@ -9,3 +10,26 @@ script = ExtResource("1_wpl0o")
 [node name="Radar" parent="." instance=ExtResource("1_75arv")]
 unique_name_in_owner = true
 position = Vector2(900, 520)
+
+[node name="ShipDetails" type="Panel" parent="."]
+offset_left = 1464.0
+offset_top = 74.0
+offset_right = 1864.0
+offset_bottom = 874.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("3_q76rh")
+
+[node name="MarginContainer" type="MarginContainer" parent="ShipDetails"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("3_q76rh")
+
+[node name="Box" type="VBoxContainer" parent="ShipDetails/MarginContainer"]
+layout_mode = 2
+
+[node name="ShipName" type="Label" parent="ShipDetails/MarginContainer/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Ship Name: "

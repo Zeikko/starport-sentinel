@@ -8,6 +8,7 @@ func _ready() -> void:
 func create_ship() -> void:
 	var ship: Ship = ship_scene.instantiate()
 	ship.angle = randf_range(0, 2) * PI
+	ship.ship_name = str(randi())
 	Ui.radar.add_child(ship)
 
 
