@@ -1,4 +1,4 @@
-extends Node2D
+class_name Ship extends Node2D
 
 var distance: float = 300
 var angle: float = 0
