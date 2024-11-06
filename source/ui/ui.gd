@@ -16,7 +16,7 @@ func update_ship_details() -> void:
 	status.set_text(Ship.Status.find_key(selected_ship.status).capitalize())
 	faction_and_class.set_text(
 		Ship.Faction.find_key(selected_ship.faction).capitalize()
-		+ ' ' + 
+		+ ' ' +
 		Ship.Type.find_key(selected_ship.type).capitalize()
 	)
 
