@@ -39,5 +39,7 @@ func _on_area_2d_input_event(
 	event: InputEvent,
 	_shape_idx: int
 ) -> void:
-	if event is InputEventMouseButton && Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) && (event as InputEventMouseButton).pressed:
+	if event is InputEventMouseButton \
+	and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) \
+	and (event as InputEventMouseButton).pressed:
 		Ui.selected_ship = self
