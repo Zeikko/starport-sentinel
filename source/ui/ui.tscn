@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://t13h716inaso"]
+
+[ext_resource type="PackedScene" uid="uid://cjos4upoylry0" path="res://source/radar/radar.tscn" id="1_75arv"]
+[ext_resource type="Script" path="res://source/ui/ui.gd" id="1_wpl0o"]
+[ext_resource type="Theme" uid="uid://cbimufccfad2e" path="res://source/theme.tres" id="3_q76rh"]
+
+[node name="Ui" type="Node2D"]
+script = ExtResource("1_wpl0o")
+
+[node name="Radar" parent="." instance=ExtResource("1_75arv")]
+unique_name_in_owner = true
+position = Vector2(900, 520)
+
+[node name="ShipDetails" type="Panel" parent="."]
+offset_left = 74.0
+offset_top = 73.0
+offset_right = 474.0
+offset_bottom = 873.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("3_q76rh")
+
+[node name="MarginContainer" type="MarginContainer" parent="ShipDetails"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Box" type="VBoxContainer" parent="ShipDetails/MarginContainer"]
+layout_mode = 2
+
+[node name="ShipName" type="Label" parent="ShipDetails/MarginContainer/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Ship Name: "
+
+[node name="Status" type="Label" parent="ShipDetails/MarginContainer/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 168.0
+offset_top = 895.0
+offset_right = 342.0
+offset_bottom = 935.0
+
+[node name="ApproveButton" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_q76rh")
+text = "Approve"
+
+[node name="RejectButton" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_q76rh")
+text = "Reject"
+
+[connection signal="pressed" from="HBoxContainer/ApproveButton" to="." method="_on_approve_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/RejectButton" to="." method="_on_reject_button_pressed"]
