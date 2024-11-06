@@ -63,7 +63,8 @@ func end_shift(ships: Array[Ship]) -> void:
 			ship.visit_starport()
 		else:
 			ship.queue_free()
-	show_shift_menu()
+	if Game.hit_points > 0:
+		show_shift_menu()
 
 
 func show_shift_menu() -> void:
