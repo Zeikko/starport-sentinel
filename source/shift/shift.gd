@@ -41,7 +41,7 @@ func create_security_rule() -> Dictionary:
 	var faction: Ship.Faction = Ship.Faction.values().filter(
 		func(faction: Ship.Faction): return !existing_rules.has(faction)
 	).pick_random() # This crashes when factions of type run out
-	#  TODO Make this clearer and crash free! 
+	#  TODO Make this clearer and crash free!
 	var new_security_rule: Dictionary = {}
 	new_security_rule.type = type
 	new_security_rule.faction = faction
