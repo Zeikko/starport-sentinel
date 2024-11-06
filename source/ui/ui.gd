@@ -14,7 +14,11 @@ var selected_ship: Ship:
 func update_ship_details() -> void:
 	ship_name.set_text(selected_ship.ship_name)
 	status.set_text(Ship.Status.find_key(selected_ship.status).capitalize())
-	faction_and_class.set_text(Ship.Faction.find_key(selected_ship.faction).capitalize() + ' ' + Ship.Type.find_key(selected_ship.type).capitalize())
+	faction_and_class.set_text(
+		Ship.Faction.find_key(selected_ship.faction).capitalize()
+		+ ' ' + 
+		Ship.Type.find_key(selected_ship.type).capitalize()
+	)
 
 
 func _on_approve_button_pressed() -> void:
