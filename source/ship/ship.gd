@@ -9,7 +9,7 @@ var scale_multiplier: float = 0.1
 
 var distance: float = max_distance
 var angle: float = 0
-var speed: float = 10
+var speed: float = 100
 var ship_name: String = 'Default Ship'
 var status: Status = Status.UNDECIDED:
 	set (value):
@@ -47,6 +47,17 @@ func _process(delta: float) -> void:
 		position = Vector2(distance, 0).rotated(angle)
 
 func visit_starport() -> void:
+	var is_dangerous: bool = false
+	for security_rule in Game.security_rules:
+		if (
+			security_rule.get('faction') == faction && 
+			security_rule.get('type') == type
+		):
+			is_dangerous = true
+	if is_dangerous:
+		var damage = 10 * (type + 1)
+		Game.hit_points -= damage
+		print('Dealt ' + str(damage) + ' damage')
 	queue_free()
 
 

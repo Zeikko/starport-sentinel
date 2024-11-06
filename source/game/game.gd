@@ -2,6 +2,15 @@ extends Node
 
 var ship_scene: PackedScene = preload('res://source/ship/ship.tscn')
 var security_rules: Array[Dictionary] = []
+var hit_points: int = 100:
+	set (value):
+		if value <= 0:
+			print('Defeat!')
+			get_tree().paused = true
+		hit_points = value
+		Ui.update_starport()
+	get:
+		return hit_points
 
 func _ready() -> void:
 	create_ship()

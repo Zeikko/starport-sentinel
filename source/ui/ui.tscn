@@ -88,5 +88,28 @@ text = "Security Briefing"
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="Starport" type="Panel" parent="."]
+offset_left = 540.0
+offset_top = 923.0
+offset_right = 1240.0
+offset_bottom = 1023.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("3_q76rh")
+
+[node name="MarginContainer" type="MarginContainer" parent="Starport"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Starport/MarginContainer"]
+layout_mode = 2
+
+[node name="HitPoints" type="Label" parent="Starport/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Hit Points: 100 / 100"
+
 [connection signal="pressed" from="HBoxContainer/ApproveButton" to="." method="_on_approve_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/RejectButton" to="." method="_on_reject_button_pressed"]

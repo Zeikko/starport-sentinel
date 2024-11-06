@@ -11,6 +11,7 @@ var selected_ship: Ship:
 @onready var status: Label = %Status
 @onready var faction_and_class: Label = %FactionAndClass
 @onready var security_rules: VBoxContainer = %SecurityRules
+@onready var hit_points: Label = %HitPoints
 
 func update_ship_details() -> void:
 	ship_name.set_text(selected_ship.ship_name)
@@ -37,6 +38,10 @@ func update_security_briefing() -> void:
 		text += 'are not allowed'
 		label.set_text(text)
 		security_rules.add_child(label)
+
+
+func update_starport() -> void:
+	hit_points.set_text('Hit Points: ' + str(Game.hit_points) + ' / 100')
 
 
 func _on_approve_button_pressed() -> void:
