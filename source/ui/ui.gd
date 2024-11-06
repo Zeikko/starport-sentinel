@@ -30,11 +30,11 @@ func update_security_briefing() -> void:
 		var text = ''
 		var faction = security_rule.get('faction')
 		var type = security_rule.get('type')
-		if faction:
+		if faction != null:
 			text += Ship.Faction.find_key(faction).capitalize() + ' '
-		if type:
-			text += Ship.Type.find_key(type).capitalize() + ' '
-		text += 'is not allowed'
+		if type != null:
+			text += Ship.Type.find_key(type).capitalize() + 's '
+		text += 'are not allowed'
 		label.set_text(text)
 		security_rules.add_child(label)
 

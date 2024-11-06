@@ -22,8 +22,6 @@ func create_security_rule() -> Dictionary:
 	var faction = Ship.Faction.values().pick_random()
 	var rule_variation = randi_range(0, 1)
 	var security_rule = {}
-	if rule_variation == 0:
-		security_rule.type = type
-	if rule_variation == 1:
-		security_rule.faction = faction
+	security_rule.type = type
+	security_rule.faction = faction
 	return security_rule
