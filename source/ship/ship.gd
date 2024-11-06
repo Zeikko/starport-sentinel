@@ -9,7 +9,7 @@ var scale_multiplier: float = 0.1
 
 var distance: float = max_distance
 var angle: float = 0
-var speed: float = 100
+var speed: float = 20
 var ship_name: String = 'Default Ship'
 var status: Status = Status.UNDECIDED:
 	set(value):
@@ -20,8 +20,8 @@ var status: Status = Status.UNDECIDED:
 			modulate = Color.CRIMSON
 			speed = abs(speed) * -1
 		status = value
-		if Ui.selected_ship == self:
-			Ui.update_ship_details()
+		Ui.update_ship_details()
+		Shift.is_shift_over(self)
 	get:
 		return status
 var type: Type:
@@ -40,26 +40,28 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if distance < min_distance:
 		visit_starport()
+		Shift.is_shift_over(self)
 	if distance > max_distance:
 		queue_free()
-	else:
+		Shift.is_shift_over(self)
+	elif self != null:
 		distance -= delta * speed
 		position = Vector2(distance, 0).rotated(angle)
 
 func visit_starport() -> void:
 	var is_dangerous: bool = false
-	for security_rule in Game.security_rules:
+	for security_rule: Dictionary in Shift.security_rules:
 		if (
-			security_rule.get('faction') == faction &&
-			security_rule.get('type') == type
+			security_rule.faction == faction &&
+			security_rule.type == type
 		):
 			is_dangerous = true
 	if is_dangerous:
-		var damage = 10 * (type + 1)
+		var damage: int = 10 * (type + 1)
 		Game.hit_points -= damage
 		print('Dealt ' + str(damage) + ' damage')
 	queue_free()
-
+	
 
 func _on_area_2d_input_event(
 	_viewport: Node,
@@ -70,3 +72,9 @@ func _on_area_2d_input_event(
 	and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) \
 	and (event as InputEventMouseButton).pressed:
 		Ui.selected_ship = self
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("approve") && self == Ui.selected_ship:
+		status = Status.APPROVED
+	if event.is_action_pressed("reject") && self == Ui.selected_ship:
+		status = Status.REJECTED

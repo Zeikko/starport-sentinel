@@ -23,21 +23,25 @@ func update_ship_details() -> void:
 
 
 func update_security_briefing() -> void:
-	for child in security_rules.get_children():
+	for child: Node in security_rules.get_children():
 		security_rules.remove_child(child)
 		child.free()
-	for security_rule in Game.security_rules:
+	for security_rule: Dictionary in Shift.security_rules:
 		var label = Label.new()
-		var text = ''
-		var faction = security_rule.get('faction')
-		var type = security_rule.get('type')
-		if faction != null:
-			text += Ship.Faction.find_key(faction).capitalize() + ' '
-		if type != null:
-			text += Ship.Type.find_key(type).capitalize() + 's '
-		text += 'are not allowed'
-		label.set_text(text)
+		label.set_text(security_rule_to_text(security_rule))
 		security_rules.add_child(label)
+
+
+func security_rule_to_text(security_rule: Dictionary) -> String:
+	var text: String = ''
+	var faction: Ship.Faction = security_rule.faction
+	var type: Ship.Type = security_rule.type
+	if faction != null:
+		text += Ship.Faction.find_key(faction).capitalize() + ' '
+	if type != null:
+		text += Ship.Type.find_key(type).capitalize() + 's '
+	text += 'are not allowed'
+	return text
 
 
 func update_starport() -> void:
