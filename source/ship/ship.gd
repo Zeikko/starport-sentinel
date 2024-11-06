@@ -61,7 +61,7 @@ func visit_starport() -> void:
 		Game.hit_points -= damage
 		print('Dealt ' + str(damage) + ' damage')
 	queue_free()
-	
+
 
 func _on_area_2d_input_event(
 	_viewport: Node,

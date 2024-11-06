@@ -34,12 +34,12 @@ func _on_timer_timeout() -> void:
 func create_security_rule() -> Dictionary:
 	var type: Ship.Type = Ship.Type.values().pick_random()
 	var existing_rules: Array = security_rules.filter(
-		func (security_rule: Dictionary): return security_rule.type == type
+		func(security_rule: Dictionary): return security_rule.type == type
 	).map(
-		func (security_rule: Dictionary): return security_rule.faction
+		func(security_rule: Dictionary): return security_rule.faction
 	)
 	var faction: Ship.Faction = Ship.Faction.values().filter(
-		func (faction: Ship.Faction): return !existing_rules.has(faction)
+		func(faction: Ship.Faction): return !existing_rules.has(faction)
 	).pick_random()
 	var new_security_rule: Dictionary = {}
 	new_security_rule.type = type

@@ -1,7 +1,5 @@
 extends Node
 
-@onready var defeat_menu: Panel = %DefeatMenu
-
 var hit_points: int = 100:
 	set(value):
 		if value <= 0:
@@ -12,6 +10,9 @@ var hit_points: int = 100:
 		Ui.update_starport()
 	get:
 		return hit_points
+
+@onready var defeat_menu: Panel = %DefeatMenu
+
 
 func _ready() -> void:
 	pass
