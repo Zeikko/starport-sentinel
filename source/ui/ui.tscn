@@ -76,12 +76,15 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Title" type="Label" parent="Security Briefing/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Security Briefing/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Security Briefing/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Security Briefing"
 
-[node name="SecurityRules" type="VBoxContainer" parent="Security Briefing/MarginContainer"]
+[node name="SecurityRules" type="VBoxContainer" parent="Security Briefing/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
