@@ -1,8 +1,8 @@
 class_name Ship extends Node2D
 
-enum Status { UNDECIDED, APPROVED, REJECTED }
-enum Type { SHUTTLE, FRIGATE, CRUISER }
-enum Faction { VOID, OBUDU, ARGUS }
+enum Status {UNDECIDED, APPROVED, REJECTED}
+enum Type {SHUTTLE, FRIGATE, CRUISER}
+enum Faction {VOID, OBUDU, ARGUS}
 var max_distance: float = 300
 var min_distance: float = 40
 var scale_multiplier: float = 0.1
@@ -12,7 +12,7 @@ var angle: float = 0
 var speed: float = 100
 var ship_name: String = 'Default Ship'
 var status: Status = Status.UNDECIDED:
-	set (value):
+	set(value):
 		if value == Status.APPROVED:
 			modulate = Color.CHARTREUSE
 			speed = abs(speed)
@@ -25,7 +25,7 @@ var status: Status = Status.UNDECIDED:
 	get:
 		return status
 var type: Type:
-	set (value):
+	set(value):
 		scale = Vector2(value + 1, value + 1) * scale_multiplier
 		type = value
 	get:
@@ -50,7 +50,7 @@ func visit_starport() -> void:
 	var is_dangerous: bool = false
 	for security_rule in Game.security_rules:
 		if (
-			security_rule.get('faction') == faction && 
+			security_rule.get('faction') == faction &&
 			security_rule.get('type') == type
 		):
 			is_dangerous = true

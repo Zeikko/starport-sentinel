@@ -3,7 +3,7 @@ extends Node
 var ship_scene: PackedScene = preload('res://source/ship/ship.tscn')
 var security_rules: Array[Dictionary] = []
 var hit_points: int = 100:
-	set (value):
+	set(value):
 		if value <= 0:
 			print('Defeat!')
 			get_tree().paused = true

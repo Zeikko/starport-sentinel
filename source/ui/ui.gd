@@ -1,7 +1,7 @@
 extends Node2D
 
 var selected_ship: Ship:
-	set (value):
+	set(value):
 		selected_ship = value
 		update_ship_details()
 	get:
