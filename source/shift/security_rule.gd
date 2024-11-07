@@ -13,7 +13,8 @@ static func create_security_rule(security_rules: Array[SecurityRule]) -> Securit
 		for new_type: Ship.Type in Ship.Type.values():
 			possible_new_rules.push_back(SecurityRule.new(new_type, new_faction))
 	possible_new_rules.filter(func(new_rule: SecurityRule) -> bool:
-		var existing_identical_rules: Array[SecurityRule] = security_rules.filter(func(existing_rule: SecurityRule) -> bool:
+		var existing_identical_rules: Array[SecurityRule] = security_rules.filter(
+			func(existing_rule: SecurityRule) -> bool:
 			return new_rule.faction == existing_rule.faction && new_rule.type == existing_rule.type
 		)
 		return existing_identical_rules.size() == 0
