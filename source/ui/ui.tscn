@@ -9,13 +9,13 @@ script = ExtResource("1_wpl0o")
 
 [node name="Radar" parent="." instance=ExtResource("1_75arv")]
 unique_name_in_owner = true
-position = Vector2(900, 520)
+position = Vector2(900, 600)
 
 [node name="ShipDetails" type="Panel" parent="."]
-offset_left = 74.0
-offset_top = 73.0
-offset_right = 474.0
-offset_bottom = 873.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 500.0
+offset_bottom = 850.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource("3_q76rh")
@@ -39,6 +39,11 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 
+[node name="FactionAndClass" type="Label" parent="ShipDetails/MarginContainer/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 offset_left = 168.0
 offset_top = 895.0
@@ -56,6 +61,55 @@ unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_q76rh")
 text = "Reject"
+
+[node name="Security Briefing" type="Panel" parent="."]
+offset_left = 550.0
+offset_top = 50.0
+offset_right = 1250.0
+offset_bottom = 300.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("3_q76rh")
+
+[node name="MarginContainer" type="MarginContainer" parent="Security Briefing"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Security Briefing/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Security Briefing/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Security Briefing"
+
+[node name="SecurityRules" type="VBoxContainer" parent="Security Briefing/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Starport" type="Panel" parent="."]
+offset_left = 540.0
+offset_top = 923.0
+offset_right = 1240.0
+offset_bottom = 1023.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("3_q76rh")
+
+[node name="MarginContainer" type="MarginContainer" parent="Starport"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Starport/MarginContainer"]
+layout_mode = 2
+
+[node name="HitPoints" type="Label" parent="Starport/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Hit Points: 100 / 100"
 
 [connection signal="pressed" from="HBoxContainer/ApproveButton" to="." method="_on_approve_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/RejectButton" to="." method="_on_reject_button_pressed"]

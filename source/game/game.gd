@@ -1,16 +1,25 @@
 extends Node
 
-var ship_scene: PackedScene = preload('res://source/ship/ship.tscn')
+var hit_points: int = 100:
+	set(value):
+		if value <= 0:
+			defeat_menu.show()
+			print('Defeat!')
+			get_tree().paused = true
+		hit_points = value
+		Ui.update_starport()
+	get:
+		return hit_points
+
+@onready var defeat_menu: Panel = %DefeatMenu
+
 
 func _ready() -> void:
-	create_ship()
+	pass
 
-func create_ship() -> void:
-	var ship: Ship = ship_scene.instantiate()
-	ship.angle = randf_range(0, 2) * PI
-	ship.ship_name = str(randi())
-	Ui.radar.add_child(ship)
-
-
-func _on_timer_timeout() -> void:
-	create_ship()
+func get_ships() -> Array[Ship]:
+	var ships: Array[Ship] = []
+	for ship in Ui.radar.ships.get_children():
+		if ship is Ship:
+			ships.push_back(ship)
+	return ships
