@@ -111,5 +111,55 @@ layout_mode = 2
 size_flags_horizontal = 0
 text = "Hit Points: 100 / 100"
 
+[node name="Scan" type="VBoxContainer" parent="."]
+offset_left = 1282.0
+offset_top = 148.0
+offset_right = 1857.0
+offset_bottom = 797.0
+
+[node name="Panel" type="Panel" parent="Scan"]
+custom_minimum_size = Vector2(0, 600)
+layout_mode = 2
+theme = ExtResource("3_q76rh")
+
+[node name="MarginContainer" type="MarginContainer" parent="Scan/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CargoInfoContainer" type="VBoxContainer" parent="Scan/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Scan/Panel/MarginContainer/CargoInfoContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Cargo Info"
+
+[node name="CargoDetails" type="Label" parent="Scan/Panel/MarginContainer/CargoInfoContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Scan"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+
+[node name="ScanButton" type="Button" parent="Scan"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Scan"
+
+[node name="ProgressBar" type="ProgressBar" parent="Scan/ScanButton"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_top = 2.0
+offset_right = 575.0
+offset_bottom = 29.0
+mouse_filter = 1
+show_percentage = false
+
 [connection signal="pressed" from="HBoxContainer/ApproveButton" to="." method="_on_approve_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/RejectButton" to="." method="_on_reject_button_pressed"]
+[connection signal="pressed" from="Scan/ScanButton" to="." method="_on_scan_button_pressed"]

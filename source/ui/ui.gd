@@ -12,8 +12,19 @@ var selected_ship: Ship:
 @onready var faction_and_class: Label = %FactionAndClass
 @onready var security_rules: VBoxContainer = %SecurityRules
 @onready var hit_points: Label = %HitPoints
+@onready var scan: VBoxContainer = $Scan
+@onready var progress_bar: ProgressBar = %ProgressBar
+@onready var scan_button: Button = %ScanButton
+@onready var cargo_details: Label = %CargoDetails
+@onready var ship_details: Panel = $ShipDetails
+
+
+func _process(delta: float) -> void:
+	update_scan()
 
 func update_ship_details() -> void:
+	if selected_ship == null:
+		return
 	ship_name.set_text(selected_ship.ship_name)
 	status.set_text(Ship.Status.find_key(selected_ship.status).capitalize())
 	faction_and_class.set_text(
@@ -48,9 +59,47 @@ func update_starport() -> void:
 	hit_points.set_text('Hit Points: ' + str(Game.hit_points) + ' / 100')
 
 
+func update_scan() -> void:
+	if selected_ship != null:
+		if selected_ship.progress_bar.value == 100:
+			scan_button.text = "Scan Complete"
+			scan_button.disabled = true
+		elif selected_ship.progress_bar.value > 0:
+			scan_button.text = "Scanning..."
+			scan_button.disabled = true
+		else:
+			scan_button.text = "Scan"
+			scan_button.disabled = false
+			
+		progress_bar.value = selected_ship.progress_bar.value
+
+		var cargo_info = selected_ship.cargo_info
+		var num_holds = cargo_info.size()
+		var holds_to_display = int(progress_bar.value / 100.0 * num_holds)
+		var cargo_details_text: String = ""
+		var hold_index = 0
+		for cargo_hold in cargo_info.keys():
+			if hold_index >= holds_to_display:
+				break
+			cargo_details_text += cargo_hold + ":\n"
+			
+			for item in cargo_info[cargo_hold].keys():
+				cargo_details_text += "  " + item + ": " + str(cargo_info[cargo_hold][item]) + "\n"
+			hold_index += 1
+		cargo_details.text = cargo_details_text.strip_edges()
+	else:
+		scan_button.text = "Scan"
+		scan_button.disabled = true
+		cargo_details.text = ""
+
+
 func _on_approve_button_pressed() -> void:
 	selected_ship.status = Ship.Status.APPROVED
 
 
 func _on_reject_button_pressed() -> void:
 	selected_ship.status = Ship.Status.REJECTED
+
+
+func _on_scan_button_pressed() -> void:
+	selected_ship.start_scanning()

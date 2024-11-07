@@ -1,5 +1,8 @@
 class_name Ship extends Node2D
 
+@onready var progress_bar: ProgressBar = %ProgressBar
+@onready var select_indicator: TextureRect = %SelectIndicator
+
 enum Status {UNDECIDED, APPROVED, REJECTED}
 enum Type {SHUTTLE, FRIGATE, CRUISER}
 enum Faction {VOID, OBUDU, ARGUS}
@@ -9,7 +12,7 @@ var scale_multiplier: float = 0.1
 
 var distance: float = max_distance
 var angle: float = 0
-var speed: float = 20
+var speed: float = 5
 var ship_name: String = 'Default Ship'
 var status: Status = Status.UNDECIDED:
 	set(value):
@@ -31,11 +34,14 @@ var type: Type:
 	get:
 		return type
 var faction: Faction
+var is_scanning: bool = false
+var cargo_info: Dictionary = {}
 
 func _ready() -> void:
 	ship_name = str(randi())
 	type = Type.values().pick_random()
 	faction = Faction.values().pick_random()
+	cargo_info = CargoHelper.generate_cargo_info(self)
 
 func _process(delta: float) -> void:
 	if distance < min_distance:
@@ -47,6 +53,12 @@ func _process(delta: float) -> void:
 	elif self != null:
 		distance -= delta * speed
 		position = Vector2(distance, 0).rotated(angle)
+	if is_scanning:
+		progress_bar.value += delta * Game.scanning_speed
+	if progress_bar.value >= 100:
+		is_scanning = false
+		progress_bar.visible = false
+	select_indicator.visible = Ui.selected_ship == self
 
 func visit_starport() -> void:
 	var is_dangerous: bool = false
@@ -62,6 +74,9 @@ func visit_starport() -> void:
 		print('Dealt ' + str(damage) + ' damage')
 	queue_free()
 
+func start_scanning() -> void:
+	progress_bar.visible = true
+	is_scanning = true
 
 func _on_area_2d_input_event(
 	_viewport: Node,
@@ -71,7 +86,10 @@ func _on_area_2d_input_event(
 	if event is InputEventMouseButton \
 	and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) \
 	and (event as InputEventMouseButton).pressed:
-		Ui.selected_ship = self
+		if Ui.selected_ship == self:
+			Ui.selected_ship = null
+		else:
+			Ui.selected_ship = self
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("approve") && self == Ui.selected_ship:

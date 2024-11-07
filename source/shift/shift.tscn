@@ -8,6 +8,7 @@ script = ExtResource("1_yq6q2")
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
+wait_time = 4.0
 autostart = true
 
 [node name="ShiftMenu" type="Panel" parent="."]
