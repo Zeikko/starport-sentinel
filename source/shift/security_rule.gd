@@ -9,11 +9,11 @@ func _init(arg_type: Ship.Type, arg_faction: Ship.Faction) -> void:
 
 static func create_security_rule(security_rules: Array[SecurityRule]) -> SecurityRule:
 	var possible_new_rules: Array[SecurityRule] = []
-	for new_faction in Ship.Faction.values():
-		for new_type in Ship.Type.values():
+	for new_faction: Ship.Faction in Ship.Faction.values():
+		for new_type: Ship.Type in Ship.Type.values():
 			possible_new_rules.push_back(SecurityRule.new(new_type, new_faction))
-	possible_new_rules.filter(func (new_rule: SecurityRule): 
-		var existing_identical_rules = security_rules.filter(func (existing_rule: SecurityRule): 
+	possible_new_rules.filter(func(new_rule: SecurityRule) -> bool:
+		var existing_identical_rules: Array[SecurityRule] = security_rules.filter(func(existing_rule: SecurityRule) -> bool:
 			return new_rule.faction == existing_rule.faction && new_rule.type == existing_rule.type
 		)
 		return existing_identical_rules.size() == 0
