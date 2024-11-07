@@ -19,7 +19,7 @@ var selected_ship: Ship:
 @onready var ship_details: Panel = $ShipDetails
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	update_scan()
 
 func update_ship_details() -> void:
@@ -70,7 +70,7 @@ func update_scan() -> void:
 		else:
 			scan_button.text = "Scan"
 			scan_button.disabled = false
-			
+
 		progress_bar.value = selected_ship.progress_bar.value
 
 		var cargo_info = selected_ship.cargo_info
@@ -82,7 +82,7 @@ func update_scan() -> void:
 			if hold_index >= holds_to_display:
 				break
 			cargo_details_text += cargo_hold + ":\n"
-			
+
 			for item in cargo_info[cargo_hold].keys():
 				cargo_details_text += "  " + item + ": " + str(cargo_info[cargo_hold][item]) + "\n"
 			hold_index += 1

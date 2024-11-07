@@ -1,8 +1,5 @@
 class_name Ship extends Node2D
 
-@onready var progress_bar: ProgressBar = %ProgressBar
-@onready var select_indicator: TextureRect = %SelectIndicator
-
 enum Status {UNDECIDED, APPROVED, REJECTED}
 enum Type {SHUTTLE, FRIGATE, CRUISER}
 enum Faction {VOID, OBUDU, ARGUS}
@@ -36,6 +33,9 @@ var type: Type:
 var faction: Faction
 var is_scanning: bool = false
 var cargo_info: Dictionary = {}
+
+@onready var progress_bar: ProgressBar = %ProgressBar
+@onready var select_indicator: TextureRect = %SelectIndicator
 
 func _ready() -> void:
 	ship_name = str(randi())
