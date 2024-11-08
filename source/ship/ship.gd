@@ -62,7 +62,7 @@ func _process(delta: float) -> void:
 
 func visit_starport() -> void:
 	var is_dangerous: bool = false
-	for security_rule: Dictionary in Shift.security_rules:
+	for security_rule: SecurityRule in Shift.security_rules:
 		if (
 			security_rule.faction == faction &&
 			security_rule.type == type
