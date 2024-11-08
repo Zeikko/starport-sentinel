@@ -20,14 +20,19 @@ func _ready() -> void:
 
 
 func create_ship() -> void:
-	var ship: Ship = ship_scene.instantiate()
-	ship.angle = randf_range(0, 2) * PI
-	Ui.radar.ships.add_child(ship)
-	ship_counter += 1
+	if ship_counter < ships_per_shift:
+		var ship: Ship = ship_scene.instantiate()
+		ship.angle = randf_range(0, 2) * PI
+		Ui.radar.ships.add_child(ship)
+		ship_counter += 1
 
 
 func _on_timer_timeout() -> void:
-	if ship_counter < ships_per_shift:
+	create_ship()
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("new_ship"):
 		create_ship()
 
 
@@ -64,3 +69,5 @@ func _on_start_shift_button_pressed() -> void:
 	ship_counter = 0
 	shift_number += 1
 	shift_menu.hide()
+	
+	

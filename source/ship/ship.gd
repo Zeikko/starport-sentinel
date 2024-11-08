@@ -20,7 +20,7 @@ var status: Status = Status.UNDECIDED:
 			modulate = Color.CRIMSON
 			speed = abs(speed) * -1
 		status = value
-		Ui.update_ship_details()
+		Ui.update_ship_information()
 		Shift.is_shift_over(self)
 	get:
 		return status
@@ -33,6 +33,8 @@ var type: Type:
 var faction: Faction
 var is_scanning: bool = false
 var cargo_info: Dictionary = {}
+var is_dangerous: bool
+var information: ShipInformation
 
 @onready var progress_bar: ProgressBar = %ProgressBar
 @onready var select_indicator: TextureRect = %SelectIndicator
@@ -42,6 +44,8 @@ func _ready() -> void:
 	type = Type.values().pick_random()
 	faction = Faction.values().pick_random()
 	cargo_info = CargoHelper.generate_cargo_info(self)
+	is_dangerous = get_is_dangerous()
+	information = ShipInformation.new(is_dangerous, faction)
 
 func _process(delta: float) -> void:
 	if distance < min_distance:
@@ -60,14 +64,16 @@ func _process(delta: float) -> void:
 		progress_bar.visible = false
 	select_indicator.visible = Ui.selected_ship == self
 
-func visit_starport() -> void:
-	var is_dangerous: bool = false
+func get_is_dangerous() -> bool:
 	for security_rule: SecurityRule in Shift.security_rules:
 		if (
 			security_rule.faction == faction &&
 			security_rule.type == type
 		):
-			is_dangerous = true
+			return true
+	return false
+
+func visit_starport() -> void:
 	if is_dangerous:
 		var damage: int = 10 * (type + 1)
 		Game.hit_points -= damage

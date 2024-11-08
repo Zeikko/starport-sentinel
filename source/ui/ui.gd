@@ -4,7 +4,7 @@ var selected_ship: Ship:
 	set(value):
 		selected_ship = value
 		if selected_ship:
-			update_ship_details()
+			update_ship_information()
 			ship_visual.update()
 	get:
 		return selected_ship
@@ -24,13 +24,13 @@ var selected_ship: Ship:
 func _process(_delta: float) -> void:
 	update_scan()
 
-func update_ship_details() -> void:
+func update_ship_information() -> void:
 	if selected_ship == null:
 		return
 	ship_name.set_text(selected_ship.ship_name)
 	status.set_text(Ship.Status.find_key(selected_ship.status).capitalize())
 	faction_and_class.set_text(
-		Ship.Faction.find_key(selected_ship.faction).capitalize() + ' ' +
+		Ship.Faction.find_key(selected_ship.information.faction).capitalize() + ' ' +
 		Ship.Type.find_key(selected_ship.type).capitalize()
 	)
 
