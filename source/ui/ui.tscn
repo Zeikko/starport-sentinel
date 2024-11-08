@@ -158,6 +158,7 @@ offset_top = 2.0
 offset_right = 575.0
 offset_bottom = 29.0
 mouse_filter = 1
+theme = ExtResource("3_q76rh")
 show_percentage = false
 
 [connection signal="pressed" from="HBoxContainer/ApproveButton" to="." method="_on_approve_button_pressed"]
