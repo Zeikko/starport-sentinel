@@ -3,7 +3,9 @@ extends Node2D
 var selected_ship: Ship:
 	set(value):
 		selected_ship = value
-		update_ship_details()
+		if selected_ship:
+			update_ship_details()
+			ship_visual.update()
 	get:
 		return selected_ship
 @onready var radar: Node2D = %Radar
@@ -16,8 +18,8 @@ var selected_ship: Ship:
 @onready var progress_bar: ProgressBar = %ProgressBar
 @onready var scan_button: Button = %ScanButton
 @onready var cargo_details: Label = %CargoDetails
-@onready var ship_details: Panel = $ShipDetails
-
+@onready var ship_information: Panel = %ShipInformation
+@onready var ship_visual: Control = %ShipVisual
 
 func _process(_delta: float) -> void:
 	update_scan()

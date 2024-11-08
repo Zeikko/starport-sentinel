@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtha4c88yb14"]
+
+[ext_resource type="Script" path="res://source/ui/ship_visual/ship_visual.gd" id="1_7r63g"]
+[ext_resource type="Texture2D" uid="uid://c2etlk3jkbsci" path="res://source/ui/ship_visual/ship.png" id="1_w35re"]
+[ext_resource type="Texture2D" uid="uid://vaxqoy2xhvuu" path="res://source/ui/ship_visual/factions.png" id="2_8k3f1"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8p8ir"]
+texture = ExtResource("2_8k3f1")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_d78lr"]
+sources/0 = SubResource("TileSetAtlasSource_8p8ir")
+
+[node name="ShipVisual" type="Control"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 128.0
+offset_bottom = 128.0
+script = ExtResource("1_7r63g")
+
+[node name="Hull" type="Sprite2D" parent="."]
+position = Vector2(64, 64)
+texture = ExtResource("1_w35re")
+
+[node name="FactionLogo" type="TileMapLayer" parent="."]
+unique_name_in_owner = true
+position = Vector2(56, 66)
+tile_set = SubResource("TileSet_d78lr")
