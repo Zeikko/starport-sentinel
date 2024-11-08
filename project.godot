@@ -20,6 +20,7 @@ config/icon="res://source/icon.svg"
 Ui="*res://source/ui/ui.tscn"
 Game="*res://source/game/game.tscn"
 Shift="*res://source/shift/shift.tscn"
+CargoHelper="*res://source/ship/cargo_helper.gd"
 
 [debug]
 
@@ -51,6 +52,7 @@ reject={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 environment/defaults/default_clear_color=Color(0.160784, 0.156863, 0.192157, 1)
