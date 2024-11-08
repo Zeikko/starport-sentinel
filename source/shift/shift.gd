@@ -69,5 +69,3 @@ func _on_start_shift_button_pressed() -> void:
 	ship_counter = 0
 	shift_number += 1
 	shift_menu.hide()
-	
-	
