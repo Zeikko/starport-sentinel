@@ -2,7 +2,7 @@ class_name Ship extends Node2D
 
 enum Status {UNDECIDED, APPROVED, REJECTED}
 enum Type {SHUTTLE, FRIGATE, CRUISER}
-enum Faction {VOID, OBUDU, ARGUS}
+enum Faction {VOID, ARGUS, ZUBREZ, NHA, C3, FRUGI, OBUDU}
 var max_distance: float = 300
 var min_distance: float = 40
 var scale_multiplier: float = 0.1
