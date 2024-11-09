@@ -10,7 +10,7 @@ func generate_cargo_info(ship: Ship) -> Dictionary:
 	var cargo_hold_number: int = int(ship.type) + 1
 	for cargo_hold_index in range(cargo_hold_number):
 		var cargo_hold: Dictionary = {}
-		var num_items: int = randi_range(1, 6)
+		var num_items: int = randi_range(1, 3)
 		for item_number in range(num_items):
 			var item: String = cargo_items.pick_random()
 			var quantity: int = randi_range(1, 101)

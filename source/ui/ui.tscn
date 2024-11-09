@@ -1,54 +1,58 @@
-[gd_scene load_steps=4 format=3 uid="uid://t13h716inaso"]
+[gd_scene load_steps=6 format=3 uid="uid://t13h716inaso"]
 
-[ext_resource type="PackedScene" uid="uid://cjos4upoylry0" path="res://source/radar/radar.tscn" id="1_75arv"]
-[ext_resource type="Script" path="res://source/ui/ui.gd" id="1_wpl0o"]
-[ext_resource type="Theme" uid="uid://cbimufccfad2e" path="res://source/theme.tres" id="3_q76rh"]
+[ext_resource type="PackedScene" uid="uid://cjos4upoylry0" path="res://radar/radar.tscn" id="1_75arv"]
+[ext_resource type="Script" path="res://ui/ui.gd" id="1_wpl0o"]
+[ext_resource type="Theme" uid="uid://cbimufccfad2e" path="res://theme.tres" id="3_q76rh"]
+[ext_resource type="PackedScene" uid="uid://dtha4c88yb14" path="res://ui/ship_visual/ship_visual.tscn" id="4_h3f06"]
+[ext_resource type="Texture2D" uid="uid://c2etlk3jkbsci" path="res://ui/ship_visual/ship.png" id="5_5f1ce"]
 
 [node name="Ui" type="Node2D"]
 script = ExtResource("1_wpl0o")
 
 [node name="Radar" parent="." instance=ExtResource("1_75arv")]
 unique_name_in_owner = true
-position = Vector2(900, 600)
+position = Vector2(316, 231)
+scale = Vector2(0.3, 0.3)
 
-[node name="ShipDetails" type="Panel" parent="."]
-offset_left = 50.0
-offset_top = 50.0
-offset_right = 500.0
-offset_bottom = 850.0
+[node name="ShipInformation" type="Panel" parent="."]
+unique_name_in_owner = true
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 210.0
+offset_bottom = 310.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource("3_q76rh")
 
-[node name="MarginContainer" type="MarginContainer" parent="ShipDetails"]
+[node name="MarginContainer" type="MarginContainer" parent="ShipInformation"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Box" type="VBoxContainer" parent="ShipDetails/MarginContainer"]
+[node name="Box" type="VBoxContainer" parent="ShipInformation/MarginContainer"]
 layout_mode = 2
 
-[node name="ShipName" type="Label" parent="ShipDetails/MarginContainer/Box"]
+[node name="ShipName" type="Label" parent="ShipInformation/MarginContainer/Box"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Ship Name: "
 
-[node name="Status" type="Label" parent="ShipDetails/MarginContainer/Box"]
+[node name="Status" type="Label" parent="ShipInformation/MarginContainer/Box"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="FactionAndClass" type="Label" parent="ShipDetails/MarginContainer/Box"]
+[node name="FactionAndClass" type="Label" parent="ShipInformation/MarginContainer/Box"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_left = 168.0
-offset_top = 895.0
-offset_right = 342.0
-offset_bottom = 935.0
+offset_left = 24.0
+offset_top = 312.0
+offset_right = 198.0
+offset_bottom = 352.0
 
 [node name="ApproveButton" type="Button" parent="HBoxContainer"]
 unique_name_in_owner = true
@@ -63,10 +67,10 @@ theme = ExtResource("3_q76rh")
 text = "Reject"
 
 [node name="Security Briefing" type="Panel" parent="."]
-offset_left = 550.0
-offset_top = 50.0
-offset_right = 1250.0
-offset_bottom = 300.0
+offset_left = 220.0
+offset_top = 10.0
+offset_right = 420.0
+offset_bottom = 160.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource("3_q76rh")
@@ -89,10 +93,10 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Starport" type="Panel" parent="."]
-offset_left = 540.0
-offset_top = 923.0
-offset_right = 1240.0
-offset_bottom = 1023.0
+offset_left = 220.0
+offset_top = 302.0
+offset_right = 420.0
+offset_bottom = 352.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource("3_q76rh")
@@ -112,17 +116,17 @@ size_flags_horizontal = 0
 text = "Hit Points: 100 / 100"
 
 [node name="Scan" type="VBoxContainer" parent="."]
-offset_left = 1282.0
-offset_top = 148.0
-offset_right = 1857.0
-offset_bottom = 797.0
+offset_left = 430.0
+offset_top = 10.0
+offset_right = 630.0
+offset_bottom = 359.0
 
-[node name="Panel" type="Panel" parent="Scan"]
-custom_minimum_size = Vector2(0, 600)
+[node name="ShipObservations" type="Panel" parent="Scan"]
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 theme = ExtResource("3_q76rh")
 
-[node name="MarginContainer" type="MarginContainer" parent="Scan/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="Scan/ShipObservations"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -130,21 +134,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CargoInfoContainer" type="VBoxContainer" parent="Scan/Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Scan/ShipObservations/MarginContainer"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="Scan/Panel/MarginContainer/CargoInfoContainer"]
+[node name="ShipVisual" parent="Scan/ShipObservations/MarginContainer/VBoxContainer" instance=ExtResource("4_h3f06")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Scan/ShipObservations/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("5_5f1ce")
+stretch_mode = 2
+
+[node name="CargoInfoContainer" type="VBoxContainer" parent="Scan/ShipObservations/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Scan/ShipObservations/MarginContainer/VBoxContainer/CargoInfoContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Cargo Info"
 
-[node name="CargoDetails" type="Label" parent="Scan/Panel/MarginContainer/CargoInfoContainer"]
+[node name="CargoDetails" type="Label" parent="Scan/ShipObservations/MarginContainer/VBoxContainer/CargoInfoContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Scan"]
-layout_mode = 2
-theme_override_constants/margin_top = 10
 
 [node name="ScanButton" type="Button" parent="Scan"]
 unique_name_in_owner = true
@@ -155,7 +168,7 @@ text = "Scan"
 unique_name_in_owner = true
 layout_mode = 2
 offset_top = 2.0
-offset_right = 575.0
+offset_right = 200.0
 offset_bottom = 29.0
 mouse_filter = 1
 theme = ExtResource("3_q76rh")
