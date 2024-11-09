@@ -156,7 +156,7 @@ layout_mode = 2
 texture = ExtResource("5_5f1ce")
 stretch_mode = 2
 
-[node name="CargoHolds" type="VBoxContainer" parent="Scan/ShipObservations/MarginContainer/VBoxContainer"]
+[node name="CargoHoldsContainer" type="VBoxContainer" parent="Scan/ShipObservations/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 

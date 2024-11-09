@@ -10,10 +10,10 @@ static func create_security_rule(security_rules: Array[SecurityRule]) -> Securit
 		1:
 			return create_cargo_rule(security_rules)
 		_:
-			return create_faction_class_combination_rule(security_rules)
-	
+			return create_faction_class_rule(security_rules)
 
-static func create_faction_class_combination_rule(security_rules: Array[SecurityRule]) -> SecurityRule:
+
+static func create_faction_class_rule(security_rules: Array[SecurityRule]) -> SecurityRule:
 	var possible_new_rules: Array[SecurityRule] = []
 	for new_faction: Ship.Faction in Ship.Faction.values():
 		for new_type: Ship.Type in Ship.Type.values():

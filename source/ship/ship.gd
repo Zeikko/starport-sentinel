@@ -52,7 +52,7 @@ func _ready() -> void:
 	type = Type.values().pick_random()
 	faction = Faction.values().pick_random()
 	is_dangerous = get_is_dangerous()
-	for cargo_hold_number in range(type + 1):
+	for cargo_hold_number: int in range(type + 1):
 		cargo_holds.push_back(CargoHold.new(cargo_hold_number + 1, type))
 	information = ShipInformation.new(self)
 

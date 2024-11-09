@@ -14,7 +14,7 @@ var capacity_used: int
 func _init(arg_number: int, arg_type: Ship.Type) -> void:
 	number = arg_number
 	capacity_max = max_capacities[arg_type]
-	var minimum_cargo_size: int = int(capacity_max / 3)
+	var minimum_cargo_size: int = round(float(capacity_max) / 3)
 	var capacity_left: int = capacity_max - capacity_used
 	while capacity_left > minimum_cargo_size:
 		var quantity: int = randi_range(minimum_cargo_size, capacity_left)
