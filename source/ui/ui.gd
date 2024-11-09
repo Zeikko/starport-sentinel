@@ -46,9 +46,13 @@ func update_ship_information() -> void:
 func update_cargo_manifest() -> void:
 	for child: Node in cargo_manifest.get_children():
 		cargo_manifest.remove_child(child)
+	var total = 0
 	for cargo_item in selected_ship.information.cargo_items:
+		total += cargo_item.quantity
 		cargo_manifest.add_child(cargo_item.get_label())
-
+	var total_label: Label = Label.new()
+	total_label.set_text('Total: ' + str(total) + ' tons')
+	cargo_manifest.add_child(total_label)
 
 func update_security_briefing() -> void:
 	for child: Node in security_rules.get_children():

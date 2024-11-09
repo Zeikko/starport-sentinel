@@ -12,7 +12,7 @@ script = ExtResource("1_wpl0o")
 [node name="Radar" parent="." instance=ExtResource("1_75arv")]
 unique_name_in_owner = true
 position = Vector2(316, 231)
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.25, 0.25)
 
 [node name="ShipInformation" type="Panel" parent="."]
 unique_name_in_owner = true
