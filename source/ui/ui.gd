@@ -8,6 +8,12 @@ var selected_ship: Ship:
 			ship_visual.update()
 	get:
 		return selected_ship
+var holds_to_display: int = 0:
+	set(value):
+		holds_to_display = value
+		update_cargo_holds()
+	get:
+		return holds_to_display
 @onready var radar: Node2D = %Radar
 @onready var ship_name: Label = %ShipName
 @onready var status: Label = %Status
@@ -17,9 +23,10 @@ var selected_ship: Ship:
 @onready var scan: VBoxContainer = $Scan
 @onready var progress_bar: ProgressBar = %ProgressBar
 @onready var scan_button: Button = %ScanButton
-@onready var cargo_details: Label = %CargoDetails
+@onready var cargo_holds: VBoxContainer = %CargoHolds
 @onready var ship_information: Panel = %ShipInformation
 @onready var ship_visual: Control = %ShipVisual
+@onready var cargo_manifest: VBoxContainer = %CargoManifest
 
 func _process(_delta: float) -> void:
 	update_scan()
@@ -33,12 +40,19 @@ func update_ship_information() -> void:
 		Ship.Faction.find_key(selected_ship.information.faction).capitalize() + ' ' +
 		Ship.Type.find_key(selected_ship.type).capitalize()
 	)
+	update_cargo_manifest()
+	
+
+func update_cargo_manifest() -> void:
+	for child: Node in cargo_manifest.get_children():
+		cargo_manifest.remove_child(child)
+	for cargo_item in selected_ship.information.cargo_items:
+		cargo_manifest.add_child(cargo_item.get_label())
 
 
 func update_security_briefing() -> void:
 	for child: Node in security_rules.get_children():
 		security_rules.remove_child(child)
-		child.free()
 	for security_rule: SecurityRule in Shift.security_rules:
 		var label = Label.new()
 		label.set_text(security_rule.to_text())
@@ -63,24 +77,25 @@ func update_scan() -> void:
 
 		progress_bar.value = selected_ship.progress_bar.value
 
-		var cargo_info = selected_ship.cargo_info
-		var num_holds = cargo_info.size()
-		var holds_to_display = int(progress_bar.value / 100.0 * num_holds)
-		var cargo_details_text: String = ""
-		var hold_index = 0
-		for cargo_hold in cargo_info.keys():
-			if hold_index >= holds_to_display:
-				break
-			cargo_details_text += cargo_hold + ":\n"
-
-			for item in cargo_info[cargo_hold].keys():
-				cargo_details_text += "  " + item + ": " + str(cargo_info[cargo_hold][item]) + "\n"
-			hold_index += 1
-		cargo_details.text = cargo_details_text.strip_edges()
+		var cargo_holds: Array[CargoHold] = selected_ship.cargo_holds
+		holds_to_display = int(progress_bar.value / 100.0 * cargo_holds.size())
 	else:
 		scan_button.text = "Scan"
 		scan_button.disabled = true
-		cargo_details.text = ""
+
+func update_cargo_holds() -> void:
+	for child in cargo_holds.get_children():
+		cargo_holds.remove_child(child)
+	var hold_index: int = 0
+	for cargo_hold: CargoHold in selected_ship.cargo_holds:
+		if hold_index >= holds_to_display:
+			break
+		var cargo_hold_container: VBoxContainer = VBoxContainer.new()
+		cargo_holds.add_child(cargo_hold_container)
+		cargo_hold_container.add_child(cargo_hold.get_label())
+		for cargo_item in cargo_hold.cargo_items:
+			cargo_hold_container.add_child(cargo_item.get_label())
+		hold_index += 1
 
 
 func _on_approve_button_pressed() -> void:

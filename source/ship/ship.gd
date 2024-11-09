@@ -2,7 +2,15 @@ class_name Ship extends Node2D
 
 enum Status {UNDECIDED, APPROVED, REJECTED}
 enum Type {SHUTTLE, FRIGATE, CRUISER}
-enum Faction {VOID, ARGUS, ZUBREZ, NHA, C3, FRUGI, OBUDU}
+enum Faction {
+	VOID_INC,
+	ARGUS_SYNDICATE,
+	ZUBREZ,
+	NHA,
+	C3,
+	HOUSE_FRUGI,
+	FOLLOWERS_OF_OBUDU
+}
 var max_distance: float = 300
 var min_distance: float = 40
 var scale_multiplier: float = 0.1
@@ -32,9 +40,9 @@ var type: Type:
 		return type
 var faction: Faction
 var is_scanning: bool = false
-var cargo_info: Dictionary = {}
 var is_dangerous: bool
 var information: ShipInformation
+var cargo_holds: Array[CargoHold] = []
 
 @onready var progress_bar: ProgressBar = %ProgressBar
 @onready var select_indicator: TextureRect = %SelectIndicator
@@ -43,9 +51,10 @@ func _ready() -> void:
 	ship_name = str(randi())
 	type = Type.values().pick_random()
 	faction = Faction.values().pick_random()
-	cargo_info = CargoHelper.generate_cargo_info(self)
 	is_dangerous = get_is_dangerous()
-	information = ShipInformation.new(is_dangerous, faction)
+	for cargo_hold_number in range(type + 1):
+		cargo_holds.push_back(CargoHold.new(cargo_hold_number + 1, type))
+	information = ShipInformation.new(self)
 
 func _process(delta: float) -> void:
 	if distance < min_distance:
