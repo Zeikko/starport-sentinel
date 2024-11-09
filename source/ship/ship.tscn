@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dh0r2to0rlu5x"]
+[gd_scene load_steps=6 format=3 uid="uid://brd2ebk6ooumc"]
 
-[ext_resource type="Script" path="res://source/ship/ship.gd" id="1_xbnws"]
-[ext_resource type="Texture2D" uid="uid://bnytmsqpdebp1" path="res://source/icon.svg" id="2_fc0o1"]
+[ext_resource type="Script" path="res://ship/ship.gd" id="1_xbnws"]
+[ext_resource type="Texture2D" uid="uid://bnytmsqpdebp1" path="res://icon.svg" id="2_fc0o1"]
+[ext_resource type="Theme" uid="uid://cbimufccfad2e" path="res://theme.tres" id="3_jnwnw"]
+[ext_resource type="Texture2D" uid="uid://d2w0loadnb1qh" path="res://ship/selected.png" id="3_ue4ax"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hduab"]
 size = Vector2(128, 128)
@@ -16,5 +18,26 @@ texture = ExtResource("2_fc0o1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_hduab")
+
+[node name="Scanning" type="Node2D" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="Scanning"]
+unique_name_in_owner = true
+visible = false
+offset_left = -64.0
+offset_top = -99.0
+offset_right = 64.0
+offset_bottom = -72.0
+theme = ExtResource("3_jnwnw")
+show_percentage = false
+
+[node name="SelectIndicator" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -164.0
+offset_top = -166.0
+offset_right = 162.0
+offset_bottom = 160.0
+texture = ExtResource("3_ue4ax")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
