@@ -9,3 +9,4 @@ script = ExtResource("1_iyu0j")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_isfek")
 autoplay = true
+parameters/looping = true
