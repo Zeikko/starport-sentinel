@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=19 format=4 uid="uid://cbimufccfad2e"]
 
-[ext_resource type="Texture2D" uid="uid://btlu4bf6cmgmt" path="res://source/stylebox.png" id="1_eoen8"]
+[ext_resource type="Texture2D" uid="uid://btlu4bf6cmgmt" path="res://stylebox.png" id="1_eoen8"]
 
 [sub_resource type="Image" id="Image_gj2my"]
 data = {

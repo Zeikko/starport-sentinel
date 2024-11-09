@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c8djburogdndp"]
 
-[ext_resource type="Script" path="res://source/game/game.gd" id="1_85w3k"]
-[ext_resource type="Theme" uid="uid://cbimufccfad2e" path="res://source/theme.tres" id="2_sfxa4"]
+[ext_resource type="Script" path="res://game/game.gd" id="1_85w3k"]
+[ext_resource type="Theme" uid="uid://cbimufccfad2e" path="res://theme.tres" id="2_sfxa4"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_85w3k")

@@ -7,7 +7,7 @@ var ship_counter: int = 0:
 		ship_counter = value
 	get:
 		return ship_counter
-var ship_scene: PackedScene = preload('res://source/ship/ship.tscn')
+var ship_scene: PackedScene = preload('res://ship/ship.tscn')
 var security_rules: Array[SecurityRule] = []
 @onready var shift_menu: Panel = %ShiftMenu
 @onready var shift_title: Label = %ShiftTitle

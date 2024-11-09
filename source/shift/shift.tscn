@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bpgfvwxjiu6bp"]
 
-[ext_resource type="Script" path="res://source/shift/shift.gd" id="1_yq6q2"]
-[ext_resource type="Theme" uid="uid://cbimufccfad2e" path="res://source/theme.tres" id="2_6rmm1"]
+[ext_resource type="Script" path="res://shift/shift.gd" id="1_yq6q2"]
+[ext_resource type="Theme" uid="uid://cbimufccfad2e" path="res://theme.tres" id="2_6rmm1"]
 
 [node name="Shift" type="Node"]
 script = ExtResource("1_yq6q2")

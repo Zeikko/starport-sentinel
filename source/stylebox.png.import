@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://btlu4bf6cmgmt"
-path="res://.godot/imported/stylebox.png-30aa646f89f30d6d4cd6094be9623d23.ctex"
+path="res://.godot/imported/stylebox.png-859dc9196ce319e1ae6af93577c4eeb9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://source/stylebox.png"
-dest_files=["res://.godot/imported/stylebox.png-30aa646f89f30d6d4cd6094be9623d23.ctex"]
+source_file="res://stylebox.png"
+dest_files=["res://.godot/imported/stylebox.png-859dc9196ce319e1ae6af93577c4eeb9.ctex"]
 
 [params]
 

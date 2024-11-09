@@ -11,16 +11,16 @@ config_version=5
 [application]
 
 config/name="New Game Project"
-run/main_scene="res://source/main.tscn"
+run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://source/icon.svg"
+config/icon="res://icon.svg"
 
 [autoload]
 
-Ui="*res://source/ui/ui.tscn"
-Game="*res://source/game/game.tscn"
-Shift="*res://source/shift/shift.tscn"
-CargoHelper="*res://source/ship/cargo_helper.gd"
+Ui="*res://ui/ui.tscn"
+Game="*res://game/game.tscn"
+Shift="*res://shift/shift.tscn"
+CargoHelper="*res://ship/cargo_helper.gd"
 
 [debug]
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dtha4c88yb14"]
 
-[ext_resource type="Script" path="res://source/ui/ship_visual/ship_visual.gd" id="1_7r63g"]
-[ext_resource type="Texture2D" uid="uid://c2etlk3jkbsci" path="res://source/ui/ship_visual/ship.png" id="1_w35re"]
-[ext_resource type="Texture2D" uid="uid://vaxqoy2xhvuu" path="res://source/ui/ship_visual/factions.png" id="2_8k3f1"]
+[ext_resource type="Script" path="res://ui/ship_visual/ship_visual.gd" id="1_7r63g"]
+[ext_resource type="Texture2D" uid="uid://c2etlk3jkbsci" path="res://ui/ship_visual/ship.png" id="1_w35re"]
+[ext_resource type="Texture2D" uid="uid://vaxqoy2xhvuu" path="res://ui/ship_visual/factions.png" id="2_8k3f1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8p8ir"]
 texture = ExtResource("2_8k3f1")
