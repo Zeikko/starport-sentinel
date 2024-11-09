@@ -5,7 +5,7 @@ var faction: Ship.Faction = -1
 var cargo_type: CargoItem.Type = -1
 
 static func create_security_rule(security_rules: Array[SecurityRule]) -> SecurityRule:
-	var rule_type = randi_range(1,2)
+	var rule_type = randi_range(1, 2)
 	match rule_type:
 		1:
 			return create_cargo_rule(security_rules)

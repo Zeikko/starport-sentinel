@@ -30,5 +30,5 @@ func _init(arg_type: Type, arg_quantity: int) -> void:
 
 func get_label() -> Label:
 	var label: Label = Label.new()
-	label.set_text(CargoItem.Type.find_key(type).capitalize() +  ': ' + str(quantity) + ' tons')
+	label.set_text(CargoItem.Type.find_key(type).capitalize() + ': ' + str(quantity) + ' tons')
 	return label
