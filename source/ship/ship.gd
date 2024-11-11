@@ -1,5 +1,9 @@
 class_name Ship extends Node2D
 
+var shuttle_texture = load("res://ship/shuttle.png")
+var cruiser_texture = load("res://ship/cruiser.png")
+var frigate_texture = load("res://ship/frigate.png")
+
 enum Status {UNDECIDED, APPROVED, REJECTED}
 enum Type {SHUTTLE, FRIGATE, CRUISER}
 enum Faction {
@@ -11,21 +15,20 @@ enum Faction {
 	HOUSE_FRUGI,
 	FOLLOWERS_OF_OBUDU
 }
-var max_distance: float = 300
-var min_distance: float = 40
-var scale_multiplier: float = 0.1
+var max_distance: float = 75
+var min_distance: float = 10
 
 var distance: float = max_distance
 var angle: float = 0
-var speed: float = 5
+var speed: float = 1
 var ship_name: String = 'Default Ship'
 var status: Status = Status.UNDECIDED:
 	set(value):
 		if value == Status.APPROVED:
-			modulate = Color.CHARTREUSE
+			radar_blip.modulate = Color.html('#4a7a96')
 			speed = abs(speed)
 		if value == Status.REJECTED:
-			modulate = Color.CRIMSON
+			radar_blip.modulate = Color.html('#fbbbad')
 			speed = abs(speed) * -1
 		status = value
 		Ui.update_ship_information()
@@ -34,7 +37,6 @@ var status: Status = Status.UNDECIDED:
 		return status
 var type: Type:
 	set(value):
-		scale = Vector2(value + 1, value + 1) * scale_multiplier
 		type = value
 	get:
 		return type
@@ -46,6 +48,7 @@ var cargo_holds: Array[CargoHold] = []
 
 @onready var progress_bar: ProgressBar = %ProgressBar
 @onready var select_indicator: TextureRect = %SelectIndicator
+@onready var radar_blip: Node2D = %RadarBlip
 
 func _ready() -> void:
 	ship_name = str(randi())
@@ -55,6 +58,16 @@ func _ready() -> void:
 	for cargo_hold_number: int in range(type + 1):
 		cargo_holds.push_back(CargoHold.new(cargo_hold_number + 1, type))
 	information = ShipInformation.new(self)
+	set_radar_texture()
+
+
+func set_radar_texture() -> void:
+	if (type == Type.SHUTTLE):
+		radar_blip.texture = shuttle_texture
+	elif (type == Type.FRIGATE):
+		radar_blip.texture = frigate_texture
+	elif (type == Type.CRUISER):
+		radar_blip.texture = cruiser_texture
 
 func _process(delta: float) -> void:
 	if distance < min_distance:
