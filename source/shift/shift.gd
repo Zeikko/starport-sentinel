@@ -91,7 +91,7 @@ func show_shift_report() -> void:
 	shift_title.set_text('Shift ' + str(shift_number) + ' complete!')
 	income_label.set_text('You earned ' + str(income) + ' credits')
 	if (upkeep_damage > 0):
-		upkeep_label.set_text('You paid ' + str(paid_upkeep) + 
+		upkeep_label.set_text('You paid ' + str(paid_upkeep) +
 		' of the upkeep of ' + str(upkeep) + ' credits')
 		upkeep_damage_label.set_text('You took ' + str(upkeep_damage) + ' damage due to unpaid upkeep.')
 		upkeep_damage_label.show()
