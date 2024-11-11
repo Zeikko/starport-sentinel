@@ -62,6 +62,14 @@ func _ready() -> void:
 	information = ShipInformation.new(self)
 	set_radar_texture()
 
+func pick_type() -> void:
+	var random_value: int = randi_range(1,6)
+	if (random_value == 6): # 1 of 6
+		type = Type.CRUISER
+	elif (random_value > 3): # 2 of 6
+		type = Type.FRIGATE
+	else: # 3 of 6
+		type = Type.SHUTTLE
 
 func set_radar_texture() -> void:
 	if (type == Type.SHUTTLE):
@@ -101,9 +109,11 @@ func visit_starport() -> void:
 	if is_dangerous:
 		var damage: int = 10 * (type + 1)
 		Game.hit_points -= damage
+		Shift.damage += damage
 	else:
 		var credits: int = 10 * (type + 1)
 		Game.credits += credits
+		Shift.income += credits
 	queue_free()
 
 func start_scanning() -> void:

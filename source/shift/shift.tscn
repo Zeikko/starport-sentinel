@@ -11,7 +11,7 @@ unique_name_in_owner = true
 wait_time = 4.0
 autostart = true
 
-[node name="ShiftMenu" type="Panel" parent="."]
+[node name="ShiftReport" type="Panel" parent="."]
 unique_name_in_owner = true
 visible = false
 anchors_preset = 8
@@ -30,7 +30,7 @@ size_flags_vertical = 4
 theme = ExtResource("2_6rmm1")
 metadata/_edit_use_anchors_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="ShiftMenu"]
+[node name="MarginContainer" type="MarginContainer" parent="ShiftReport"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,32 +39,56 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_6rmm1")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ShiftMenu/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ShiftReport/MarginContainer"]
 layout_mode = 2
 
-[node name="ShiftTitle" type="Label" parent="ShiftMenu/MarginContainer/VBoxContainer"]
+[node name="ShiftTitle" type="Label" parent="ShiftReport/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("2_6rmm1")
 
-[node name="NewSecurityRuleTitle" type="Label" parent="ShiftMenu/MarginContainer/VBoxContainer"]
+[node name="IncomeLabel" type="Label" parent="ShiftReport/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_6rmm1")
+
+[node name="DamageLabel" type="Label" parent="ShiftReport/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_6rmm1")
+
+[node name="UpkeepLabel" type="Label" parent="ShiftReport/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_6rmm1")
+
+[node name="UpkeepDamageLabel" type="Label" parent="ShiftReport/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_6rmm1")
+
+[node name="NewSecurityRuleTitle" type="Label" parent="ShiftReport/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("2_6rmm1")
 text = "New Security Rule"
 
-[node name="NewSecurityRule" type="Label" parent="ShiftMenu/MarginContainer/VBoxContainer"]
+[node name="NewSecurityRule" type="Label" parent="ShiftReport/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("2_6rmm1")
 
-[node name="StartShiftButton" type="Button" parent="ShiftMenu/MarginContainer"]
+[node name="StartShiftButton" type="Button" parent="ShiftReport/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 theme = ExtResource("2_6rmm1")
 text = "Start next shift"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="pressed" from="ShiftMenu/MarginContainer/StartShiftButton" to="." method="_on_start_shift_button_pressed"]
+[connection signal="pressed" from="ShiftReport/MarginContainer/StartShiftButton" to="." method="_on_start_shift_button_pressed"]

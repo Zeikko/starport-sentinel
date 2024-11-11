@@ -10,8 +10,18 @@ var ship_counter: int = 0:
 var ship_scene: PackedScene = preload('res://ship/ship.tscn')
 var security_rules: Array[SecurityRule] = []
 var possible_angles: Array[float] = []
-@onready var shift_menu: Panel = %ShiftMenu
+var income: int = 0
+var damage: int = 0
+var upkeep: int = 50
+var paid_upkeep: int = 0
+var upkeep_damage: int = 0
+@onready var shift_report: Panel = %ShiftReport
 @onready var shift_title: Label = %ShiftTitle
+@onready var income_label: Label = %IncomeLabel
+@onready var damage_label: Label = %DamageLabel
+@onready var upkeep_label: Label = %UpkeepLabel
+@onready var upkeep_damage_label: Label = %UpkeepDamageLabel
+
 @onready var new_security_rule_label: Label = %NewSecurityRule
 
 func _ready() -> void:
@@ -56,26 +66,49 @@ func is_shift_over(altered_ship: Ship) -> void:
 
 
 func end_shift(ships: Array[Ship]) -> void:
+	pay_upkeep()
 	for ship: Ship in ships:
 		if ship.status == Ship.Status.APPROVED:
 			ship.visit_starport()
 		else:
 			ship.queue_free()
 	if Game.hit_points > 0:
-		show_shift_menu()
+		show_shift_report()
 
 
-func show_shift_menu() -> void:
+func pay_upkeep() -> void:
+	paid_upkeep = clamp(Game.credits, 0, upkeep)
+	upkeep_damage = upkeep - paid_upkeep
+	Game.hit_points -= upkeep_damage
+	Game.credits -= paid_upkeep
+
+
+func show_shift_report() -> void:
 	var new_security_rule: SecurityRule = SecurityRule.create_security_rule(security_rules)
 	security_rules.push_back(new_security_rule)
 	Ui.update_security_briefing()
 	new_security_rule_label.set_text(new_security_rule.to_text())
 	shift_title.set_text('Shift ' + str(shift_number) + ' complete!')
-	shift_menu.show()
+	income_label.set_text('You earned ' + str(income) + ' credits')
+	
+	if (upkeep_damage > 0):
+		upkeep_label.set_text('You paid ' + str(paid_upkeep) + ' of the upkeep of ' + str(upkeep) + ' credits')
+		upkeep_damage_label.set_text('You took ' + str(upkeep_damage) + ' damage due to unpaid upkeep.')
+		upkeep_damage_label.show()
+	else:
+		upkeep_label.set_text('You paid the upkeep of ' + str(paid_upkeep) + ' credits')
+		upkeep_damage_label.hide()
+	damage_label.set_text('You sustained ' + str(damage) + ' damage')
+
+	shift_report.show()
+
+
 
 
 func _on_start_shift_button_pressed() -> void:
 	create_possible_angles()
 	ship_counter = 0
+	income = 0
+	damage = 0
 	shift_number += 1
-	shift_menu.hide()
+	shift_report.hide()
