@@ -1,9 +1,5 @@
 class_name Ship extends Node2D
 
-var shuttle_texture = load("res://ship/shuttle.png")
-var cruiser_texture = load("res://ship/cruiser.png")
-var frigate_texture = load("res://ship/frigate.png")
-
 enum Status {UNDECIDED, APPROVED, REJECTED}
 enum Type {SHUTTLE, FRIGATE, CRUISER}
 enum Faction {
@@ -15,6 +11,11 @@ enum Faction {
 	HOUSE_FRUGI,
 	FOLLOWERS_OF_OBUDU
 }
+
+var shuttle_texture = load("res://ship/shuttle.png")
+var cruiser_texture = load("res://ship/cruiser.png")
+var frigate_texture = load("res://ship/frigate.png")
+
 var max_distance: float = 75
 var min_distance: float = 10
 
