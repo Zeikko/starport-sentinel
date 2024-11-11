@@ -108,8 +108,8 @@ func fin_suffix(arpoo: int,vowel: PackedStringArray,umlaut: int,last: String) ->
 		7: 
 			var n: String = ""
 			if randi() % 2 == 1: n = "n"
-			suffix = n + Array("kylä,harju,joki,järvi,kari,keto,korpi,koski,lahti,lampi,luoto,mäki,\
-			niemi,pelto,puro,pää,ranta,uoma,vaara,vesi,virta,vuori".split(",")).pick_random()
+			suffix = n + Array("""kylä,harju,joki,järvi,kari,keto,korpi,koski,lahti,lampi,luoto,mäki,
+			niemi,pelto,puro,pää,ranta,uoma,vaara,vesi,virta,vuori""".split(",")).pick_random()
 		8: suffix = "nki" 
 		9: suffix = "ti"
 		10: suffix = "r"+ vowel[2 + umlaut]+"ll"+ vowel[2 + umlaut]+ vowel[2 + umlaut] #rallaa rällää
