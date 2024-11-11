@@ -20,6 +20,7 @@ var holds_to_display: int = 0:
 @onready var faction_and_class: Label = %FactionAndClass
 @onready var security_rules: VBoxContainer = %SecurityRules
 @onready var hit_points: Label = %HitPoints
+@onready var credits: Label = %Credits
 @onready var scan: VBoxContainer = $Scan
 @onready var progress_bar: ProgressBar = %ProgressBar
 @onready var scan_button: Button = %ScanButton
@@ -65,6 +66,7 @@ func update_security_briefing() -> void:
 
 func update_starport() -> void:
 	hit_points.set_text('Hit Points: ' + str(Game.hit_points) + ' / 100')
+	credits.set_text('Credits: ' + str(Game.credits))
 
 
 func update_scan() -> void:
