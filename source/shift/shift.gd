@@ -21,17 +21,17 @@ func _ready() -> void:
 	Ui.update_security_briefing()
 
 
-func create_possible_angles():
-	var number_of_angles: float = 16
-	var angle_difference: float = 2 * PI / number_of_angles
+func create_possible_angles() -> void:
+	var number_of_angles: int = 16
+	var angle_diff: float = 2 * PI / number_of_angles
 	for angle_number: int in range(1, number_of_angles):
-		possible_angles.push_back(float(angle_number) * angle_difference)
+		possible_angles.push_back(float(angle_number) * angle_diff)
 
 func create_ship() -> void:
 	if ship_counter < ships_per_shift:
 		var ship: Ship = ship_scene.instantiate()
 		ship.angle = possible_angles.pick_random()
-		possible_angles = possible_angles.filter(func(angle: float): return ship.angle != angle)
+		possible_angles = possible_angles.filter(func(angle: float) -> float: return ship.angle != angle)
 		Ui.radar.ships.add_child(ship)
 		ship_counter += 1
 
