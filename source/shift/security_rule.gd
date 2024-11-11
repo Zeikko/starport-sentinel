@@ -21,14 +21,15 @@ static func create_faction_class_rule(security_rules: Array[SecurityRule]) -> Se
 			new_rule.type = new_type
 			new_rule.faction = new_faction
 			possible_new_rules.push_back(new_rule)
-	possible_new_rules.filter(func(new_rule: SecurityRule) -> bool:
+	var nonexisting_rules: Array[SecurityRule] = possible_new_rules.filter(
+		func(new_rule: SecurityRule) -> bool:
 		var existing_identical_rules: Array[SecurityRule] = security_rules.filter(
 			func(existing_rule: SecurityRule) -> bool:
 			return new_rule.faction == existing_rule.faction && new_rule.type == existing_rule.type
 		)
 		return existing_identical_rules.size() == 0
 	)
-	return possible_new_rules.pick_random()
+	return nonexisting_rules.pick_random()
 
 static func create_cargo_rule(security_rules: Array[SecurityRule]) -> SecurityRule:
 	var possible_new_types = CargoItem.Type.values().filter(func(cargo_type: CargoItem.Type) -> bool:
