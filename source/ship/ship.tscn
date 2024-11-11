@@ -1,43 +1,50 @@
-[gd_scene load_steps=6 format=3 uid="uid://brd2ebk6ooumc"]
+[gd_scene load_steps=5 format=3 uid="uid://brd2ebk6ooumc"]
 
 [ext_resource type="Script" path="res://ship/ship.gd" id="1_xbnws"]
-[ext_resource type="Texture2D" uid="uid://bnytmsqpdebp1" path="res://icon.svg" id="2_fc0o1"]
 [ext_resource type="Theme" uid="uid://cbimufccfad2e" path="res://theme.tres" id="3_jnwnw"]
 [ext_resource type="Texture2D" uid="uid://d2w0loadnb1qh" path="res://ship/selected.png" id="3_ue4ax"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hduab"]
-size = Vector2(128, 128)
+[sub_resource type="CircleShape2D" id="CircleShape2D_h6lot"]
+radius = 9.0
 
 [node name="Ship" type="Node2D"]
 script = ExtResource("1_xbnws")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_fc0o1")
+[node name="RadarBlip" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_hduab")
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_h6lot")
 
 [node name="Scanning" type="Node2D" parent="."]
 
 [node name="ProgressBar" type="ProgressBar" parent="Scanning"]
 unique_name_in_owner = true
 visible = false
-offset_left = -64.0
-offset_top = -99.0
-offset_right = 64.0
-offset_bottom = -72.0
+offset_left = -9.0
+offset_top = -13.0
+offset_right = 7.0
+offset_bottom = -9.0
 theme = ExtResource("3_jnwnw")
 show_percentage = false
 
 [node name="SelectIndicator" type="TextureRect" parent="."]
 unique_name_in_owner = true
 visible = false
-offset_left = -164.0
-offset_top = -166.0
-offset_right = 162.0
-offset_bottom = 160.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -9.0
+offset_right = 9.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("3_ue4ax")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
