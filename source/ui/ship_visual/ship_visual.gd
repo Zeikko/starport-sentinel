@@ -1,4 +1,4 @@
-extends Control
+class_name ShipVisual extends Control
 
 var faction_map: Dictionary = {
 	Ship.Faction.VOID_INC: Vector2i(0, 0),

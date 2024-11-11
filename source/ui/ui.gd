@@ -14,7 +14,7 @@ var holds_to_display: int = 0:
 		update_cargo_holds()
 	get:
 		return holds_to_display
-@onready var radar: Node2D = %Radar
+@onready var radar: Radar = %Radar
 @onready var ship_name: Label = %ShipName
 @onready var status: Label = %Status
 @onready var faction_and_class: Label = %FactionAndClass
@@ -25,7 +25,7 @@ var holds_to_display: int = 0:
 @onready var scan_button: Button = %ScanButton
 @onready var cargo_holds_container: VBoxContainer = %CargoHoldsContainer
 @onready var ship_information: Panel = %ShipInformation
-@onready var ship_visual: Control = %ShipVisual
+@onready var ship_visual: ShipVisual = %ShipVisual
 @onready var cargo_manifest: VBoxContainer = %CargoManifest
 
 func _process(_delta: float) -> void:
