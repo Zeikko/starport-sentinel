@@ -26,10 +26,10 @@ var ship_name: String = 'Default Ship'
 var status: Status = Status.UNDECIDED:
 	set(value):
 		if value == Status.APPROVED:
-			radar_blip.modulate = Color.html('#4a7a96')
+			radar_blip.modulate = Color.html('#333f58')
 			speed = abs(speed)
 		if value == Status.REJECTED:
-			radar_blip.modulate = Color.html('#fbbbad')
+			radar_blip.modulate = Color.html('#ee8695')
 			speed = abs(speed) * -1
 		status = value
 		Ui.update_ship_information()
@@ -52,6 +52,7 @@ var cargo_holds: Array[CargoHold] = []
 @onready var radar_blip: Node2D = %RadarBlip
 
 func _ready() -> void:
+	position = Vector2(distance, 0).rotated(angle)
 	ship_name = str(randi())
 	type = Type.values().pick_random()
 	faction = Faction.values().pick_random()
@@ -100,7 +101,9 @@ func visit_starport() -> void:
 	if is_dangerous:
 		var damage: int = 10 * (type + 1)
 		Game.hit_points -= damage
-		print('Dealt ' + str(damage) + ' damage')
+	else:
+		var credits: int = 10 * (type + 1)
+		Game.credits += credits
 	queue_free()
 
 func start_scanning() -> void:
