@@ -3,6 +3,7 @@ extends Node
 var hit_points: int = 100:
 	set(value):
 		if value <= 0:
+			Shift.time_tracker.show_label(shift_duration_label, total_duration_label)
 			defeat_menu.show()
 			print('Defeat!')
 			get_tree().paused = true
@@ -19,6 +20,8 @@ var credits: int = 0:
 		return credits
 
 @onready var defeat_menu: Panel = %DefeatMenu
+@onready var shift_duration_label: Label = %LastShiftDuration
+@onready var total_duration_label : Label = %TotalDuration
 
 func _ready() -> void:
 	Ui.update_starport()

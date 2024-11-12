@@ -10,16 +10,23 @@ var ship_counter: int = 0:
 var ship_scene: PackedScene = preload('res://ship/ship.tscn')
 var security_rules: Array[SecurityRule] = []
 var possible_angles: Array[float] = []
+var time_tracker: TimeTracker = preload('res://shift/time_tracker.gd').new()
+
 @onready var shift_menu: Panel = %ShiftMenu
 @onready var shift_title: Label = %ShiftTitle
 @onready var new_security_rule_label: Label = %NewSecurityRule
-
+@onready var shift_duration_label : Label = %ShiftDuration
+@onready var total_duration_label : Label = %TotalDuration
 func _ready() -> void:
 	create_possible_angles()
 	create_ship()
 	security_rules.push_back(SecurityRule.create_security_rule(security_rules))
 	Ui.update_security_briefing()
 
+func _process(delta: float) -> void:
+	time_tracker.uptade_timetracker(delta)
+	
+	
 
 func create_possible_angles() -> void:
 	var number_of_angles: int = 16
@@ -62,7 +69,9 @@ func end_shift(ships: Array[Ship]) -> void:
 		else:
 			ship.queue_free()
 	if Game.hit_points > 0:
+		time_tracker.end_shift()
 		show_shift_menu()
+	
 
 
 func show_shift_menu() -> void:
@@ -71,6 +80,7 @@ func show_shift_menu() -> void:
 	Ui.update_security_briefing()
 	new_security_rule_label.set_text(new_security_rule.to_text())
 	shift_title.set_text('Shift ' + str(shift_number) + ' complete!')
+	time_tracker.show_label(shift_duration_label, total_duration_label)
 	shift_menu.show()
 
 

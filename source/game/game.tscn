@@ -48,3 +48,11 @@ layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("2_sfxa4")
 text = "Restart the game to play again"
+
+[node name="LastShiftDuration" type="Label" parent="DefeatMenu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TotalDuration" type="Label" parent="DefeatMenu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2

@@ -60,6 +60,14 @@ layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("2_6rmm1")
 
+[node name="ShiftDuration" type="Label" parent="ShiftMenu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TotalDuration" type="Label" parent="ShiftMenu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="StartShiftButton" type="Button" parent="ShiftMenu/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 8
