@@ -18,10 +18,17 @@ var frigate_texture = load("res://ship/frigate.png")
 
 var max_distance: float = 75
 var min_distance: float = 10
+var waiting_distance: float = 20
+var max_wait_time: float = 10
 
 var distance: float = max_distance
 var angle: float = 0
-var speed: float = 1
+var speed: float = 10
+var wait_time_elapsed: float = 0:
+	set(value):
+		wait_time_elapsed = clamp(value, 0, max_wait_time)
+		if wait_time_elapsed == max_wait_time:
+			status = Status.REJECTED
 var ship_name: String = 'Default Ship'
 var status: Status = Status.UNDECIDED:
 	set(value):
@@ -79,7 +86,11 @@ func _process(delta: float) -> void:
 		queue_free()
 		Shift.is_shift_over(self)
 	elif self != null:
-		distance -= delta * speed
+		if status in [Status.APPROVED, Status.REJECTED] or \
+		distance > waiting_distance:
+			distance -= delta * speed
+		else:
+			wait_time_elapsed += delta
 		position = Vector2(distance, 0).rotated(angle)
 	if is_scanning:
 		progress_bar.value += delta * Game.scanning_speed
@@ -103,6 +114,7 @@ func visit_starport() -> void:
 		Game.hit_points -= damage
 	else:
 		var credits: int = 10 * (type + 1)
+		credits *= 1 - wait_time_elapsed / max_wait_time
 		Game.credits += credits
 	queue_free()
 
