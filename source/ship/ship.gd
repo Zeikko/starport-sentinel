@@ -23,7 +23,7 @@ var max_wait_time: float = 10
 
 var distance: float = max_distance
 var angle: float = 0
-var speed: float = 10
+var speed: float = 1
 var wait_time_elapsed: float = 0:
 	set(value):
 		wait_time_elapsed = clamp(value, 0, max_wait_time)
