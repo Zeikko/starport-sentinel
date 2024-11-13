@@ -21,7 +21,7 @@ enum Type {
 	AMMUNITION,
 	BATTERIES
 }
-	
+
 static var clothing_texture: Resource = load("res://ship/cargo_icons/clothing.png")
 static var medicals_texture: Resource = load("res://ship/cargo_icons/medicals.png")
 static var textures: Dictionary = {
@@ -54,7 +54,6 @@ static func get_icon_or_name(arg_type: Type) -> Node:
 		texture_rext.position = Vector2(8, 8)
 		texture_rext.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 		return texture_rext
-	else:
-		var label: Label = Label.new()
-		label.set_text(CargoItem.Type.find_key(arg_type).capitalize())
-		return label
+	var label: Label = Label.new()
+	label.set_text(CargoItem.Type.find_key(arg_type).capitalize())
+	return label

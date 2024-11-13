@@ -51,7 +51,7 @@ func get_nodes() -> Node:
 	label.set_text('are not allowed')
 	container.add_child(label)
 	return container
-	
+
 func get_icon_or_name() -> Node:
 	if faction != -1 && type != -1:
 		var label: Label = Label.new()
