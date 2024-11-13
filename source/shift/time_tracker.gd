@@ -3,7 +3,7 @@ class_name TimeTracker extends Object
 var shift_in_progress : bool
 var shift_duration : float = 0
 var total_duration : float = 0
-var shift_duration_history : Array[float] = []
+
 
 func uptade_timetracker(delta : float)-> void:
 	if shift_in_progress == false:
@@ -12,7 +12,6 @@ func uptade_timetracker(delta : float)-> void:
 func end_shift()-> void :
 	shift_in_progress = false
 	total_duration += shift_duration
-	shift_duration_history.push_back(shift_duration)
 	
 func start_shift()-> void :
 	shift_duration = 0

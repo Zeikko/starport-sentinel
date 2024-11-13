@@ -2,29 +2,21 @@ extends Node
 
 var shift_number: int = 1
 var ships_per_shift: int = 10
-var dangerous_ship_counter: int = 0
 var ship_counter: int = 0:
 	set(value):
 		ship_counter = value
 	get:
 		return ship_counter
-
 var ship_scene: PackedScene = preload('res://ship/ship.tscn')
-var time_tracker: TimeTracker = TimeTracker.new()
-var shift_highlights : ShiftHighlights
-
 var security_rules: Array[SecurityRule] = []
 var possible_angles: Array[float] = []
-var shifts_highlights: Array[ShiftHighlights] = []
-var credits_gaind_history : Array[float] = []
+var time_tracker: TimeTracker = preload('res://shift/time_tracker.gd').new()
 
 @onready var shift_menu: Panel = %ShiftMenu
 @onready var shift_title: Label = %ShiftTitle
 @onready var new_security_rule_label: Label = %NewSecurityRule
 @onready var shift_duration_label : Label = %ShiftDuration
 @onready var total_duration_label : Label = %TotalDuration
-@onready var shifts_highlights_container : VBoxContainer = %ShiftsHighlights
-
 func _ready() -> void:
 	create_possible_angles()
 	create_ship()
@@ -78,10 +70,8 @@ func end_shift(ships: Array[Ship]) -> void:
 			ship.queue_free()
 	if Game.hit_points > 0:
 		time_tracker.end_shift()
-		credits_gaind_history.push_back(Game.credits)
-		update_shifts_highlights_container()
 		show_shift_menu()
-		
+	
 
 
 func show_shift_menu() -> void:
@@ -93,34 +83,9 @@ func show_shift_menu() -> void:
 	time_tracker.show_label(shift_duration_label, total_duration_label)
 	shift_menu.show()
 
-func add_shift_highlights() -> void:
-	pass
 
 func _on_start_shift_button_pressed() -> void:
 	create_possible_angles()
 	ship_counter = 0
 	shift_number += 1
 	shift_menu.hide()
-
-
-
-	
-func update_shifts_highlights_container() -> void:
-	var args_array : Array[float] = [ship_counter, dangerous_ship_counter, Game.credits, time_tracker.shift_duration]
-	shifts_highlights.push_back(ShiftHighlights.new(ship_counter, dangerous_ship_counter, Game.credits, time_tracker.shift_duration))
-
-	for child: Node in shifts_highlights_container.get_children():
-		shifts_highlights_container.remove_child(child)
-	for shift: ShiftHighlights in shifts_highlights:
-		var shift_highlights_container : VBoxContainer = VBoxContainer.new()
-		shifts_highlights_container.add_child(shift_highlights_container)
-		for item in args_array:
-			shift_highlights_container.add_child(shift.get_label(int(args_array.find(item))))
-
-
-
-func _on_shifts_highlights_button_toggled(toggled_on: bool) -> void:
-	if toggled_on:
-		shifts_highlights_container.show()
-	else:
-		shifts_highlights_container.hide()

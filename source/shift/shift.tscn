@@ -74,23 +74,5 @@ size_flags_vertical = 8
 theme = ExtResource("2_6rmm1")
 text = "Start next shift"
 
-[node name="ShiftsHighlightsButton" type="CheckButton" parent="ShiftMenu"]
-layout_mode = 2
-offset_left = 182.0
-offset_top = 15.0
-offset_right = 287.0
-offset_bottom = 39.0
-text = "shifts  highlighs"
-
-[node name="ShiftsHighlights" type="VBoxContainer" parent="ShiftMenu/ShiftsHighlightsButton"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 0
-offset_left = -30.0
-offset_top = 30.0
-offset_right = 43.0
-offset_bottom = 144.0
-
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="ShiftMenu/MarginContainer/StartShiftButton" to="." method="_on_start_shift_button_pressed"]
-[connection signal="toggled" from="ShiftMenu/ShiftsHighlightsButton" to="." method="_on_shifts_highlights_button_toggled"]
