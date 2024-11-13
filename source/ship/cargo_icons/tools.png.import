@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dl2fl1rl7cpkq"
-path="res://.godot/imported/clothing.png-d17d5164c97c722535570638ba85b9a0.ctex"
+uid="uid://uoc1p5x5k7cu"
+path="res://.godot/imported/tools.png-dfea38150597dfda353475eefda4d6ad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ship/cargo_icons/clothing.png"
-dest_files=["res://.godot/imported/clothing.png-d17d5164c97c722535570638ba85b9a0.ctex"]
+source_file="res://ship/cargo_icons/tools.png"
+dest_files=["res://.godot/imported/tools.png-dfea38150597dfda353475eefda4d6ad.ctex"]
 
 [params]
 

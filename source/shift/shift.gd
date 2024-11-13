@@ -66,12 +66,12 @@ func is_shift_over(altered_ship: Ship) -> void:
 
 
 func end_shift(ships: Array[Ship]) -> void:
-	pay_upkeep()
 	for ship: Ship in ships:
 		if ship.status == Ship.Status.APPROVED:
 			ship.visit_starport()
 		else:
 			ship.queue_free()
+	pay_upkeep()
 	if Game.hit_points > 0:
 		show_shift_report()
 
@@ -102,8 +102,6 @@ func show_shift_report() -> void:
 		upkeep_damage_label.hide()
 	damage_label.set_text('You sustained ' + str(damage) + ' damage')
 	shift_report.show()
-
-
 
 
 func _on_start_shift_button_pressed() -> void:

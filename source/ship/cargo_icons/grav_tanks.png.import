@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dl2fl1rl7cpkq"
-path="res://.godot/imported/clothing.png-d17d5164c97c722535570638ba85b9a0.ctex"
+uid="uid://dnlj7nei8jmew"
+path="res://.godot/imported/grav_tanks.png-8fbfa5086e174263407afd18b27f1856.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ship/cargo_icons/clothing.png"
-dest_files=["res://.godot/imported/clothing.png-d17d5164c97c722535570638ba85b9a0.ctex"]
+source_file="res://ship/cargo_icons/grav_tanks.png"
+dest_files=["res://.godot/imported/grav_tanks.png-8fbfa5086e174263407afd18b27f1856.ctex"]
 
 [params]
 

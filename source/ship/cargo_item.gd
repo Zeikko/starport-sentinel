@@ -24,9 +24,43 @@ enum Type {
 
 static var clothing_texture: Resource = load("res://ship/cargo_icons/clothing.png")
 static var medicals_texture: Resource = load("res://ship/cargo_icons/medicals.png")
+static var jewels_texture: Resource = load("res://ship/cargo_icons/jewels.png")
+static var liquor_texture: Resource = load("res://ship/cargo_icons/liquor.png")
+static var houseware_texture: Resource = load("res://ship/cargo_icons/houseware.png")
+static var livestock_texture: Resource = load("res://ship/cargo_icons/livestock.png")
+static var metals_texture: Resource = load("res://ship/cargo_icons/metals.png")
+static var metawheat_texture: Resource = load("res://ship/cargo_icons/metawheat.png")
+static var artwork_texture: Resource = load("res://ship/cargo_icons/artwork.png")
+static var machinery_texture: Resource = load("res://ship/cargo_icons/machinery.png")
+static var tools_texture: Resource = load("res://ship/cargo_icons/tools.png")
+static var building_material_texture: Resource = load("res://ship/cargo_icons/building_material.png")
+static var junk_texture: Resource = load("res://ship/cargo_icons/junk.png")
+static var slaves_texture: Resource = load("res://ship/cargo_icons/slaves.png")
+static var small_arms_texture: Resource = load("res://ship/cargo_icons/small_arms.png")
+static var food_products_texture: Resource = load("res://ship/cargo_icons/food_products.png")
+static var grav_tanks_texture: Resource = load("res://ship/cargo_icons/grav_tanks.png")
+static var ammunition_texture: Resource = load("res://ship/cargo_icons/ammunition.png")
+static var batteries_texture: Resource = load("res://ship/cargo_icons/batteries.png")
 static var textures: Dictionary = {
 	Type.CLOTHING: clothing_texture,
-	Type.MEDICALS: medicals_texture
+	Type.MEDICALS: medicals_texture,
+	Type.JEWELS: jewels_texture,
+	Type.LIQUOR: liquor_texture,
+	Type.HOUSEWARE: houseware_texture,
+	Type.LIVESTOCK: livestock_texture,
+	Type.METALS: metals_texture,
+	Type.METAWHEAT: metawheat_texture,
+	Type.ARTWORK: artwork_texture,
+	Type.MACHINERY: machinery_texture,
+	Type.TOOLS: tools_texture,
+	Type.BUILDING_MATERIAL: building_material_texture,
+	Type.JUNK: junk_texture,
+	Type.SLAVES: slaves_texture,
+	Type.SMALL_ARMS: small_arms_texture,
+	Type.FOOD_PRODUCTS: food_products_texture,
+	Type.GRAV_TANKS: grav_tanks_texture,
+	Type.AMMUNITION: ammunition_texture,
+	Type.BATTERIES: batteries_texture
 }
 
 var type: Type
