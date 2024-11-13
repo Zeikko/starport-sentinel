@@ -72,7 +72,7 @@ func _init(arg_type: Type, arg_quantity: int) -> void:
 	quantity = arg_quantity
 
 func get_nodes() -> Node:
-	var name: Node = CargoItem.get_icon_or_name(type)
+	var name: Node = CargoItem.get_icon(type)
 	var container: HBoxContainer = HBoxContainer.new()
 	container.add_child(name)
 	var label: Label = Label.new()
@@ -80,14 +80,10 @@ func get_nodes() -> Node:
 	container.add_child(label)
 	return container
 
-static func get_icon_or_name(arg_type: Type) -> Node:
+static func get_icon(arg_type: Type) -> Node:
 	var texture: Resource = textures.get(arg_type)
-	if texture:
-		var texture_rext: TextureRect = TextureRect.new()
-		texture_rext.texture = texture
-		texture_rext.position = Vector2(8, 8)
-		texture_rext.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
-		return texture_rext
-	var label: Label = Label.new()
-	label.set_text(CargoItem.Type.find_key(arg_type).capitalize())
-	return label
+	var texture_rext: TextureRect = TextureRect.new()
+	texture_rext.texture = texture
+	texture_rext.position = Vector2(8, 8)
+	texture_rext.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+	return texture_rext

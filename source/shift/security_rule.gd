@@ -59,5 +59,5 @@ func get_icon_or_name() -> Node:
 		+ Ship.Type.find_key(type).capitalize() + 's ')
 		return label
 	if cargo_type != -1:
-		return CargoItem.get_icon_or_name(cargo_type)
+		return CargoItem.get_icon(cargo_type)
 	return null
