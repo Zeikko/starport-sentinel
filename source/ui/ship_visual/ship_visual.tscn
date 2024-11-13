@@ -32,5 +32,5 @@ texture = ExtResource("1_w35re")
 
 [node name="FactionLogo" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
-position = Vector2(56, 66)
+position = Vector2(56, 67)
 tile_set = SubResource("TileSet_d78lr")
