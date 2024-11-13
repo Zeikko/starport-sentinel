@@ -22,7 +22,7 @@ var upkeep_damage: int = 0
 @onready var upkeep_label: Label = %UpkeepLabel
 @onready var upkeep_damage_label: Label = %UpkeepDamageLabel
 
-@onready var new_security_rule_label: Label = %NewSecurityRule
+@onready var new_security_rule_container: Container = %NewSecurityRule
 
 func _ready() -> void:
 	create_possible_angles()
@@ -87,7 +87,9 @@ func show_shift_report() -> void:
 	var new_security_rule: SecurityRule = SecurityRule.create_security_rule(security_rules)
 	security_rules.push_back(new_security_rule)
 	Ui.update_security_briefing()
-	new_security_rule_label.set_text(new_security_rule.to_text())
+	for child: Node in new_security_rule_container.get_children():
+		new_security_rule_container.remove_child(child)
+	new_security_rule_container.add_child(new_security_rule.get_nodes())
 	shift_title.set_text('Shift ' + str(shift_number) + ' complete!')
 	income_label.set_text('You earned ' + str(income) + ' credits')
 	if (upkeep_damage > 0):

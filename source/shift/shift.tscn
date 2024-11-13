@@ -78,7 +78,7 @@ size_flags_vertical = 0
 theme = ExtResource("2_6rmm1")
 text = "New Security Rule"
 
-[node name="NewSecurityRule" type="Label" parent="ShiftReport/MarginContainer/VBoxContainer"]
+[node name="NewSecurityRule" type="Container" parent="ShiftReport/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0

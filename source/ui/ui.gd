@@ -50,7 +50,7 @@ func update_cargo_manifest() -> void:
 	var total: int = 0
 	for cargo_item: CargoItem in selected_ship.information.cargo_items:
 		total += cargo_item.quantity
-		cargo_manifest.add_child(cargo_item.get_label())
+		cargo_manifest.add_child(cargo_item.get_nodes())
 	var total_label: Label = Label.new()
 	total_label.set_text('Total: ' + str(total) + ' tons')
 	cargo_manifest.add_child(total_label)
@@ -59,9 +59,7 @@ func update_security_briefing() -> void:
 	for child: Node in security_rules.get_children():
 		security_rules.remove_child(child)
 	for security_rule: SecurityRule in Shift.security_rules:
-		var label: Label = Label.new()
-		label.set_text(security_rule.to_text())
-		security_rules.add_child(label)
+		security_rules.add_child(security_rule.get_nodes())
 
 
 func update_starport() -> void:
@@ -100,7 +98,7 @@ func update_cargo_holds() -> void:
 		cargo_holds_container.add_child(cargo_hold_container)
 		cargo_hold_container.add_child(cargo_hold.get_label())
 		for cargo_item: CargoItem in cargo_hold.cargo_items:
-			cargo_hold_container.add_child(cargo_item.get_label())
+			cargo_hold_container.add_child(cargo_item.get_nodes())
 		hold_index += 1
 
 
