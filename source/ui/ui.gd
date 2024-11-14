@@ -60,6 +60,8 @@ func update_security_briefing() -> void:
 		security_rules.remove_child(child)
 	for security_rule: SecurityRule in Shift.security_rules:
 		var label: Label = Label.new()
+		label.custom_minimum_size = Vector2(160,0)
+		label.autowrap_mode = TextServer.AUTOWRAP_WORD
 		label.set_text(security_rule.to_text())
 		security_rules.add_child(label)
 

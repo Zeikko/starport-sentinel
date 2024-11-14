@@ -132,11 +132,11 @@ offset_left = 430.0
 offset_top = 10.0
 offset_right = 630.0
 offset_bottom = 359.0
+theme = ExtResource("3_q76rh")
 
 [node name="ShipObservations" type="Panel" parent="Scan"]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
-theme = ExtResource("3_q76rh")
 
 [node name="MarginContainer" type="MarginContainer" parent="Scan/ShipObservations"]
 layout_mode = 1
