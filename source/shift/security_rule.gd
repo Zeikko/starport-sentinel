@@ -44,13 +44,20 @@ static func create_cargo_rule(security_rules: Array[SecurityRule]) -> SecurityRu
 	return new_rule
 
 
-func to_text() -> String:
-	var text: String = ''
-	if faction != -1:
-		text += Ship.Faction.find_key(faction).capitalize() + ' '
-	if type != -1:
-		text += Ship.Type.find_key(type).capitalize() + 's '
+func get_nodes() -> Node:
+	var container: HBoxContainer = HBoxContainer.new()
+	container.add_child(get_icon_or_name())
+	var label: Label = Label.new()
+	label.set_text('are not allowed')
+	container.add_child(label)
+	return container
+
+func get_icon_or_name() -> Node:
+	if faction != -1 && type != -1:
+		var label: Label = Label.new()
+		label.set_text(Ship.Faction.find_key(faction).capitalize() + ' '
+		+ Ship.Type.find_key(type).capitalize() + 's ')
+		return label
 	if cargo_type != -1:
-		text += CargoItem.Type.find_key(cargo_type).capitalize() + ' '
-	text += 'are not allowed'
-	return text
+		return CargoItem.get_icon(cargo_type)
+	return null
