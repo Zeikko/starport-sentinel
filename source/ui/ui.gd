@@ -94,7 +94,7 @@ func update_cargo_holds() -> void:
 	for cargo_hold: CargoHold in selected_ship.cargo_holds:
 		if hold_index >= holds_to_display:
 			break
-		var cargo_hold_container: HBoxContainer = HBoxContainer.new()
+		var cargo_hold_container: VBoxContainer = VBoxContainer.new()
 		cargo_holds_container.add_child(cargo_hold_container)
 		cargo_hold_container.add_child(cargo_hold.get_label())
 		for cargo_item: CargoItem in cargo_hold.cargo_items:

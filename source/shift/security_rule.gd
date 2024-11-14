@@ -43,21 +43,19 @@ static func create_cargo_rule(security_rules: Array[SecurityRule]) -> SecurityRu
 	new_rule.cargo_type = possible_new_types.pick_random()
 	return new_rule
 
-
 func get_nodes() -> Node:
-	var container: HBoxContainer = HBoxContainer.new()
-	container.add_child(get_icon_or_name())
-	var label: Label = Label.new()
-	label.set_text('are not allowed')
-	container.add_child(label)
-	return container
-
-func get_icon_or_name() -> Node:
 	if faction != -1 && type != -1:
 		var label: Label = Label.new()
+		label.custom_minimum_size = Vector2(160, 0)
+		label.autowrap_mode = TextServer.AUTOWRAP_WORD
 		label.set_text(Ship.Faction.find_key(faction).capitalize() + ' '
-		+ Ship.Type.find_key(type).capitalize() + 's ')
+		+ Ship.Type.find_key(type).capitalize() + 's are not allowed')
 		return label
 	if cargo_type != -1:
-		return CargoItem.get_icon(cargo_type)
+		var container: HBoxContainer = HBoxContainer.new()
+		container.add_child(CargoItem.get_icon(cargo_type))
+		var label: Label = Label.new()
+		label.set_text(' are not allowed')
+		container.add_child(label)
+		return container
 	return null
