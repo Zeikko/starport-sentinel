@@ -33,7 +33,7 @@ static var metawheat_texture: Resource = load("res://ship/cargo_icons/metawheat.
 static var artwork_texture: Resource = load("res://ship/cargo_icons/artwork.png")
 static var machinery_texture: Resource = load("res://ship/cargo_icons/machinery.png")
 static var tools_texture: Resource = load("res://ship/cargo_icons/tools.png")
-static var building_material_texture: Resource = load("res://ship/cargo_icons/building_material.png")
+static var building_texture: Resource = load("res://ship/cargo_icons/building_material.png")
 static var junk_texture: Resource = load("res://ship/cargo_icons/junk.png")
 static var slaves_texture: Resource = load("res://ship/cargo_icons/slaves.png")
 static var small_arms_texture: Resource = load("res://ship/cargo_icons/small_arms.png")
@@ -53,7 +53,7 @@ static var textures: Dictionary = {
 	Type.ARTWORK: artwork_texture,
 	Type.MACHINERY: machinery_texture,
 	Type.TOOLS: tools_texture,
-	Type.BUILDING_MATERIAL: building_material_texture,
+	Type.BUILDING_MATERIAL: building_texture,
 	Type.JUNK: junk_texture,
 	Type.SLAVES: slaves_texture,
 	Type.SMALL_ARMS: small_arms_texture,
