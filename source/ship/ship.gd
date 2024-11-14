@@ -101,6 +101,7 @@ func visit_starport() -> void:
 	if is_dangerous:
 		var damage: int = 10 * (type + 1)
 		Game.hit_points -= damage
+		Shift.dangerous_ship_counter += 1
 	else:
 		var credits: int = 10 * (type + 1)
 		Game.credits += credits
