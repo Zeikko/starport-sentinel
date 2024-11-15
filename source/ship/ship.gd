@@ -44,17 +44,15 @@ var status: Status = Status.UNDECIDED:
 		Shift.is_shift_over(self)
 	get:
 		return status
-var type: Type:
-	set(value):
-		type = value
-	get:
-		return type
+var type: Type
 var faction: Faction
 var is_scanning: bool = false
 var is_dangerous: bool
+var damage: int
 var information: ShipInformation
 var cargo_holds: Array[CargoHold] = []
 var visual: ShipVisual
+var visit_message: String
 
 @onready var progress_bar: ProgressBar = %ProgressBar
 @onready var select_indicator: TextureRect = %SelectIndicator
@@ -64,8 +62,8 @@ func _ready() -> void:
 	position = Vector2(distance, 0).rotated(angle)
 	ship_name = str(randi())
 	type = Type.values().pick_random()
+	damage = 10 * (type + 1)
 	faction = Faction.values().pick_random()
-	is_dangerous = get_is_dangerous()
 	for cargo_hold_number: int in range(type + 1):
 		cargo_holds.push_back(CargoHold.new(cargo_hold_number + 1, type))
 	information = ShipInformation.new(self)
@@ -111,20 +109,11 @@ func _process(delta: float) -> void:
 		progress_bar.visible = false
 	select_indicator.visible = Ui.selected_ship == self
 
-func get_is_dangerous() -> bool:
-	for security_rule: SecurityRule in Shift.security_rules:
-		if (
-			security_rule.faction == faction &&
-			security_rule.type == type
-		):
-			return true
-	return false
-
 func visit_starport() -> void:
 	if is_dangerous:
-		var damage: int = 10 * (type + 1)
 		Game.hit_points -= damage
 		Shift.damage += damage
+		Shift.visit_messages.push_back(visit_message)
 	else:
 		var credits: int = 10 * (type + 1)
 		credits *= 1 - wait_time_elapsed / max_wait_time

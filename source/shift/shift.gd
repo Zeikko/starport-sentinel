@@ -15,14 +15,15 @@ var damage: int = 0
 var upkeep: int = 50
 var paid_upkeep: int = 0
 var upkeep_damage: int = 0
+var visit_messages: Array[String] = []
 @onready var shift_report: Panel = %ShiftReport
 @onready var shift_title: Label = %ShiftTitle
 @onready var income_label: Label = %IncomeLabel
 @onready var damage_label: Label = %DamageLabel
 @onready var upkeep_label: Label = %UpkeepLabel
 @onready var upkeep_damage_label: Label = %UpkeepDamageLabel
-
-@onready var new_security_rule_container: Container = %NewSecurityRule
+@onready var new_security_rule_container: VBoxContainer = %NewSecurityRule
+@onready var visit_messages_container: VBoxContainer = %VisitMessages
 
 func _ready() -> void:
 	create_possible_angles()
@@ -87,6 +88,14 @@ func show_shift_report() -> void:
 	var new_security_rule: SecurityRule = SecurityRule.create_security_rule(security_rules)
 	security_rules.push_back(new_security_rule)
 	Ui.update_security_briefing()
+	for child: Node in visit_messages_container.get_children():
+		visit_messages_container.remove_child(child)
+	for visit_message: String in visit_messages:
+		var label: RichTextLabel = RichTextLabel.new()
+		label.bbcode_enabled = true
+		label.fit_content = true
+		label.set_text(visit_message)
+		visit_messages_container.add_child(label)
 	for child: Node in new_security_rule_container.get_children():
 		new_security_rule_container.remove_child(child)
 	new_security_rule_container.add_child(new_security_rule.get_nodes())
@@ -106,6 +115,7 @@ func show_shift_report() -> void:
 
 func _on_start_shift_button_pressed() -> void:
 	create_possible_angles()
+	visit_messages = []
 	ship_counter = 0
 	income = 0
 	damage = 0
