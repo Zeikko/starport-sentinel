@@ -5,7 +5,7 @@ var selected_ship: Ship:
 		selected_ship = value
 		if selected_ship:
 			update_ship_information()
-			ship_visual.update()
+			update_ship_visual()
 	get:
 		return selected_ship
 var holds_to_display: int = 0:
@@ -26,7 +26,7 @@ var holds_to_display: int = 0:
 @onready var scan_button: Button = %ScanButton
 @onready var cargo_holds_container: VBoxContainer = %CargoHoldsContainer
 @onready var ship_information: Panel = %ShipInformation
-@onready var ship_visual: ShipVisual = %ShipVisual
+@onready var ship_visual_container: Container = %ShipVisualContainer
 @onready var cargo_manifest: VBoxContainer = %CargoManifest
 
 func _process(_delta: float) -> void:
@@ -100,6 +100,12 @@ func update_cargo_holds() -> void:
 		for cargo_item: CargoItem in cargo_hold.cargo_items:
 			cargo_hold_container.add_child(cargo_item.get_nodes())
 		hold_index += 1
+
+
+func update_ship_visual() -> void:
+	for child: Node in ship_visual_container.get_children():
+		ship_visual_container.remove_child(child)
+	ship_visual_container.add_child(selected_ship.visual)
 
 
 func _on_approve_button_pressed() -> void:
