@@ -12,6 +12,10 @@ func set_faction(arg_ship: Ship) -> void:
 		if security_rule.faction == arg_ship.faction && security_rule.type == arg_ship.type:
 			faction = Ship.Faction.values().pick_random()
 			arg_ship.is_dangerous = true
+			arg_ship.visit_message = str(
+			Ship.Faction.find_key(arg_ship.faction).capitalize(),
+			Ship.Type.find_key(arg_ship.type).capitalize(),
+			' dealt ' + str(arg_ship.damage) + ' damage')
 		else:
 			faction = arg_ship.faction
 
@@ -30,5 +34,9 @@ func set_cargo_items(arg_ship: Ship) -> void:
 		)
 		if (matching_rules.size() > 0):
 			arg_ship.is_dangerous = true
+			arg_ship.visit_message = str(
+			'Ship carrying ',
+			CargoItem.get_icon(matching_rules[0].cargo_type),
+			' dealt ' + str(arg_ship.damage) + ' damage')
 		else:
 			cargo_items.push_back(CargoItem.new(cargo_item_type, cargo[cargo_item_type]))
