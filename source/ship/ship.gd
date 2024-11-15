@@ -12,9 +12,10 @@ enum Faction {
 	FOLLOWERS_OF_OBUDU
 }
 
-var shuttle_texture = load("res://ship/shuttle.png")
-var cruiser_texture = load("res://ship/cruiser.png")
-var frigate_texture = load("res://ship/frigate.png")
+var shuttle_texture = load("res://ship/radar/shuttle.png")
+var cruiser_texture = load("res://ship/radar/cruiser.png")
+var frigate_texture = load("res://ship/radar/frigate.png")
+var ship_visual_scene: PackedScene = preload('res://ship/visual/ship_visual.tscn')
 
 var max_distance: float = 75
 var min_distance: float = 10
@@ -53,6 +54,7 @@ var is_scanning: bool = false
 var is_dangerous: bool
 var information: ShipInformation
 var cargo_holds: Array[CargoHold] = []
+var visual: ShipVisual
 
 @onready var progress_bar: ProgressBar = %ProgressBar
 @onready var select_indicator: TextureRect = %SelectIndicator
@@ -68,6 +70,8 @@ func _ready() -> void:
 		cargo_holds.push_back(CargoHold.new(cargo_hold_number + 1, type))
 	information = ShipInformation.new(self)
 	set_radar_texture()
+	visual = ship_visual_scene.instantiate()
+	visual.ship = self
 
 func pick_type() -> void:
 	var random_value: int = randi_range(1,6)

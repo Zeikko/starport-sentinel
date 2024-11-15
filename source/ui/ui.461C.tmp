@@ -150,7 +150,6 @@ layout_mode = 2
 
 [node name="ShipVisualContainer" type="Container" parent="Scan/ShipObservations/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Scan/ShipObservations/MarginContainer/VBoxContainer"]
