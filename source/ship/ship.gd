@@ -11,6 +11,12 @@ enum Faction {
 	HOUSE_FRUGI,
 	FOLLOWERS_OF_OBUDU
 }
+enum Weapon {
+	NONE,
+	BEAM,
+	MISSILES,
+	CANNON
+}
 
 var shuttle_texture = load("res://ship/radar/shuttle.png")
 var cruiser_texture = load("res://ship/radar/cruiser.png")
@@ -53,6 +59,7 @@ var information: ShipInformation
 var cargo_holds: Array[CargoHold] = []
 var visual: ShipVisual
 var visit_message: String
+var weapon: Weapon
 
 @onready var progress_bar: ProgressBar = %ProgressBar
 @onready var select_indicator: TextureRect = %SelectIndicator
@@ -62,6 +69,7 @@ func _ready() -> void:
 	position = Vector2(distance, 0).rotated(angle)
 	ship_name = str(randi())
 	type = Type.values().pick_random()
+	weapon = Weapon.values().pick_random()
 	damage = 10 * (type + 1)
 	faction = Faction.values().pick_random()
 	for cargo_hold_number: int in range(type + 1):

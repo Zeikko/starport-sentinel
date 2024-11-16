@@ -28,6 +28,7 @@ var holds_to_display: int = 0:
 @onready var ship_information: Panel = %ShipInformation
 @onready var ship_visual_container: Container = %ShipVisualContainer
 @onready var cargo_manifest: VBoxContainer = %CargoManifest
+@onready var weapon: Label = %Weapon
 
 func _process(_delta: float) -> void:
 	update_scan()
@@ -41,6 +42,7 @@ func update_ship_information() -> void:
 		Ship.Faction.find_key(selected_ship.information.faction).capitalize() + ' ' +
 		Ship.Type.find_key(selected_ship.type).capitalize()
 	)
+	weapon.set_text(Ship.Weapon.find_key(selected_ship.weapon).capitalize())
 	update_cargo_manifest()
 
 

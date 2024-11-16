@@ -57,7 +57,11 @@ func _ready() -> void:
 	hull_sprite.texture = hulls[ship.type]
 	thruster_sprite.texture = thrusters.pick_random()
 	cockpit_sprite.texture = cockpits.pick_random()
-	weapon_sprite.texture = weapons.pick_random()
+	if ship.weapon == 0:
+		weapon_sprite.visible = false
+	else:
+		weapon_sprite.visible = true
+		weapon_sprite.texture = weapons[ship.weapon - 1]
 	for logo_position: Vector2 in faction_logo_positions[ship.type]:
 		var faction_logo_tilemap: TileMapLayer = TileMapLayer.new()
 		faction_logo_tilemap.set_tile_set(factions_tile_set)
