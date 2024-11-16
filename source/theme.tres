@@ -1,6 +1,4 @@
-[gd_resource type="Theme" load_steps=19 format=4 uid="uid://cbimufccfad2e"]
-
-[ext_resource type="Texture2D" uid="uid://btlu4bf6cmgmt" path="res://stylebox.png" id="1_eoen8"]
+[gd_resource type="Theme" load_steps=18 format=4 uid="uid://cbimufccfad2e"]
 
 [sub_resource type="Image" id="Image_gj2my"]
 data = {
@@ -2747,7 +2745,6 @@ corner_detail = 5
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xa1gh"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_so5f1"]
-texture = ExtResource("1_eoen8")
 texture_margin_left = 16.0928
 texture_margin_top = 14.1212
 texture_margin_right = 14.0431

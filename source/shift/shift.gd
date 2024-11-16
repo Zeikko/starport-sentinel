@@ -18,13 +18,14 @@ var time_tracker: TimeTracker = preload('res://shift/time_tracker.gd').new()
 @onready var shift_duration_label : Label = %ShiftDuration
 @onready var total_duration_label : Label = %TotalDuration
 func _ready() -> void:
+	time_tracker.start_shift()
 	create_possible_angles()
 	create_ship()
 	security_rules.push_back(SecurityRule.create_security_rule(security_rules))
 	Ui.update_security_briefing()
 
 func _process(delta: float) -> void:
-	time_tracker.uptade_timetracker(delta)
+	time_tracker.update_timetracker(delta)
 	
 	
 
@@ -89,3 +90,4 @@ func _on_start_shift_button_pressed() -> void:
 	ship_counter = 0
 	shift_number += 1
 	shift_menu.hide()
+	time_tracker.start_shift()
