@@ -118,7 +118,8 @@ func has_identical_rule(arg_rule: SecurityRule) -> bool:
 		return arg_rule.faction == existing_rule.faction && \
 		arg_rule.ship_type == existing_rule.ship_type && \
 		arg_rule.cargo_type == existing_rule.cargo_type && \
-		arg_rule.rule_type == existing_rule.rule_type
+		arg_rule.rule_type == existing_rule.rule_type && \
+		arg_rule.weapon == existing_rule.weapon
 	)
 	return existing_identical_rules.size() > 0
 

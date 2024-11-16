@@ -3,9 +3,13 @@ class_name ShipInformation extends Object
 var faction: Ship.Faction
 var cargo_items: Array[CargoItem]
 
+# TODO Extract dangerous check and visit messages elsewhere
+
 func _init(arg_ship: Ship) -> void:
 	set_faction(arg_ship)
 	set_cargo_items(arg_ship)
+	# TODO Set weapon information
+
 
 func set_faction(arg_ship: Ship) -> void:
 	for security_rule in Shift.security_rules:
