@@ -9,11 +9,13 @@ func _init(arg_ship: Ship) -> void:
 
 func set_faction(arg_ship: Ship) -> void:
 	for security_rule in Shift.security_rules:
-		if security_rule.faction == arg_ship.faction && security_rule.type == arg_ship.type:
+		if security_rule.faction == arg_ship.faction && security_rule.ship_type == arg_ship.type && \
+		security_rule.rule_type == SecurityRule.Type.FACTION_SHIP_TYPE:
 			faction = Ship.Faction.values().pick_random()
 			arg_ship.is_dangerous = true
 			arg_ship.visit_message = str(
 			Ship.Faction.find_key(arg_ship.faction).capitalize(),
+			' ',
 			Ship.Type.find_key(arg_ship.type).capitalize(),
 			' dealt ' + str(arg_ship.damage) + ' damage')
 		else:
@@ -30,7 +32,8 @@ func set_cargo_items(arg_ship: Ship) -> void:
 	for cargo_item_type: CargoItem.Type in cargo.keys():
 		var matching_rules: Array[SecurityRule] = Shift.security_rules.filter(
 			func(existing_rule: SecurityRule) -> bool:
-			return cargo_item_type == existing_rule.cargo_type
+			return cargo_item_type == existing_rule.cargo_type && \
+			existing_rule.rule_type == SecurityRule.Type.CARGO
 		)
 		if (matching_rules.size() > 0):
 			arg_ship.is_dangerous = true

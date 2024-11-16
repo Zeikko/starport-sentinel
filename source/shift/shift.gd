@@ -28,7 +28,7 @@ var visit_messages: Array[String] = []
 func _ready() -> void:
 	create_possible_angles()
 	create_ship()
-	security_rules.push_back(SecurityRule.create_security_rule(security_rules))
+	security_rules.push_back(SecurityRule.create_security_rule())
 	Ui.update_security_briefing()
 
 
@@ -85,7 +85,7 @@ func pay_upkeep() -> void:
 
 
 func show_shift_report() -> void:
-	var new_security_rule: SecurityRule = SecurityRule.create_security_rule(security_rules)
+	var new_security_rule: SecurityRule = SecurityRule.create_security_rule()
 	security_rules.push_back(new_security_rule)
 	Ui.update_security_briefing()
 	for child: Node in visit_messages_container.get_children():
@@ -112,6 +112,15 @@ func show_shift_report() -> void:
 	damage_label.set_text('You sustained ' + str(damage) + ' damage')
 	shift_report.show()
 
+func has_identical_rule(arg_rule: SecurityRule) -> bool:
+	var existing_identical_rules: Array[SecurityRule] = security_rules.filter(
+		func(existing_rule: SecurityRule) -> bool:
+		return arg_rule.faction == existing_rule.faction && \
+		arg_rule.ship_type == existing_rule.ship_type && \
+		arg_rule.cargo_type == existing_rule.cargo_type && \
+		arg_rule.rule_type == existing_rule.rule_type
+	)
+	return existing_identical_rules.size() > 0
 
 func _on_start_shift_button_pressed() -> void:
 	create_possible_angles()

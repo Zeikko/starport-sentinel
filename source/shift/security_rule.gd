@@ -1,57 +1,57 @@
 class_name SecurityRule extends Object
 
-var type: Ship.Type = -1
-var faction: Ship.Faction = -1
-var cargo_type: CargoItem.Type = -1
+enum Type {
+	CARGO,
+	FACTION_SHIP_TYPE
+}
+var rule_type: Type
+var ship_type: Ship.Type
+var faction: Ship.Faction
+var cargo_type: CargoItem.Type
 
-static func create_security_rule(security_rules: Array[SecurityRule]) -> SecurityRule:
-	var rule_type = randi_range(1, 2)
+static func create_security_rule() -> SecurityRule:
+	var rule_type: Type = Type.values().pick_random()
 	match rule_type:
-		1:
-			return create_cargo_rule(security_rules)
+		Type.CARGO:
+			return create_cargo_rule()
 		_:
-			return create_faction_class_rule(security_rules)
+			return create_faction_type_rule()
 
-
-static func create_faction_class_rule(security_rules: Array[SecurityRule]) -> SecurityRule:
+static func create_faction_type_rule() -> SecurityRule:
 	var possible_new_rules: Array[SecurityRule] = []
 	for new_faction: Ship.Faction in Ship.Faction.values():
 		for new_type: Ship.Type in Ship.Type.values():
 			var new_rule = SecurityRule.new()
-			new_rule.type = new_type
+			new_rule.ship_type = new_type
 			new_rule.faction = new_faction
+			new_rule.rule_type = Type.FACTION_SHIP_TYPE
 			possible_new_rules.push_back(new_rule)
 	var nonexisting_rules: Array[SecurityRule] = possible_new_rules.filter(
-		func(new_rule: SecurityRule) -> bool:
-		var existing_identical_rules: Array[SecurityRule] = security_rules.filter(
-			func(existing_rule: SecurityRule) -> bool:
-			return new_rule.faction == existing_rule.faction && new_rule.type == existing_rule.type
-		)
-		return existing_identical_rules.size() == 0
+		func(new_rule: SecurityRule) -> bool: return !Shift.has_identical_rule(new_rule)
 	)
 	return nonexisting_rules.pick_random()
 
-static func create_cargo_rule(security_rules: Array[SecurityRule]) -> SecurityRule:
-	var possible_new_types = CargoItem.Type.values().filter(func(cargo_type: CargoItem.Type) -> bool:
-		var existing_identical_rules: Array[SecurityRule] = security_rules.filter(
-			func(existing_rule: SecurityRule) -> bool:
-			return cargo_type == existing_rule.cargo_type
-		)
-		return existing_identical_rules.size() == 0
+static func create_cargo_rule() -> SecurityRule:
+	var possible_new_rules = CargoItem.Type.values().map(
+		func (cargo_type: CargoItem.Type) -> SecurityRule:
+		var new_rule = SecurityRule.new()
+		new_rule.rule_type = Type.CARGO
+		new_rule.cargo_type = cargo_type
+		return new_rule
+	).filter(func(new_rule: SecurityRule) -> bool:
+		return !Shift.has_identical_rule(new_rule)
 	)
-	var new_rule = SecurityRule.new()
-	new_rule.cargo_type = possible_new_types.pick_random()
-	return new_rule
+	return possible_new_rules.pick_random()
 
 func get_nodes() -> Node:
-	if faction != -1 && type != -1:
+	if rule_type == Type.FACTION_SHIP_TYPE:
 		var label: Label = Label.new()
 		label.custom_minimum_size = Vector2(160, 0)
 		label.autowrap_mode = TextServer.AUTOWRAP_WORD
 		label.set_text(Ship.Faction.find_key(faction).capitalize() + ' '
-		+ Ship.Type.find_key(type).capitalize() + 's are not allowed')
+		+ Ship.Type.find_key(ship_type).capitalize() + 's are not allowed')
 		return label
-	if cargo_type != -1:
+	if rule_type == Type.CARGO:
 		var icon = CargoItem.get_icon(cargo_type)
 		var label: RichTextLabel = RichTextLabel.new()
 		label.bbcode_enabled = true
