@@ -52,10 +52,10 @@ func get_nodes() -> Node:
 		+ Ship.Type.find_key(type).capitalize() + 's are not allowed')
 		return label
 	if cargo_type != -1:
-		var container: HBoxContainer = HBoxContainer.new()
-		container.add_child(CargoItem.get_icon(cargo_type))
-		var label: Label = Label.new()
-		label.set_text(' are not allowed')
-		container.add_child(label)
-		return container
+		var icon = CargoItem.get_icon(cargo_type)
+		var label: RichTextLabel = RichTextLabel.new()
+		label.bbcode_enabled = true
+		label.fit_content = true
+		label.set_text(icon + ' are not allowed')
+		return label
 	return null
