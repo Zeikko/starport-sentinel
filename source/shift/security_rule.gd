@@ -1,7 +1,5 @@
 class_name SecurityRule extends Object
 
-# TODO Save comparison functions instead of ship properties
-
 enum Type {
 	CARGO,
 	FACTION_SHIP_TYPE,
@@ -14,10 +12,17 @@ var cargo_type: CargoItem.Type
 var weapon: Ship.Weapon
 
 static func create_security_rule() -> SecurityRule:
-	var rule_type: Type = Type.values().pick_random()
-	match rule_type:
-		_:
+	var random_rule_type: Type = Type.values().pick_random()
+	match random_rule_type:
+		Type.CARGO:
+			return create_cargo_rule()
+		Type.FACTION_SHIP_TYPE:
+			return create_faction_ship_type_rule()
+		Type.FACTION_WEAPON:
 			return create_faction_weapon_rule()
+		_:
+			push_warning('Missing security rule creator')
+			return null
 
 
 static func create_cargo_rule() -> SecurityRule:
@@ -28,7 +33,7 @@ static func create_cargo_rule() -> SecurityRule:
 		new_rule.cargo_type = cargo_type
 		return new_rule
 	).filter(func(new_rule: SecurityRule) -> bool:
-		return !Shift.has_identical_rule(new_rule)
+		return !new_rule.has_identical_rule()
 	)
 	return possible_new_rules.pick_random()
 
@@ -43,7 +48,7 @@ static func create_faction_ship_type_rule() -> SecurityRule:
 			new_rule.rule_type = Type.FACTION_SHIP_TYPE
 			possible_new_rules.push_back(new_rule)
 	var nonexisting_rules: Array[SecurityRule] = possible_new_rules.filter(
-		func(new_rule: SecurityRule) -> bool: return !Shift.has_identical_rule(new_rule)
+		func(new_rule: SecurityRule) -> bool: return !new_rule.has_identical_rule()
 	)
 	return nonexisting_rules.pick_random()
 
@@ -59,9 +64,56 @@ static func create_faction_weapon_rule() -> SecurityRule:
 				new_rule.rule_type = Type.FACTION_WEAPON
 				possible_new_rules.push_back(new_rule)
 	var nonexisting_rules: Array[SecurityRule] = possible_new_rules.filter(
-		func(new_rule: SecurityRule) -> bool: return !Shift.has_identical_rule(new_rule)
+		func(new_rule: SecurityRule) -> bool: return !new_rule.has_identical_rule()
 	)
 	return nonexisting_rules.pick_random()
+
+func get_visit_message(arg_ship: Ship) -> String:
+	match rule_type:
+		Type.CARGO:
+			for cargo_hold: CargoHold in arg_ship.cargo_holds:
+				for cargo_item: CargoItem in cargo_hold.cargo_items:
+					if cargo_item.type == cargo_type:
+						return str(
+						'Ship carrying ',
+						CargoItem.get_icon(cargo_type),
+						' dealt ' + str(arg_ship.damage) + ' damage')
+			return ''
+		Type.FACTION_SHIP_TYPE:
+			if faction == arg_ship.faction && ship_type == arg_ship.type:
+				return str(
+				Ship.Faction.find_key(arg_ship.faction).capitalize(),
+				' ',
+				Ship.Type.find_key(arg_ship.type).capitalize(),
+				' dealt ',
+				arg_ship.damage,
+				' damage')
+			return ''
+		Type.FACTION_WEAPON:
+			if faction == arg_ship.faction && weapon == arg_ship.weapon:
+				return str(
+				Ship.Faction.find_key(arg_ship.faction).capitalize(),
+				' with ',
+				Ship.Weapon.find_key(arg_ship.weapon).capitalize(),
+				' weapons dealt ',
+				arg_ship.damage,
+				' damage')
+			return ''
+		_:
+			push_warning('Missing security rule ship checker')
+			return ''
+
+func has_identical_rule() -> bool:
+	var existing_identical_rules: Array[SecurityRule] = Shift.security_rules.filter(
+		func(existing_rule: SecurityRule) -> bool:
+		return faction == existing_rule.faction && \
+		ship_type == existing_rule.ship_type && \
+		cargo_type == existing_rule.cargo_type && \
+		rule_type == existing_rule.rule_type && \
+		weapon == existing_rule.weapon
+	)
+	return existing_identical_rules.size() > 0
+
 
 func get_nodes() -> Node:
 	match rule_type:
@@ -77,10 +129,11 @@ func get_nodes() -> Node:
 			label.set_text(Ship.Faction.find_key(faction).capitalize() + ' '
 			+ Ship.Type.find_key(ship_type).capitalize() + 's are not allowed')
 			return label
-		_:
+		Type.FACTION_WEAPON:
 			var label: Label = Label.new()
 			label.set_text(Ship.Faction.find_key(faction).capitalize() + ' '
 			+ Ship.Weapon.find_key(weapon).capitalize() + ' weapons are not allowed')
 			return label
-
+		_:
+			return null
 	return null

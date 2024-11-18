@@ -112,16 +112,6 @@ func show_shift_report() -> void:
 	damage_label.set_text('You sustained ' + str(damage) + ' damage')
 	shift_report.show()
 
-func has_identical_rule(arg_rule: SecurityRule) -> bool:
-	var existing_identical_rules: Array[SecurityRule] = security_rules.filter(
-		func(existing_rule: SecurityRule) -> bool:
-		return arg_rule.faction == existing_rule.faction && \
-		arg_rule.ship_type == existing_rule.ship_type && \
-		arg_rule.cargo_type == existing_rule.cargo_type && \
-		arg_rule.rule_type == existing_rule.rule_type && \
-		arg_rule.weapon == existing_rule.weapon
-	)
-	return existing_identical_rules.size() > 0
 
 func _on_start_shift_button_pressed() -> void:
 	create_possible_angles()

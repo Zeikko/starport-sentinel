@@ -53,7 +53,6 @@ var status: Status = Status.UNDECIDED:
 var type: Type
 var faction: Faction
 var is_scanning: bool = false
-var is_dangerous: bool
 var damage: int
 var information: ShipInformation
 var cargo_holds: Array[CargoHold] = []
@@ -75,7 +74,7 @@ func _ready() -> void:
 	for cargo_hold_number: int in range(type + 1):
 		cargo_holds.push_back(CargoHold.new(cargo_hold_number + 1, type))
 	information = ShipInformation.new(self)
-	set_radar_texture()
+	set_radar_texture(information)
 	visual = ship_visual_scene.instantiate()
 	visual.ship = self
 
@@ -88,12 +87,12 @@ func pick_type() -> void:
 	else: # 3 of 6
 		type = Type.SHUTTLE
 
-func set_radar_texture() -> void:
-	if (type == Type.SHUTTLE):
+func set_radar_texture(information: ShipInformation) -> void:
+	if (information.ship_type == Type.SHUTTLE):
 		radar_blip.texture = shuttle_texture
-	elif (type == Type.FRIGATE):
+	elif (information.ship_type == Type.FRIGATE):
 		radar_blip.texture = frigate_texture
-	elif (type == Type.CRUISER):
+	elif (information.ship_type == Type.CRUISER):
 		radar_blip.texture = cruiser_texture
 
 func _process(delta: float) -> void:
@@ -118,15 +117,20 @@ func _process(delta: float) -> void:
 	select_indicator.visible = Ui.selected_ship == self
 
 func visit_starport() -> void:
-	if is_dangerous:
-		Game.hit_points -= damage
-		Shift.damage += damage
-		Shift.visit_messages.push_back(visit_message)
-	else:
+	var visit_message: String
+	for security_rule in Shift.security_rules:
+		visit_message = security_rule.get_visit_message(self)
+		if !visit_message.is_empty():
+			break
+	if visit_message.is_empty():
 		var credits: int = 10 * (type + 1)
 		credits *= 1 - wait_time_elapsed / max_wait_time
 		Game.credits += credits
 		Shift.income += credits
+	else:
+		Game.hit_points -= damage
+		Shift.damage += damage
+		Shift.visit_messages.push_back(visit_message)
 	queue_free()
 
 func start_scanning() -> void:
