@@ -20,6 +20,7 @@ unique_name_in_owner = true
 position = Vector2(320, 151)
 
 [node name="ShipInformation" type="VBoxContainer" parent="."]
+layout_mode = 0
 offset_left = 49.0
 offset_top = 76.0
 offset_right = 113.0
@@ -52,9 +53,10 @@ layout_mode = 2
 size_flags_horizontal = 0
 
 [node name="CargoManifest" type="VBoxContainer" parent="."]
+layout_mode = 0
 offset_left = 134.0
 offset_top = 77.0
-offset_right = 223.0
+offset_right = 200.0
 offset_bottom = 179.0
 
 [node name="CargoManifestTitle" type="Label" parent="CargoManifest"]
@@ -85,19 +87,24 @@ layout_mode = 2
 theme = ExtResource("3_q76rh")
 text = "Reject"
 
-[node name="SecurityBriefing" type="VBoxContainer" parent="."]
-layout_mode = 2
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
 offset_left = 46.0
-offset_top = 216.0
-offset_right = 198.0
-offset_bottom = 316.0
+offset_top = 215.0
+offset_right = 112.0
+offset_bottom = 315.0
 
-[node name="Title" type="Label" parent="SecurityBriefing"]
+[node name="SecurityBriefing" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Title" type="Label" parent="ScrollContainer/SecurityBriefing"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Security Briefing"
 
-[node name="SecurityRules" type="VBoxContainer" parent="SecurityBriefing"]
+[node name="SecurityRules" type="VBoxContainer" parent="ScrollContainer/SecurityBriefing"]
 unique_name_in_owner = true
 layout_mode = 2
 

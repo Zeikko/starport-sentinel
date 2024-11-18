@@ -61,4 +61,4 @@ func get_nodes() -> Node:
 	return label
 
 static func get_icon(arg_type: Type) -> String:
-	return '[img]' + textures.get(arg_type) + '[/img]'
+	return '[img={width%10}x{height%10}]' + textures.get(arg_type) + '[/img]'

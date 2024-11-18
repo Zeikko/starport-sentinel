@@ -53,7 +53,8 @@ func update_security_briefing() -> void:
 	for child: Node in security_rules.get_children():
 		security_rules.remove_child(child)
 	for security_rule: SecurityRule in Shift.security_rules:
-		security_rules.add_child(security_rule.get_nodes())
+		#for i in 50: #debugging scroll
+			security_rules.add_child(security_rule.get_nodes())
 
 
 func update_starport() -> void:
