@@ -78,7 +78,6 @@ func get_visit_message(arg_ship: Ship) -> String:
 						'Ship carrying ',
 						CargoItem.get_icon(cargo_type),
 						' dealt ' + str(arg_ship.damage) + ' damage')
-			return ''
 		Type.FACTION_SHIP_TYPE:
 			if faction == arg_ship.faction && ship_type == arg_ship.type:
 				return str(
@@ -88,7 +87,6 @@ func get_visit_message(arg_ship: Ship) -> String:
 				' dealt ',
 				arg_ship.damage,
 				' damage')
-			return ''
 		Type.FACTION_WEAPON:
 			if faction == arg_ship.faction && weapon == arg_ship.weapon:
 				return str(
@@ -98,10 +96,9 @@ func get_visit_message(arg_ship: Ship) -> String:
 				' weapons dealt ',
 				arg_ship.damage,
 				' damage')
-			return ''
 		_:
 			push_warning('Missing security rule ship checker')
-			return ''
+	return ''
 
 func has_identical_rule() -> bool:
 	var existing_identical_rules: Array[SecurityRule] = Shift.security_rules.filter(
