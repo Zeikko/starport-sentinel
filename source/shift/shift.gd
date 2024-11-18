@@ -28,7 +28,7 @@ var visit_messages: Array[String] = []
 func _ready() -> void:
 	create_possible_angles()
 	create_ship()
-	security_rules.push_back(SecurityRule.create_security_rule(security_rules))
+	security_rules.push_back(SecurityRule.create_security_rule())
 	Ui.update_security_briefing()
 
 
@@ -85,7 +85,7 @@ func pay_upkeep() -> void:
 
 
 func show_shift_report() -> void:
-	var new_security_rule: SecurityRule = SecurityRule.create_security_rule(security_rules)
+	var new_security_rule: SecurityRule = SecurityRule.create_security_rule()
 	security_rules.push_back(new_security_rule)
 	Ui.update_security_briefing()
 	for child: Node in visit_messages_container.get_children():
