@@ -24,13 +24,15 @@ var visit_messages: Array[String] = []
 @onready var upkeep_damage_label: Label = %UpkeepDamageLabel
 @onready var new_security_rule_container: VBoxContainer = %NewSecurityRule
 @onready var visit_messages_container: VBoxContainer = %VisitMessages
+@onready var shift_report_tab: MarginContainer = %ShiftReportTab
+@onready var upgrades_tab: MarginContainer = %UpgradesTab
 
 func _ready() -> void:
 	create_possible_angles()
 	create_ship()
 	security_rules.push_back(SecurityRule.create_security_rule(security_rules))
 	Ui.update_security_briefing()
-
+	shift_report.hide()
 
 func create_possible_angles() -> void:
 	var number_of_angles: int = 16
@@ -75,6 +77,7 @@ func end_shift(ships: Array[Ship]) -> void:
 	pay_upkeep()
 	if Game.hit_points > 0:
 		show_shift_report()
+		Game.shift_ended()
 
 
 func pay_upkeep() -> void:
@@ -111,6 +114,8 @@ func show_shift_report() -> void:
 		upkeep_damage_label.hide()
 	damage_label.set_text('You sustained ' + str(damage) + ' damage')
 	shift_report.show()
+	shift_report_tab.show()
+	upgrades_tab.hide()
 
 
 func _on_start_shift_button_pressed() -> void:
@@ -121,3 +126,11 @@ func _on_start_shift_button_pressed() -> void:
 	damage = 0
 	shift_number += 1
 	shift_report.hide()
+
+func _on_upgrades_button_pressed() -> void:
+	upgrades_tab.show()
+	shift_report_tab.hide()
+
+func _on_back_button_pressed() -> void:
+	shift_report_tab.show()
+	upgrades_tab.hide()

@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpgfvwxjiu6bp"]
+[gd_scene load_steps=5 format=3 uid="uid://bpgfvwxjiu6bp"]
 
 [ext_resource type="Script" path="res://shift/shift.gd" id="1_yq6q2"]
 [ext_resource type="Theme" uid="uid://cbimufccfad2e" path="res://theme.tres" id="2_6rmm1"]
+[ext_resource type="PackedScene" uid="uid://xbhmhnk5gu5u" path="res://shift/armor_upgrade.tscn" id="3_u3pg1"]
+[ext_resource type="PackedScene" uid="uid://cosp8p4odekfw" path="res://shift/scanning_speed_upgrade.tscn" id="4_64o3e"]
 
 [node name="Shift" type="Node"]
 script = ExtResource("1_yq6q2")
@@ -13,7 +15,6 @@ autostart = true
 
 [node name="ShiftReport" type="Panel" parent="."]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -30,7 +31,8 @@ size_flags_vertical = 4
 theme = ExtResource("2_6rmm1")
 metadata/_edit_use_anchors_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="ShiftReport"]
+[node name="ShiftReportTab" type="MarginContainer" parent="ShiftReport"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,60 +41,104 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_6rmm1")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ShiftReport/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ShiftReport/ShiftReportTab"]
 layout_mode = 2
 
-[node name="ShiftTitle" type="Label" parent="ShiftReport/MarginContainer/VBoxContainer"]
+[node name="ShiftTitle" type="Label" parent="ShiftReport/ShiftReportTab/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("2_6rmm1")
 
-[node name="IncomeLabel" type="Label" parent="ShiftReport/MarginContainer/VBoxContainer"]
+[node name="IncomeLabel" type="Label" parent="ShiftReport/ShiftReportTab/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("2_6rmm1")
 
-[node name="DamageLabel" type="Label" parent="ShiftReport/MarginContainer/VBoxContainer"]
+[node name="DamageLabel" type="Label" parent="ShiftReport/ShiftReportTab/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("2_6rmm1")
 
-[node name="UpkeepLabel" type="Label" parent="ShiftReport/MarginContainer/VBoxContainer"]
+[node name="UpkeepLabel" type="Label" parent="ShiftReport/ShiftReportTab/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("2_6rmm1")
 
-[node name="UpkeepDamageLabel" type="Label" parent="ShiftReport/MarginContainer/VBoxContainer"]
+[node name="UpkeepDamageLabel" type="Label" parent="ShiftReport/ShiftReportTab/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("2_6rmm1")
 
-[node name="VisitMessages" type="VBoxContainer" parent="ShiftReport/MarginContainer/VBoxContainer"]
+[node name="VisitMessages" type="VBoxContainer" parent="ShiftReport/ShiftReportTab/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="NewSecurityRuleTitle" type="Label" parent="ShiftReport/MarginContainer/VBoxContainer"]
+[node name="NewSecurityRuleTitle" type="Label" parent="ShiftReport/ShiftReportTab/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("2_6rmm1")
 text = "New Security Rule"
 
-[node name="NewSecurityRule" type="VBoxContainer" parent="ShiftReport/MarginContainer/VBoxContainer"]
+[node name="NewSecurityRule" type="VBoxContainer" parent="ShiftReport/ShiftReportTab/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("2_6rmm1")
 
-[node name="StartShiftButton" type="Button" parent="ShiftReport/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ShiftReport/ShiftReportTab"]
 layout_mode = 2
+
+[node name="StartShiftButton" type="Button" parent="ShiftReport/ShiftReportTab/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 8
 theme = ExtResource("2_6rmm1")
 text = "Start next shift"
 
+[node name="UpgradesButton" type="Button" parent="ShiftReport/ShiftReportTab/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme = ExtResource("2_6rmm1")
+text = "Upgrades"
+
+[node name="UpgradesTab" type="MarginContainer" parent="ShiftReport"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_6rmm1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShiftReport/UpgradesTab"]
+layout_mode = 2
+theme_override_constants/separation = 13
+
+[node name="ArmorUpgrade" parent="ShiftReport/UpgradesTab/VBoxContainer" instance=ExtResource("3_u3pg1")]
+layout_mode = 2
+
+[node name="ScanningSpeedUpgrade" parent="ShiftReport/UpgradesTab/VBoxContainer" instance=ExtResource("4_64o3e")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShiftReport/UpgradesTab"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="BackButton" type="Button" parent="ShiftReport/UpgradesTab/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme = ExtResource("2_6rmm1")
+text = "Back"
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="pressed" from="ShiftReport/MarginContainer/StartShiftButton" to="." method="_on_start_shift_button_pressed"]
+[connection signal="pressed" from="ShiftReport/ShiftReportTab/HBoxContainer/StartShiftButton" to="." method="_on_start_shift_button_pressed"]
+[connection signal="pressed" from="ShiftReport/ShiftReportTab/HBoxContainer/UpgradesButton" to="." method="_on_upgrades_button_pressed"]
+[connection signal="pressed" from="ShiftReport/UpgradesTab/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

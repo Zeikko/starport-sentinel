@@ -111,8 +111,12 @@ func _process(delta: float) -> void:
 
 func visit_starport() -> void:
 	if is_dangerous:
-		Game.hit_points -= damage
-		Shift.damage += damage
+		if Game.armor <= 0:
+			Game.hit_points -= damage
+			Shift.damage += damage
+		else:
+			print("Armor protected you from damage")
+			Game.armor -= 1
 		Shift.visit_messages.push_back(visit_message)
 	else:
 		var credits: int = 10 * (type + 1)
