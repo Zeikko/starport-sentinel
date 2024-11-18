@@ -1,6 +1,5 @@
-[gd_resource type="Theme" load_steps=23 format=4 uid="uid://cbimufccfad2e"]
+[gd_resource type="Theme" load_steps=21 format=4 uid="uid://cbimufccfad2e"]
 
-[ext_resource type="Texture2D" uid="uid://btlu4bf6cmgmt" path="res://stylebox.png" id="1_eoen8"]
 [ext_resource type="FontFile" uid="uid://dxtd7868jfgll" path="res://fonts/PressStart2P-vaV7.ttf" id="1_l8o3v"]
 [ext_resource type="FontFile" uid="uid://crjk4upi0rbjb" path="res://fonts/8bitOperatorPlus8-Regular.ttf" id="2_2e336"]
 
@@ -74,14 +73,6 @@ corner_radius_bottom_left = 3
 corner_detail = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xa1gh"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_so5f1"]
-texture = ExtResource("1_eoen8")
-texture_margin_left = 16.0928
-texture_margin_top = 14.1212
-texture_margin_right = 14.0431
-texture_margin_bottom = 13.9779
-region_rect = Rect2(-0.00711918, -0.0161451, 372.036, 371.99)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwv4n"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -1528,7 +1519,7 @@ MarginContainer/constants/margin_bottom = 20
 MarginContainer/constants/margin_left = 20
 MarginContainer/constants/margin_right = 20
 MarginContainer/constants/margin_top = 20
-Panel/styles/panel = SubResource("StyleBoxTexture_so5f1")
+Panel/styles/panel = null
 ProgressBar/styles/background = SubResource("StyleBoxFlat_uwv4n")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_khgtn")
 RichTextLabel/colors/default_color = Color(0.933333, 0.52549, 0.584314, 1)
