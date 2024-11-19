@@ -3,9 +3,11 @@ extends Control
 var selected_ship: Ship:
 	set(value):
 		selected_ship = value
-		if selected_ship:
-			update_ship_information()
-			update_ship_visual()
+		update_ship_information()
+		update_ship_visual()
+		update_cargo_manifest()
+		ship_visual_container.show()
+		scan_container.hide()
 	get:
 		return selected_ship
 @onready var radar: Radar = %Radar
@@ -24,31 +26,40 @@ var selected_ship: Ship:
 @onready var scan_container: Container = %ScanContainer
 @onready var cargo_manifest: VBoxContainer = %CargoManifest
 @onready var weapon: Label = %Weapon
+@onready var ship_information_container: VBoxContainer = %ShipInformationContainer
+@onready var cargo_manifest_container: VBoxContainer = %CargoManifestContainer
+
 
 func _process(_delta: float) -> void:
 	update_scan()
 
 func update_ship_information() -> void:
 	if selected_ship == null:
-		return
-	ship_name.set_text(selected_ship.ship_name)
-	status.set_text(Ship.Status.find_key(selected_ship.status).capitalize())
-	faction.set_text(Ship.Faction.find_key(selected_ship.information.faction).capitalize())
-	ship_type.set_text(Ship.Type.find_key(selected_ship.information.ship_type).capitalize())
-	weapon.set_text(Ship.Weapon.find_key(selected_ship.information.weapon).capitalize())
-	update_cargo_manifest()
+		ship_information_container.hide()
+	else:
+		ship_information_container.show()
+		ship_name.set_text(selected_ship.ship_name)
+		status.set_text(Ship.Status.find_key(selected_ship.status).capitalize())
+		faction.set_text(Ship.Faction.find_key(selected_ship.information.faction).capitalize())
+		ship_type.set_text(Ship.Type.find_key(selected_ship.information.ship_type).capitalize())
+		weapon.set_text(Ship.Weapon.find_key(selected_ship.information.weapon).capitalize())
+		
 
 
 func update_cargo_manifest() -> void:
-	for child: Node in cargo_manifest.get_children():
-		cargo_manifest.remove_child(child)
-	var total: int = 0
-	for cargo_item: CargoItem in selected_ship.information.cargo_items:
-		total += cargo_item.quantity
-		cargo_manifest.add_child(cargo_item.get_nodes())
-	var total_label: Label = Label.new()
-	total_label.set_text('Total: ' + str(total) + ' tons')
-	cargo_manifest.add_child(total_label)
+	if selected_ship == null:
+		cargo_manifest_container.hide()
+	else:
+		cargo_manifest_container.show()
+		for child: Node in cargo_manifest.get_children():
+			cargo_manifest.remove_child(child)
+		var total: int = 0
+		for cargo_item: CargoItem in selected_ship.information.cargo_items:
+			total += cargo_item.quantity
+			cargo_manifest.add_child(cargo_item.get_nodes())
+		var total_label: Label = Label.new()
+		total_label.set_text('Total: ' + str(total) + ' tons')
+		cargo_manifest.add_child(total_label)
 
 func update_security_briefing() -> void:
 	for child: Node in security_rules.get_children():
@@ -94,7 +105,8 @@ func update_cargo_holds() -> void:
 func update_ship_visual() -> void:
 	for child: Node in ship_visual_container.get_children():
 		ship_visual_container.remove_child(child)
-	ship_visual_container.add_child(selected_ship.visual)
+	if selected_ship:
+		ship_visual_container.add_child(selected_ship.visual)
 
 
 func _on_approve_button_pressed() -> void:
