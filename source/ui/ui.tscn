@@ -179,10 +179,10 @@ layout_mode = 2
 
 [node name="ObservationButtons" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 1329.0
-offset_top = 895.0
-offset_right = 1711.0
-offset_bottom = 945.0
+offset_left = 1325.0
+offset_top = 961.0
+offset_right = 1707.0
+offset_bottom = 1011.0
 
 [node name="ViewButton" type="Button" parent="ObservationButtons"]
 unique_name_in_owner = true
