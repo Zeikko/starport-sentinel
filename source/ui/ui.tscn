@@ -194,5 +194,5 @@ text = "Scan"
 
 [connection signal="pressed" from="Buttons/ApproveButton" to="." method="_on_approve_button_pressed"]
 [connection signal="pressed" from="Buttons/RejectButton" to="." method="_on_reject_button_pressed"]
-[connection signal="pressed" from="ObservationButtons/ViewButton" to="." method="_on_observe_button_pressed"]
+[connection signal="pressed" from="ObservationButtons/ViewButton" to="." method="_on_view_button_pressed"]
 [connection signal="pressed" from="ObservationButtons/ScanButton" to="." method="_on_scan_button_pressed"]

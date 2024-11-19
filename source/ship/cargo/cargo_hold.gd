@@ -26,4 +26,5 @@ func _init(arg_number: int, arg_type: Ship.Type) -> void:
 func get_label() -> Label:
 	var label: Label = Label.new()
 	label.set_text('Cargo Hold ' + str(number) + ':')
+	label.theme_type_variation = 'Heading'
 	return label
