@@ -7,7 +7,7 @@ var total_duration : float = 0
 
 func update_timetracker(delta : float)-> void:
 	if shift_in_progress == true:
-		shift_duration += delta	
+		shift_duration += delta
 
 func end_shift()-> void :
 	shift_in_progress = false

@@ -82,7 +82,6 @@ func end_shift(ships: Array[Ship]) -> void:
 	if Game.hit_points > 0:
 		time_tracker.end_shift()
 		show_shift_report()
-	
 
 func pay_upkeep() -> void:
 	paid_upkeep = clamp(Game.credits, 0, upkeep)
