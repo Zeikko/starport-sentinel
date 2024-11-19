@@ -2,187 +2,176 @@
 
 [ext_resource type="PackedScene" uid="uid://cjos4upoylry0" path="res://radar/radar.tscn" id="1_75arv"]
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_wpl0o"]
+[ext_resource type="Texture2D" uid="uid://chdr7bghllmsh" path="res://ui/starship_interface.png" id="2_cenmb"]
 [ext_resource type="Theme" uid="uid://cbimufccfad2e" path="res://theme.tres" id="3_q76rh"]
-[ext_resource type="Texture2D" uid="uid://c2etlk3jkbsci" path="res://ship/visual/ship.png" id="5_5f1ce"]
 
-[node name="Ui" type="Node2D"]
+[node name="Ui" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("3_q76rh")
 script = ExtResource("1_wpl0o")
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("2_cenmb")
+centered = false
 
 [node name="Radar" parent="." instance=ExtResource("1_75arv")]
 unique_name_in_owner = true
-position = Vector2(316, 231)
+position = Vector2(961, 453)
+scale = Vector2(3, 3)
 
-[node name="ShipInformation" type="Panel" parent="."]
-unique_name_in_owner = true
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 210.0
-offset_bottom = 310.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme = ExtResource("3_q76rh")
-
-[node name="MarginContainer" type="MarginContainer" parent="ShipInformation"]
+[node name="ShipInformation" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 149.0
+offset_top = 233.0
+offset_right = 334.0
+offset_bottom = 523.0
 
-[node name="Box" type="VBoxContainer" parent="ShipInformation/MarginContainer"]
-layout_mode = 2
-
-[node name="ShipName" type="Label" parent="ShipInformation/MarginContainer/Box"]
+[node name="ShipName" type="Label" parent="ShipInformation"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Ship Name: "
 
-[node name="Status" type="Label" parent="ShipInformation/MarginContainer/Box"]
+[node name="Status" type="Label" parent="ShipInformation"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="FactionAndClass" type="Label" parent="ShipInformation/MarginContainer/Box"]
+[node name="Faction" type="Label" parent="ShipInformation"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="Weapon" type="Label" parent="ShipInformation/MarginContainer/Box"]
+[node name="ShipType" type="Label" parent="ShipInformation"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="CargoManifestTitle" type="Label" parent="ShipInformation/MarginContainer/Box"]
+[node name="Weapon" type="Label" parent="ShipInformation"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
-text = "Cargo Manifest"
 
-[node name="CargoManifest" type="VBoxContainer" parent="ShipInformation/MarginContainer/Box"]
+[node name="CargoManifest" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 401.0
+offset_top = 233.0
+offset_right = 586.0
+offset_bottom = 523.0
+
+[node name="CargoManifestTitle" type="Label" parent="CargoManifest"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Cargo"
+
+[node name="CargoManifest" type="VBoxContainer" parent="CargoManifest"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_left = 24.0
-offset_top = 312.0
-offset_right = 198.0
-offset_bottom = 352.0
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 750.0
+offset_top = 823.0
+offset_right = 1088.0
+offset_bottom = 927.0
 
-[node name="ApproveButton" type="Button" parent="HBoxContainer"]
+[node name="ApproveButton" type="Button" parent="Buttons"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_q76rh")
 text = "Approve"
 
-[node name="RejectButton" type="Button" parent="HBoxContainer"]
+[node name="RejectButton" type="Button" parent="Buttons"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_q76rh")
 text = "Reject"
 
-[node name="Security Briefing" type="Panel" parent="."]
-offset_left = 220.0
-offset_top = 10.0
-offset_right = 420.0
-offset_bottom = 160.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme = ExtResource("3_q76rh")
-
-[node name="MarginContainer" type="MarginContainer" parent="Security Briefing"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Security Briefing/MarginContainer"]
+[node name="SecurityBriefing" type="VBoxContainer" parent="."]
 layout_mode = 2
+offset_left = 1333.0
+offset_top = 233.0
+offset_right = 1773.0
+offset_bottom = 523.0
 
-[node name="Title" type="Label" parent="Security Briefing/MarginContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="SecurityBriefing"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Security Briefing"
 
-[node name="SecurityRules" type="VBoxContainer" parent="Security Briefing/MarginContainer/VBoxContainer"]
+[node name="SecurityRules" type="VBoxContainer" parent="SecurityBriefing"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Starport" type="Panel" parent="."]
-offset_left = 220.0
-offset_top = 302.0
-offset_right = 420.0
-offset_bottom = 367.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme = ExtResource("3_q76rh")
-
-[node name="MarginContainer" type="MarginContainer" parent="Starport"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Starport/MarginContainer"]
-layout_mode = 2
-
-[node name="HitPoints" type="Label" parent="Starport/MarginContainer/VBoxContainer"]
+[node name="HitPoints" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
+offset_left = 802.0
+offset_top = 774.0
+offset_right = 803.0
+offset_bottom = 790.0
 size_flags_horizontal = 0
 
-[node name="Credits" type="Label" parent="Starport/MarginContainer/VBoxContainer"]
+[node name="Credits" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
+offset_left = 1098.0
+offset_top = 826.0
+offset_right = 1099.0
+offset_bottom = 842.0
 size_flags_horizontal = 0
 
-[node name="Scan" type="VBoxContainer" parent="."]
-offset_left = 430.0
-offset_top = 10.0
-offset_right = 630.0
-offset_bottom = 359.0
-
-[node name="ShipObservations" type="Panel" parent="Scan"]
-custom_minimum_size = Vector2(0, 300)
+[node name="ShipObservations" type="VBoxContainer" parent="."]
 layout_mode = 2
-theme = ExtResource("3_q76rh")
+offset_left = 1329.0
+offset_top = 649.0
+offset_right = 1457.0
+offset_bottom = 806.0
 
-[node name="MarginContainer" type="MarginContainer" parent="Scan/ShipObservations"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Scan/ShipObservations/MarginContainer"]
-layout_mode = 2
-
-[node name="ShipVisualContainer" type="Container" parent="Scan/ShipObservations/MarginContainer/VBoxContainer"]
+[node name="ShipVisualContainer" type="Container" parent="ShipObservations"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Scan/ShipObservations/MarginContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("5_5f1ce")
-stretch_mode = 2
-
-[node name="CargoHoldsContainer" type="VBoxContainer" parent="Scan/ShipObservations/MarginContainer/VBoxContainer"]
+[node name="ScanContainer" type="VBoxContainer" parent="ShipObservations"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="ScanButton" type="Button" parent="Scan"]
+[node name="ScanStatus" type="Label" parent="ShipObservations/ScanContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Scan"
 
-[node name="ProgressBar" type="ProgressBar" parent="Scan/ScanButton"]
+[node name="ProgressBar" type="ProgressBar" parent="ShipObservations/ScanContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-offset_top = 2.0
-offset_right = 200.0
-offset_bottom = 29.0
 mouse_filter = 1
 theme = ExtResource("3_q76rh")
 show_percentage = false
 
-[connection signal="pressed" from="HBoxContainer/ApproveButton" to="." method="_on_approve_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/RejectButton" to="." method="_on_reject_button_pressed"]
-[connection signal="pressed" from="Scan/ScanButton" to="." method="_on_scan_button_pressed"]
+[node name="CargoHoldsContainer" type="VBoxContainer" parent="ShipObservations/ScanContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ObservationButtons" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 1329.0
+offset_top = 895.0
+offset_right = 1711.0
+offset_bottom = 945.0
+
+[node name="ViewButton" type="Button" parent="ObservationButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "View"
+
+[node name="ScanButton" type="Button" parent="ObservationButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Scan"
+
+[connection signal="pressed" from="Buttons/ApproveButton" to="." method="_on_approve_button_pressed"]
+[connection signal="pressed" from="Buttons/RejectButton" to="." method="_on_reject_button_pressed"]
+[connection signal="pressed" from="ObservationButtons/ViewButton" to="." method="_on_observe_button_pressed"]
+[connection signal="pressed" from="ObservationButtons/ScanButton" to="." method="_on_scan_button_pressed"]

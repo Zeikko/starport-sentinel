@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 var selected_ship: Ship:
 	set(value):
@@ -8,25 +8,19 @@ var selected_ship: Ship:
 			update_ship_visual()
 	get:
 		return selected_ship
-var holds_to_display: int = 0:
-	set(value):
-		holds_to_display = value
-		update_cargo_holds()
-	get:
-		return holds_to_display
 @onready var radar: Radar = %Radar
 @onready var ship_name: Label = %ShipName
 @onready var status: Label = %Status
-@onready var faction_and_class: Label = %FactionAndClass
+@onready var faction: Label = %Faction
+@onready var ship_type: Label = %ShipType
 @onready var security_rules: VBoxContainer = %SecurityRules
 @onready var hit_points: Label = %HitPoints
 @onready var credits: Label = %Credits
-@onready var scan: VBoxContainer = $Scan
 @onready var progress_bar: ProgressBar = %ProgressBar
-@onready var scan_button: Button = %ScanButton
+@onready var scan_status: Label = %ScanStatus
 @onready var cargo_holds_container: VBoxContainer = %CargoHoldsContainer
-@onready var ship_information: Panel = %ShipInformation
 @onready var ship_visual_container: Container = %ShipVisualContainer
+@onready var scan_container: Container = %ScanContainer
 @onready var cargo_manifest: VBoxContainer = %CargoManifest
 @onready var weapon: Label = %Weapon
 
@@ -38,10 +32,8 @@ func update_ship_information() -> void:
 		return
 	ship_name.set_text(selected_ship.ship_name)
 	status.set_text(Ship.Status.find_key(selected_ship.status).capitalize())
-	faction_and_class.set_text(
-		Ship.Faction.find_key(selected_ship.information.faction).capitalize() + ' ' +
-		Ship.Type.find_key(selected_ship.information.ship_type).capitalize()
-	)
+	faction.set_text(Ship.Faction.find_key(selected_ship.information.faction).capitalize())
+	ship_type.set_text(Ship.Type.find_key(selected_ship.information.ship_type).capitalize())
 	weapon.set_text(Ship.Weapon.find_key(selected_ship.information.weapon).capitalize())
 	update_cargo_manifest()
 
@@ -61,47 +53,40 @@ func update_security_briefing() -> void:
 	for child: Node in security_rules.get_children():
 		security_rules.remove_child(child)
 	for security_rule: SecurityRule in Shift.security_rules:
-		security_rules.add_child(security_rule.get_nodes())
+		#for i in 50: #debugging scroll
+			security_rules.add_child(security_rule.get_nodes())
 
 
 func update_starport() -> void:
 	hit_points.set_text('Hit Points: ' + str(Game.hit_points) + ' / 100')
-	credits.set_text('Credits: ' + str(Game.credits))
+	credits.set_text('C: ' + str(Game.credits))
 
 
 func update_scan() -> void:
 	if selected_ship != null:
 		if selected_ship.progress_bar.value == 100:
-			scan_button.text = "Scan Complete"
-			scan_button.disabled = true
+			scan_status.hide()
+			progress_bar.hide()
+			cargo_holds_container.show()
+			update_cargo_holds()
 		elif selected_ship.progress_bar.value > 0:
-			scan_button.text = "Scanning..."
-			scan_button.disabled = true
-		else:
-			scan_button.text = "Scan"
-			scan_button.disabled = false
-
+			scan_status.text = "Scanning..."
+			scan_status.show()
+			progress_bar.show()
+			cargo_holds_container.hide()
+			update_cargo_holds()
 		progress_bar.value = selected_ship.progress_bar.value
 
-		var cargo_holds: Array[CargoHold] = selected_ship.cargo_holds
-		holds_to_display = int(progress_bar.value / 100.0 * cargo_holds.size())
-	else:
-		scan_button.text = "Scan"
-		scan_button.disabled = true
 
 func update_cargo_holds() -> void:
 	for child: Node in cargo_holds_container.get_children():
 		cargo_holds_container.remove_child(child)
-	var hold_index: int = 0
 	for cargo_hold: CargoHold in selected_ship.cargo_holds:
-		if hold_index >= holds_to_display:
-			break
 		var cargo_hold_container: VBoxContainer = VBoxContainer.new()
 		cargo_holds_container.add_child(cargo_hold_container)
 		cargo_hold_container.add_child(cargo_hold.get_label())
 		for cargo_item: CargoItem in cargo_hold.cargo_items:
 			cargo_hold_container.add_child(cargo_item.get_nodes())
-		hold_index += 1
 
 
 func update_ship_visual() -> void:
@@ -111,12 +96,22 @@ func update_ship_visual() -> void:
 
 
 func _on_approve_button_pressed() -> void:
-	selected_ship.status = Ship.Status.APPROVED
+	if selected_ship:
+		selected_ship.status = Ship.Status.APPROVED
 
 
 func _on_reject_button_pressed() -> void:
-	selected_ship.status = Ship.Status.REJECTED
+	if selected_ship:
+		selected_ship.status = Ship.Status.REJECTED
 
 
 func _on_scan_button_pressed() -> void:
-	selected_ship.start_scanning()
+	ship_visual_container.hide()
+	scan_container.show()
+	if selected_ship:
+		selected_ship.start_scanning()
+
+
+func _on_observe_button_pressed() -> void:
+	ship_visual_container.show()
+	scan_container.hide()
