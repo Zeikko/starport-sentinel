@@ -22,59 +22,61 @@ unique_name_in_owner = true
 position = Vector2(961, 453)
 scale = Vector2(3, 3)
 
-[node name="ShipInformation" type="VBoxContainer" parent="."]
+[node name="ShipInformationContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 149.0
 offset_top = 233.0
 offset_right = 334.0
 offset_bottom = 523.0
 
-[node name="Title" type="Label" parent="ShipInformation"]
+[node name="ShipInformationTitle" type="Label" parent="ShipInformationContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 theme_type_variation = &"Heading"
 text = "Ship"
 
-[node name="ShipName" type="Label" parent="ShipInformation"]
+[node name="ShipName" type="Label" parent="ShipInformationContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="Status" type="Label" parent="ShipInformation"]
+[node name="Status" type="Label" parent="ShipInformationContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="Faction" type="Label" parent="ShipInformation"]
+[node name="Faction" type="Label" parent="ShipInformationContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="ShipType" type="Label" parent="ShipInformation"]
+[node name="ShipType" type="Label" parent="ShipInformationContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="Weapon" type="Label" parent="ShipInformation"]
+[node name="Weapon" type="Label" parent="ShipInformationContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="CargoManifest" type="VBoxContainer" parent="."]
+[node name="CargoManifestContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 401.0
 offset_top = 233.0
 offset_right = 586.0
 offset_bottom = 523.0
 
-[node name="CargoManifestTitle" type="Label" parent="CargoManifest"]
+[node name="CargoManifestTitle" type="Label" parent="CargoManifestContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_type_variation = &"Heading"
 text = "Cargo"
 
-[node name="CargoManifest" type="VBoxContainer" parent="CargoManifest"]
+[node name="CargoManifest" type="VBoxContainer" parent="CargoManifestContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -177,10 +179,10 @@ layout_mode = 2
 
 [node name="ObservationButtons" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 1329.0
-offset_top = 895.0
-offset_right = 1711.0
-offset_bottom = 945.0
+offset_left = 1325.0
+offset_top = 961.0
+offset_right = 1707.0
+offset_bottom = 1011.0
 
 [node name="ViewButton" type="Button" parent="ObservationButtons"]
 unique_name_in_owner = true
