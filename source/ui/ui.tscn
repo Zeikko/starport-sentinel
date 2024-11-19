@@ -72,10 +72,10 @@ layout_mode = 2
 
 [node name="Buttons" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 752.0
-offset_top = 819.0
-offset_right = 1090.0
-offset_bottom = 923.0
+offset_left = 750.0
+offset_top = 823.0
+offset_right = 1088.0
+offset_bottom = 927.0
 
 [node name="ApproveButton" type="Button" parent="Buttons"]
 unique_name_in_owner = true
