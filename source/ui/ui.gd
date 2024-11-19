@@ -14,6 +14,7 @@ var selected_ship: Ship:
 @onready var faction: Label = %Faction
 @onready var ship_type: Label = %ShipType
 @onready var security_rules: VBoxContainer = %SecurityRules
+@onready var hit_bar: TextureProgressBar = %HitBar
 @onready var hit_points: Label = %HitPoints
 @onready var credits: Label = %Credits
 @onready var progress_bar: ProgressBar = %ProgressBar
@@ -58,7 +59,8 @@ func update_security_briefing() -> void:
 
 
 func update_starport() -> void:
-	hit_points.set_text('Hit Points: ' + str(Game.hit_points) + ' / 100')
+	hit_bar.set_value(Game.hit_points)
+	credits.set_text('Credits: ' + str(Game.credits))
 	credits.set_text('C: ' + str(Game.credits))
 
 
