@@ -132,7 +132,7 @@ func visit_starport() -> void:
 		Shift.damage += damage
 		Shift.visit_messages.push_back(visit_message)
 	remove()
-	
+
 func remove() -> void:
 	if Ui.selected_ship == self:
 		Ui.selected_ship = null
