@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://t13h716inaso"]
+[gd_scene load_steps=6 format=3 uid="uid://t13h716inaso"]
 
 [ext_resource type="PackedScene" uid="uid://cjos4upoylry0" path="res://radar/radar.tscn" id="1_75arv"]
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_wpl0o"]
 [ext_resource type="Texture2D" uid="uid://chdr7bghllmsh" path="res://ui/starship_interface.png" id="2_cenmb"]
 [ext_resource type="Theme" uid="uid://cbimufccfad2e" path="res://theme.tres" id="3_q76rh"]
+[ext_resource type="Texture2D" uid="uid://burek3c8wquv7" path="res://ui/health_fill.png" id="5_vg1un"]
 
 [node name="Ui" type="Control"]
 layout_mode = 3
@@ -112,6 +113,17 @@ text = "Security Briefing"
 [node name="SecurityRules" type="VBoxContainer" parent="SecurityBriefing"]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="HitBar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 752.0
+offset_top = 768.0
+offset_right = 889.0
+offset_bottom = 779.0
+scale = Vector2(3, 3)
+value = 100.0
+texture_progress = ExtResource("5_vg1un")
 
 [node name="HitPoints" type="Label" parent="."]
 unique_name_in_owner = true
