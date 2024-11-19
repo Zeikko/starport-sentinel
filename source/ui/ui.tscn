@@ -30,12 +30,17 @@ offset_top = 233.0
 offset_right = 334.0
 offset_bottom = 523.0
 
-[node name="Title" type="Label" parent="ShipInformation"]
+[node name="ShipInformationTitle" type="Label" parent="ShipInformationContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 theme_type_variation = &"Heading"
 text = "Ship"
+
+[node name="ShipName" type="Label" parent="ShipInformationContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
 
 [node name="Status" type="Label" parent="ShipInformationContainer"]
 unique_name_in_owner = true

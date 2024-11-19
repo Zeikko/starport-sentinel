@@ -43,7 +43,6 @@ func update_ship_information() -> void:
 		faction.set_text(Ship.Faction.find_key(selected_ship.information.faction).capitalize())
 		ship_type.set_text(Ship.Type.find_key(selected_ship.information.ship_type).capitalize())
 		weapon.set_text(Ship.Weapon.find_key(selected_ship.information.weapon).capitalize())
-		
 
 
 func update_cargo_manifest() -> void:

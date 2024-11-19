@@ -23,6 +23,7 @@ func set_faction(arg_ship: Ship) -> void:
 
 
 func set_cargo_items(arg_ship: Ship) -> void:
+	var cargo: Dictionary
 	for cargo_hold: CargoHold in arg_ship.cargo_holds:
 		for cargo_item: CargoItem in cargo_hold.cargo_items:
 			var is_item_dangerous: bool = false
@@ -31,7 +32,12 @@ func set_cargo_items(arg_ship: Ship) -> void:
 				security_rule.cargo_type == cargo_item.type:
 					is_item_dangerous = true
 			if !is_item_dangerous:
-				cargo_items.push_back(cargo_item)
+				if cargo.get(cargo_item.type):
+					cargo[cargo_item.type] += cargo_item.quantity
+				else:
+					cargo[cargo_item.type] = cargo_item.quantity
+	for cargo_item_type: CargoItem.Type in cargo.keys():
+		cargo_items.push_back(CargoItem.new(cargo_item_type, cargo[cargo_item_type]))
 
 
 func set_weapon(arg_ship: Ship) -> void:
