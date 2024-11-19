@@ -46,7 +46,7 @@ func update_cargo_manifest() -> void:
 		total += cargo_item.quantity
 		cargo_manifest.add_child(cargo_item.get_nodes())
 	var total_label: Label = Label.new()
-	total_label.set_text('Total: ' + str(total) + ' t')
+	total_label.set_text('Total: ' + str(total) + ' tons')
 	cargo_manifest.add_child(total_label)
 
 func update_security_briefing() -> void:
@@ -59,7 +59,7 @@ func update_security_briefing() -> void:
 
 func update_starport() -> void:
 	hit_points.set_text('Hit Points: ' + str(Game.hit_points) + ' / 100')
-	credits.set_text('Credits: ' + str(Game.credits))
+	credits.set_text('C: ' + str(Game.credits))
 
 
 func update_scan() -> void:
@@ -96,17 +96,20 @@ func update_ship_visual() -> void:
 
 
 func _on_approve_button_pressed() -> void:
-	selected_ship.status = Ship.Status.APPROVED
+	if selected_ship:
+		selected_ship.status = Ship.Status.APPROVED
 
 
 func _on_reject_button_pressed() -> void:
-	selected_ship.status = Ship.Status.REJECTED
+	if selected_ship:
+		selected_ship.status = Ship.Status.REJECTED
 
 
 func _on_scan_button_pressed() -> void:
 	ship_visual_container.hide()
 	scan_container.show()
-	selected_ship.start_scanning()
+	if selected_ship:
+		selected_ship.start_scanning()
 
 
 func _on_observe_button_pressed() -> void:

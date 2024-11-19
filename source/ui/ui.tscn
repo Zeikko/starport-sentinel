@@ -12,19 +12,21 @@ theme = ExtResource("3_q76rh")
 script = ExtResource("1_wpl0o")
 
 [node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
 texture = ExtResource("2_cenmb")
 centered = false
 
 [node name="Radar" parent="." instance=ExtResource("1_75arv")]
 unique_name_in_owner = true
-position = Vector2(320, 151)
+position = Vector2(961, 453)
+scale = Vector2(3, 3)
 
 [node name="ShipInformation" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 49.0
-offset_top = 76.0
-offset_right = 113.0
-offset_bottom = 178.0
+offset_left = 149.0
+offset_top = 233.0
+offset_right = 334.0
+offset_bottom = 523.0
 
 [node name="ShipName" type="Label" parent="ShipInformation"]
 unique_name_in_owner = true
@@ -54,10 +56,10 @@ size_flags_horizontal = 0
 
 [node name="CargoManifest" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 134.0
-offset_top = 77.0
-offset_right = 200.0
-offset_bottom = 179.0
+offset_left = 401.0
+offset_top = 233.0
+offset_right = 586.0
+offset_bottom = 523.0
 
 [node name="CargoManifestTitle" type="Label" parent="CargoManifest"]
 layout_mode = 2
@@ -70,10 +72,10 @@ layout_mode = 2
 
 [node name="Buttons" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 246.0
-offset_top = 273.0
-offset_right = 310.0
-offset_bottom = 309.0
+offset_left = 752.0
+offset_top = 819.0
+offset_right = 1090.0
+offset_bottom = 923.0
 
 [node name="ApproveButton" type="Button" parent="Buttons"]
 unique_name_in_owner = true
@@ -87,51 +89,46 @@ layout_mode = 2
 theme = ExtResource("3_q76rh")
 text = "Reject"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
-layout_mode = 0
-offset_left = 46.0
-offset_top = 215.0
-offset_right = 112.0
-offset_bottom = 315.0
-
-[node name="SecurityBriefing" type="VBoxContainer" parent="ScrollContainer"]
+[node name="SecurityBriefing" type="VBoxContainer" parent="."]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+offset_left = 1333.0
+offset_top = 233.0
+offset_right = 1773.0
+offset_bottom = 523.0
 
-[node name="Title" type="Label" parent="ScrollContainer/SecurityBriefing"]
+[node name="Title" type="Label" parent="SecurityBriefing"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Security Briefing"
 
-[node name="SecurityRules" type="VBoxContainer" parent="ScrollContainer/SecurityBriefing"]
+[node name="SecurityRules" type="VBoxContainer" parent="SecurityBriefing"]
 unique_name_in_owner = true
 layout_mode = 2
 
 [node name="HitPoints" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
-offset_left = 260.0
-offset_top = 256.0
-offset_right = 261.0
-offset_bottom = 264.0
+offset_left = 802.0
+offset_top = 774.0
+offset_right = 803.0
+offset_bottom = 790.0
 size_flags_horizontal = 0
 
 [node name="Credits" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
-offset_left = 315.0
-offset_top = 275.0
-offset_right = 316.0
-offset_bottom = 283.0
+offset_left = 1098.0
+offset_top = 826.0
+offset_right = 1099.0
+offset_bottom = 842.0
 size_flags_horizontal = 0
 
 [node name="ShipObservations" type="VBoxContainer" parent="."]
 layout_mode = 2
-offset_left = 458.0
-offset_top = 62.0
-offset_right = 586.0
-offset_bottom = 194.0
+offset_left = 1329.0
+offset_top = 649.0
+offset_right = 1457.0
+offset_bottom = 806.0
 
 [node name="ShipVisualContainer" type="Container" parent="ShipObservations"]
 unique_name_in_owner = true
@@ -159,10 +156,10 @@ layout_mode = 2
 
 [node name="ObservationButtons" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 437.0
-offset_top = 43.0
-offset_right = 521.0
-offset_bottom = 79.0
+offset_left = 1329.0
+offset_top = 895.0
+offset_right = 1711.0
+offset_bottom = 945.0
 
 [node name="ViewButton" type="Button" parent="ObservationButtons"]
 unique_name_in_owner = true

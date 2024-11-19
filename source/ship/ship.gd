@@ -40,10 +40,10 @@ var ship_name: String = 'Default Ship'
 var status: Status = Status.UNDECIDED:
 	set(value):
 		if value == Status.APPROVED:
-			radar_blip.modulate = Color.html('#333f58')
+			radar_blip.modulate = Color.html('#4a7a96')
 			speed = abs(speed)
 		if value == Status.REJECTED:
-			radar_blip.modulate = Color.html('#ee8695')
+			radar_blip.modulate = Color.html('#333f58')
 			speed = abs(speed) * -1
 		status = value
 		Ui.update_ship_information()
@@ -100,7 +100,7 @@ func _process(delta: float) -> void:
 		visit_starport()
 		Shift.is_shift_over(self)
 	if distance > max_distance:
-		queue_free()
+		remove()
 		Shift.is_shift_over(self)
 	elif self != null:
 		if status in [Status.APPROVED, Status.REJECTED] or \
@@ -131,6 +131,11 @@ func visit_starport() -> void:
 		Game.hit_points -= damage
 		Shift.damage += damage
 		Shift.visit_messages.push_back(visit_message)
+	remove()
+	
+func remove() -> void:
+	if Ui.selected_ship == self:
+		Ui.selected_ship = null
 	queue_free()
 
 func start_scanning() -> void:

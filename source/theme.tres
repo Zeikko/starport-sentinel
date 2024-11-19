@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=25 format=4 uid="uid://cbimufccfad2e"]
+[gd_resource type="Theme" load_steps=26 format=4 uid="uid://cbimufccfad2e"]
 
 [ext_resource type="FontFile" uid="uid://bjoulet477sho" path="res://fonts/ABSTRACT.TTF" id="1_x0pc8"]
 [ext_resource type="FontFile" uid="uid://crjk4upi0rbjb" path="res://fonts/8bitOperatorPlus8-Regular.ttf" id="2_2e336"]
@@ -44,15 +44,15 @@ corner_detail = 5
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4inoh"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
+content_margin_left = 12.0
+content_margin_top = 16.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
 bg_color = Color(0.160784, 0.156863, 0.192157, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 border_color = Color(0.933333, 0.52549, 0.584314, 1)
 corner_detail = 5
 anti_aliasing = false
@@ -72,6 +72,14 @@ corner_detail = 5
 anti_aliasing = false
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xa1gh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i7ism"]
+bg_color = Color(0.2, 0.247059, 0.345098, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.933333, 0.52549, 0.584314, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwv4n"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -1538,7 +1546,7 @@ Button/constants/align_to_largest_stylebox = 0
 Button/constants/h_separation = 4
 Button/constants/icon_max_width = 0
 Button/constants/outline_size = 0
-Button/font_sizes/font_size = 3
+Button/font_sizes/font_size = 16
 Button/fonts/font = ExtResource("1_x0pc8")
 Button/styles/disabled = SubResource("StyleBoxFlat_63j1x")
 Button/styles/focus = SubResource("StyleBoxFlat_f1nvc")
@@ -1553,14 +1561,14 @@ Label/constants/outline_size = 0
 Label/constants/shadow_offset_x = 1
 Label/constants/shadow_offset_y = 1
 Label/constants/shadow_outline_size = 1
-Label/font_sizes/font_size = 4
+Label/font_sizes/font_size = 22
 Label/fonts/font = ExtResource("2_2e336")
 Label/styles/normal = SubResource("StyleBoxEmpty_xa1gh")
 MarginContainer/constants/margin_bottom = 20
 MarginContainer/constants/margin_left = 20
 MarginContainer/constants/margin_right = 20
 MarginContainer/constants/margin_top = 20
-Panel/styles/panel = null
+Panel/styles/panel = SubResource("StyleBoxFlat_i7ism")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_uwv4n")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_khgtn")
 RichTextLabel/colors/default_color = Color(0.933333, 0.52549, 0.584314, 1)
@@ -1580,11 +1588,11 @@ RichTextLabel/constants/table_h_separation = 3
 RichTextLabel/constants/table_v_separation = 3
 RichTextLabel/constants/text_highlight_h_padding = 3
 RichTextLabel/constants/text_highlight_v_padding = 3
-RichTextLabel/font_sizes/bold_font_size = 11
-RichTextLabel/font_sizes/bold_italics_font_size = 4
-RichTextLabel/font_sizes/italics_font_size = 4
-RichTextLabel/font_sizes/mono_font_size = 4
-RichTextLabel/font_sizes/normal_font_size = 4
+RichTextLabel/font_sizes/bold_font_size = 22
+RichTextLabel/font_sizes/bold_italics_font_size = 22
+RichTextLabel/font_sizes/italics_font_size = 22
+RichTextLabel/font_sizes/mono_font_size = 22
+RichTextLabel/font_sizes/normal_font_size = 22
 RichTextLabel/fonts/bold_font = SubResource("FontVariation_65pvt")
 RichTextLabel/fonts/bold_italics_font = SubResource("FontVariation_2na3f")
 RichTextLabel/fonts/italics_font = SubResource("FontVariation_3n3u1")

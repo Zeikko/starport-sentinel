@@ -57,8 +57,8 @@ func get_nodes() -> Node:
 	var label: RichTextLabel = RichTextLabel.new()
 	label.bbcode_enabled = true
 	label.fit_content = true
-	label.set_text(icon + ' ' + str(quantity) + ' t')
+	label.set_text(icon + ' ' + str(quantity) + ' tons')
 	return label
 
 static func get_icon(arg_type: Type) -> String:
-	return '[img={width%10}x{height%10}]' + textures.get(arg_type) + '[/img]'
+	return '[img={width%32}x{height%32}]' + textures.get(arg_type) + '[/img]'
