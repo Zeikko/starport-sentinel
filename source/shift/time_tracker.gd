@@ -7,7 +7,7 @@ var total_duration : float = 0
 
 func update_timetracker(delta : float)-> void:
 	if shift_in_progress == true:
-		shift_duration += 1 * delta	
+		shift_duration += delta	
 		
 func end_shift()-> void :
 	shift_in_progress = false
@@ -22,6 +22,14 @@ func show_label(shift_duration_label : Label, total_duration_label : Label )-> v
 	total_duration_label.set_text('Total Time: ' + seconds_to_mm_ss(total_duration))
 
 func seconds_to_mm_ss(arg_seconds: float)-> String:
-	var seconds: int = round(arg_seconds)
-	var str_time: String = str(int(seconds / 600))+str(int((int(seconds) / 60) %10))+':'+ str(int((seconds % 60) /10))+str(int(seconds % 60) %10)
-	return str_time
+	var minutes = floor(arg_seconds / 60)
+	var seconds = floor(arg_seconds - minutes * 60)
+	var mm_ss = str(
+	'0' if str(minutes).length() == 1 else '',
+	minutes,
+	':',
+	'0' if str(seconds).length() == 1 else '',
+	seconds
+	)
+	return mm_ss
+	
