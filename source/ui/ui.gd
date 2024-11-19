@@ -59,7 +59,6 @@ func update_security_briefing() -> void:
 
 
 func update_starport() -> void:
-	#hit_points.set_text('Hit Points: ' + str(Game.hit_points) + ' / 100')
 	hit_bar.set_value(Game.hit_points)
 	credits.set_text('Credits: ' + str(Game.credits))
 	credits.set_text('C: ' + str(Game.credits))
