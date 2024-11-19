@@ -8,6 +8,7 @@ var ship_counter: int = 0:
 	get:
 		return ship_counter
 var ship_scene: PackedScene = preload('res://ship/ship.tscn')
+var time_tracker: TimeTracker = preload('res://shift/time_tracker.gd').new()
 var security_rules: Array[SecurityRule] = []
 var possible_angles: Array[float] = []
 var income: int = 0
@@ -21,6 +22,8 @@ var visit_messages: Array[String] = []
 @onready var income_label: Label = %IncomeLabel
 @onready var damage_label: Label = %DamageLabel
 @onready var upkeep_label: Label = %UpkeepLabel
+@onready var shift_duration_label : Label = %ShiftDuration
+@onready var total_duration_label : Label = %TotalDuration
 @onready var upkeep_damage_label: Label = %UpkeepDamageLabel
 @onready var new_security_rule_container: VBoxContainer = %NewSecurityRule
 @onready var visit_messages_container: VBoxContainer = %VisitMessages
@@ -30,7 +33,10 @@ func _ready() -> void:
 	create_ship()
 	security_rules.push_back(SecurityRule.create_security_rule())
 	Ui.update_security_briefing()
+	time_tracker.start_shift()
 
+func _process(delta: float) -> void:
+	time_tracker.update_timetracker(delta)
 
 func create_possible_angles() -> void:
 	var number_of_angles: int = 16
@@ -74,8 +80,8 @@ func end_shift(ships: Array[Ship]) -> void:
 			ship.queue_free()
 	pay_upkeep()
 	if Game.hit_points > 0:
+		time_tracker.end_shift()
 		show_shift_report()
-
 
 func pay_upkeep() -> void:
 	paid_upkeep = clamp(Game.credits, 0, upkeep)
@@ -101,6 +107,7 @@ func show_shift_report() -> void:
 	new_security_rule_container.add_child(new_security_rule.get_nodes())
 	shift_title.set_text('Shift ' + str(shift_number) + ' complete!')
 	income_label.set_text('You earned ' + str(income) + ' credits')
+	time_tracker.show_label(shift_duration_label, total_duration_label)
 	if (upkeep_damage > 0):
 		upkeep_label.set_text('You paid ' + str(paid_upkeep) +
 		' of the upkeep of ' + str(upkeep) + ' credits')
@@ -121,3 +128,4 @@ func _on_start_shift_button_pressed() -> void:
 	damage = 0
 	shift_number += 1
 	shift_report.hide()
+	time_tracker.start_shift()
