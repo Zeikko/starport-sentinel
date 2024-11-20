@@ -53,9 +53,7 @@ texture = ExtResource("3_ue4ax")
 
 [node name="ScanSound" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(1329, 781)
 stream = ExtResource("4_jlbn3")
-autoplay = true
 bus = &"Effects"
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
