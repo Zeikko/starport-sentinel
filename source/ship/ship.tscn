@@ -11,10 +11,6 @@ radius = 9.0
 [node name="Ship" type="Node2D"]
 script = ExtResource("1_xbnws")
 
-[node name="RadarBlip" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-modulate = Color(0.933333, 0.52549, 0.584314, 1)
-
 [node name="Area2D" type="Area2D" parent="."]
 z_index = 1
 
