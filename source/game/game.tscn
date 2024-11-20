@@ -102,6 +102,7 @@ vertical_alignment = 1
 
 [node name="DefeatSound" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
+process_mode = 3
 stream = ExtResource("4_u00hq")
 volume_db = 9.0
 bus = &"Effects"

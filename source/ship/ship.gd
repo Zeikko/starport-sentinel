@@ -48,11 +48,17 @@ var status: Status = Status.UNDECIDED:
 		status = value
 		Ui.update_ship_information()
 		Shift.is_shift_over(self)
-	get:
-		return status
 var type: Type
 var faction: Faction
-var is_scanning: bool = false
+var is_scanning: bool = false:
+	set(value):
+		if value && !is_scanning:
+			progress_bar.show()
+			scan_sound.play()
+		if !value && is_scanning:
+			scan_sound.stop()
+			progress_bar.hide()
+		is_scanning = value
 var damage: int
 var information: ShipInformation
 var cargo_holds: Array[CargoHold] = []
@@ -115,9 +121,7 @@ func _process(delta: float) -> void:
 			progress_bar.value += delta * Game.scanning_speed
 		if progress_bar.value >= 100:
 			is_scanning = false
-			scan_sound.stop()
-			progress_bar.visible = false
-		select_indicator.visible = Ui.selected_ship == self
+	select_indicator.visible = Ui.selected_ship == self
 
 func visit_starport() -> void:
 	var visit_message: String
@@ -144,11 +148,6 @@ func remove() -> void:
 	if Ui.selected_ship == self:
 		Ui.selected_ship = null
 	queue_free()
-
-func start_scanning() -> void:
-	progress_bar.visible = true
-	is_scanning = true
-	scan_sound.play()
 
 
 func _on_area_2d_input_event(

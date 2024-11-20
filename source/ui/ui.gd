@@ -2,6 +2,8 @@ extends Control
 
 var selected_ship: Ship:
 	set(value):
+		if selected_ship:
+			selected_ship.is_scanning = false
 		selected_ship = value
 		update_ship_information()
 		update_ship_visual()
@@ -121,7 +123,7 @@ func _on_scan_button_pressed() -> void:
 	ship_visual_container.hide()
 	scan_container.show()
 	if selected_ship:
-		selected_ship.start_scanning()
+		selected_ship.is_scanning = true
 
 
 func _on_view_button_pressed() -> void:
