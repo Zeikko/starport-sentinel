@@ -34,6 +34,15 @@ func add_icon(texture: Texture2D) -> void:
 	cheatcode_hbox.add_child(icon)
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("spawn_all_ships"):
+		cheatcode_entered.emit(cheatcodes[Cheatcode.Id.SPAWN_SHIPS])
+		return
+	if event.is_action_pressed("faster_ships"):
+		cheatcode_entered.emit(cheatcodes[Cheatcode.Id.FAST_SHIPS])
+		return
+	if event.is_action_pressed("approve_all_ships"):
+		cheatcode_entered.emit(cheatcodes[Cheatcode.Id.APPROVE_SHIPS])
+		return
 	if input_buffer.length() >= MAX_CHEATCODE or input_frozen:
 		return
 	if event.is_action_pressed("cheatcode_up"):
