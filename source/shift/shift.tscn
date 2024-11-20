@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://shift/shift.gd" id="1_yq6q2"]
 [ext_resource type="Theme" uid="uid://cbimufccfad2e" path="res://theme.tres" id="2_6rmm1"]
-[ext_resource type="PackedScene" uid="uid://ox2u7diry4kw" path="res://shift/armor_upgrade.tscn" id="3_u3pg1"]
-[ext_resource type="PackedScene" uid="uid://08t2qxqub2t0" path="res://shift/scanning_speed_upgrade.tscn" id="4_64o3e"]
+[ext_resource type="PackedScene" uid="uid://bjri5inpq66lr" path="res://shift/armor_upgrade.tscn" id="3_u3pg1"]
+[ext_resource type="PackedScene" uid="uid://drvjhje3812ml" path="res://shift/scanning_speed_upgrade.tscn" id="4_64o3e"]
 
 [node name="Shift" type="Node"]
 script = ExtResource("1_yq6q2")
