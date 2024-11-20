@@ -19,7 +19,7 @@ var cheatcodes: Array[Cheatcode] = [
 	preload(CHEATCODE_PATH + "approve_ships_cheat.tres"),
 ]
 
-var input_buffer: String
+var input_buffer: Array[InputEvent]
 var input_frozen: bool = false
 var fade_tween: Tween
 
@@ -43,21 +43,21 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("approve_all_ships"):
 		cheatcode_entered.emit(cheatcodes[Cheatcode.Id.APPROVE_SHIPS])
 		return
-	if input_buffer.length() >= MAX_CHEATCODE or input_frozen:
+	if input_buffer.size() >= MAX_CHEATCODE or input_frozen:
 		return
 	if event.is_action_pressed("cheatcode_up"):
-		input_buffer += 'w'
+		input_buffer.push_back(event)
 		add_icon(ARROW_UP)
 	elif event.is_action_pressed("cheatcode_down"):
-		input_buffer += 's'
+		input_buffer.push_back(event)
 		add_icon(ARROW_DOWN)
 	elif event.is_action_pressed("cheatcode_left"):
-		input_buffer += 'a'
+		input_buffer.push_back(event)
 		add_icon(ARROW_LEFT)
 	elif event.is_action_pressed("cheatcode_right"):
-		input_buffer += 'd'
+		input_buffer.push_back(event)
 		add_icon(ARROW_RIGHT)
-	if input_buffer.length() > 0:
+	if input_buffer.size() > 0:
 		cheatcode_ui.modulate = Color(1, 1, 1, 1)
 		if !start_fade_timer.is_stopped():
 			start_fade_timer.stop()
@@ -65,14 +65,21 @@ func _input(event: InputEvent) -> void:
 			fade_tween.stop()
 		start_fade_timer.start()
 	for code: Cheatcode in cheatcodes:
-		if code.combo == input_buffer:
-			cheatcode_entered.emit(code)
-			cheatcode_name_label.text = code.name
-			input_frozen = true
+		if code.combo.size() == input_buffer.size():
+			var combo_matches = true
+			var i = 0
+			for input in input_buffer:
+				if !input.is_action_pressed(code.combo[i].action):
+					combo_matches = false
+				i += 1
+			if combo_matches:
+				cheatcode_entered.emit(code)
+				cheatcode_name_label.text = code.name
+				input_frozen = true
 
 func _on_fade_tween_finish() -> void:
 	input_frozen = false
-	input_buffer = ""
+	input_buffer = []
 	cheatcode_name_label.text = ""
 	for child in cheatcode_hbox.get_children():
 		child.free()

@@ -8,4 +8,4 @@ enum Id {
 
 @export var id: Id
 @export var name: String
-@export var combo: String
+@export var combo: Array[InputEventAction]
