@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://7vhvt6j3g2h5"
+path="res://.godot/imported/Gameoff_24_Scan or Scam_v1_SG.mp3-2a2e9e0e9b4f19f402a900f319fa0421.mp3str"
+
+[deps]
+
+source_file="res://music/Gameoff_24_Scan or Scam_v1_SG.mp3"
+dest_files=["res://.godot/imported/Gameoff_24_Scan or Scam_v1_SG.mp3-2a2e9e0e9b4f19f402a900f319fa0421.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

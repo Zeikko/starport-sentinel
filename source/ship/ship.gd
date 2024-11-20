@@ -18,10 +18,8 @@ enum Weapon {
 	CANNON
 }
 
-var shuttle_texture = load("res://ship/radar/shuttle.png")
-var cruiser_texture = load("res://ship/radar/cruiser.png")
-var frigate_texture = load("res://ship/radar/frigate.png")
 var ship_visual_scene: PackedScene = preload('res://ship/visual/ship_visual.tscn')
+var radar_blip_scene: PackedScene = preload('res://ship/radar/radar_blip.tscn')
 
 var max_distance: float = 75
 var min_distance: float = 10
@@ -40,19 +38,24 @@ var ship_name: String = 'Default Ship'
 var status: Status = Status.UNDECIDED:
 	set(value):
 		if value == Status.APPROVED:
-			radar_blip.modulate = Color.html('#4a7a96')
 			speed = abs(speed)
 		if value == Status.REJECTED:
-			radar_blip.modulate = Color.html('#333f58')
 			speed = abs(speed) * -1
 		status = value
+		radar_blip.update()
 		Ui.update_ship_information()
 		Shift.is_shift_over(self)
-	get:
-		return status
 var type: Type
 var faction: Faction
-var is_scanning: bool = false
+var is_scanning: bool = false:
+	set(value):
+		if value && !is_scanning:
+			progress_bar.show()
+			scan_sound.play()
+		if !value && is_scanning:
+			scan_sound.stop()
+			progress_bar.hide()
+		is_scanning = value
 var damage: int
 var information: ShipInformation
 var cargo_holds: Array[CargoHold] = []
@@ -63,6 +66,7 @@ var weapon: Weapon
 @onready var progress_bar: ProgressBar = %ProgressBar
 @onready var select_indicator: TextureRect = %SelectIndicator
 @onready var radar_blip: Node2D = %RadarBlip
+@onready var scan_sound: AudioStreamPlayer2D = $ScanSound
 
 func _ready() -> void:
 	position = Vector2(distance, 0).rotated(angle)
@@ -74,9 +78,12 @@ func _ready() -> void:
 	for cargo_hold_number: int in range(type + 1):
 		cargo_holds.push_back(CargoHold.new(cargo_hold_number + 1, type))
 	information = ShipInformation.new(self)
-	set_radar_texture(information)
 	visual = ship_visual_scene.instantiate()
 	visual.ship = self
+	radar_blip = radar_blip_scene.instantiate()
+	radar_blip.ship = self
+	add_child(radar_blip)
+
 
 func pick_type() -> void:
 	var random_value: int = randi_range(1, 6)
@@ -87,13 +94,6 @@ func pick_type() -> void:
 	else: # 3 of 6
 		type = Type.SHUTTLE
 
-func set_radar_texture(information: ShipInformation) -> void:
-	if (information.ship_type == Type.SHUTTLE):
-		radar_blip.texture = shuttle_texture
-	elif (information.ship_type == Type.FRIGATE):
-		radar_blip.texture = frigate_texture
-	elif (information.ship_type == Type.CRUISER):
-		radar_blip.texture = cruiser_texture
 
 func _process(delta: float) -> void:
 	if distance < min_distance:
@@ -109,11 +109,11 @@ func _process(delta: float) -> void:
 		else:
 			wait_time_elapsed += delta
 		position = Vector2(distance, 0).rotated(angle)
-	if is_scanning:
-		progress_bar.value += delta * Game.scanning_speed
-	if progress_bar.value >= 100:
-		is_scanning = false
-		progress_bar.visible = false
+	if Ui.selected_ship == self:
+		if is_scanning:
+			progress_bar.value += delta * Game.scanning_speed
+		if progress_bar.value >= 100:
+			is_scanning = false
 	select_indicator.visible = Ui.selected_ship == self
 
 func visit_starport() -> void:
@@ -128,6 +128,7 @@ func visit_starport() -> void:
 		Game.credits += credits
 		Shift.income += credits
 	else:
+		Ui.explosion.play(damage / 10)
 		if Game.armor <= 0:
 			Game.hit_points -= damage
 			Shift.damage += damage
@@ -142,9 +143,6 @@ func remove() -> void:
 		Ui.selected_ship = null
 	queue_free()
 
-func start_scanning() -> void:
-	progress_bar.visible = true
-	is_scanning = true
 
 func _on_area_2d_input_event(
 	_viewport: Node,
