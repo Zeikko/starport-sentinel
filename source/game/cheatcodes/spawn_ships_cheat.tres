@@ -6,4 +6,4 @@
 script = ExtResource("1_b623w")
 id = 0
 name = "SWARM"
-combo = "awdsawds"
+combo = "awds"
