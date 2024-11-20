@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Cheatcode" load_steps=6 format=3 uid="uid://btpnox4m1u81i"]
+
+[ext_resource type="Script" path="res://game/cheatcodes/cheatcode.gd" id="1_vad4j"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_47xac"]
+action = &"cheatcode_left"
+
+[sub_resource type="InputEventAction" id="InputEventAction_wiv7c"]
+action = &"cheatcode_left"
+
+[sub_resource type="InputEventAction" id="InputEventAction_irg3a"]
+action = &"cheatcode_right"
+
+[sub_resource type="InputEventAction" id="InputEventAction_nkhkl"]
+action = &"cheatcode_right"
+
+[resource]
+script = ExtResource("1_vad4j")
+id = 1
+name = "TURBO"
+combo = Array[InputEventAction]([SubResource("InputEventAction_47xac"), SubResource("InputEventAction_wiv7c"), SubResource("InputEventAction_irg3a"), SubResource("InputEventAction_nkhkl")])

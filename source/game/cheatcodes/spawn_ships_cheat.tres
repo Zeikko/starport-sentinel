@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Cheatcode" load_steps=6 format=3 uid="uid://bh2ekmol1h5f5"]
+
+[ext_resource type="Script" path="res://game/cheatcodes/cheatcode.gd" id="1_b623w"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_3w0eg"]
+action = &"cheatcode_left"
+
+[sub_resource type="InputEventAction" id="InputEventAction_8f11d"]
+action = &"cheatcode_up"
+
+[sub_resource type="InputEventAction" id="InputEventAction_a6tht"]
+action = &"cheatcode_right"
+
+[sub_resource type="InputEventAction" id="InputEventAction_kdtni"]
+action = &"cheatcode_down"
+
+[resource]
+script = ExtResource("1_b623w")
+id = 0
+name = "SWARM"
+combo = Array[InputEventAction]([SubResource("InputEventAction_3w0eg"), SubResource("InputEventAction_8f11d"), SubResource("InputEventAction_a6tht"), SubResource("InputEventAction_kdtni")])

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://be8ea83x26syb"]
+
+[ext_resource type="Texture2D" uid="uid://g1f85n2mte37" path="res://game/cheatcodes/icons/cheatcode_arrow1.png" id="1_consr"]
+
+[node name="CheatcodeIcon" type="TextureRect"]
+mouse_filter = 2
+texture = ExtResource("1_consr")
+stretch_mode = 5
