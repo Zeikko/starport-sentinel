@@ -30,6 +30,7 @@ var selected_ship: Ship:
 @onready var weapon: Label = %Weapon
 @onready var ship_information_container: VBoxContainer = %ShipInformationContainer
 @onready var cargo_manifest_container: VBoxContainer = %CargoManifestContainer
+@onready var explosion: Node2D = %Explosion
 
 
 func _process(_delta: float) -> void:

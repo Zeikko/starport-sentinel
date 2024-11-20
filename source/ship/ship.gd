@@ -135,6 +135,7 @@ func visit_starport() -> void:
 		Game.credits += credits
 		Shift.income += credits
 	else:
+		Ui.explosion.play(damage / 10)
 		if Game.armor <= 0:
 			Game.hit_points -= damage
 			Shift.damage += damage

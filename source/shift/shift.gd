@@ -84,7 +84,7 @@ func end_shift(ships: Array[Ship]) -> void:
 		if ship.status == Ship.Status.APPROVED:
 			ship.visit_starport()
 		else:
-			ship.queue_free()
+			ship.remove()
 	pay_upkeep()
 	if Game.hit_points > 0:
 		time_tracker.end_shift()
