@@ -44,14 +44,18 @@ func create_possible_angles() -> void:
 	for angle_number: int in range(1, number_of_angles):
 		possible_angles.push_back(float(angle_number) * angle_diff)
 
-func create_ship() -> void:
+func create_ship() -> bool:
 	if ship_counter < ships_per_shift:
 		var ship: Ship = ship_scene.instantiate()
 		ship.angle = possible_angles.pick_random()
 		possible_angles = possible_angles.filter(func(angle: float) -> float: return ship.angle != angle)
 		Ui.radar.ships.add_child(ship)
 		ship_counter += 1
+		return true
+	return false
 
+func create_all_ships() -> void:
+	while create_ship(): pass
 
 func _on_timer_timeout() -> void:
 	create_ship()

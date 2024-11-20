@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Cheatcode" load_steps=2 format=3 uid="uid://bh2ekmol1h5f5"]
+
+[ext_resource type="Script" path="res://game/cheatcodes/cheatcode.gd" id="1_b623w"]
+
+[resource]
+script = ExtResource("1_b623w")
+id = 0
+name = "SWARM"
+combo = "awdsawds"
