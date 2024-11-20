@@ -2,11 +2,11 @@ extends HBoxContainer
 
 @export var id: Upgrade.Id
 
+var upgrade: Upgrade
+
 @onready var cost_label: Label = %CostLabel
 @onready var buy_button: Button = %BuyButton
 @onready var description: Label = %Description
-
-var upgrade: Upgrade
 
 func _ready() -> void:
 	Game.credits_updated.connect(update_info)
