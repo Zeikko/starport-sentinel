@@ -1,5 +1,5 @@
-[gd_scene load_steps=2 format=3 uid="uid://cosp8p4odekfw"]
+[gd_scene load_steps=2 format=3 uid="uid://08t2qxqub2t0"]
 
-[ext_resource type="PackedScene" uid="uid://cpg8uu7j1s1n1" path="res://shift/upgrade_ui.tscn" id="1_arjdw"]
+[ext_resource type="PackedScene" uid="uid://crsxysn84iuto" path="res://shift/upgrade_ui.tscn" id="1_arjdw"]
 
 [node name="ScanningSpeedUpgrade" instance=ExtResource("1_arjdw")]

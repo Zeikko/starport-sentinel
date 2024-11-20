@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://shift/shift.gd" id="1_yq6q2"]
 [ext_resource type="Theme" uid="uid://cbimufccfad2e" path="res://theme.tres" id="2_6rmm1"]
-[ext_resource type="PackedScene" path="res://shift/armor_upgrade.tscn" id="3_u3pg1"]
-[ext_resource type="PackedScene" path="res://shift/scanning_speed_upgrade.tscn" id="4_64o3e"]
+[ext_resource type="PackedScene" uid="uid://ox2u7diry4kw" path="res://shift/armor_upgrade.tscn" id="3_u3pg1"]
+[ext_resource type="PackedScene" uid="uid://08t2qxqub2t0" path="res://shift/scanning_speed_upgrade.tscn" id="4_64o3e"]
 
 [node name="Shift" type="Node"]
 script = ExtResource("1_yq6q2")
@@ -44,6 +44,89 @@ theme = ExtResource("2_6rmm1")
 [node name="VBoxContainer" type="VBoxContainer" parent="ShiftReport/ShiftReportTab"]
 layout_mode = 2
 
+[node name="General" type="MarginContainer" parent="ShiftReport/ShiftReportTab/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShiftReport/ShiftReportTab/VBoxContainer/General"]
+layout_mode = 2
+
+[node name="ShiftTitle" type="Label" parent="ShiftReport/ShiftReportTab/VBoxContainer/General/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_6rmm1")
+theme_type_variation = &"Heading"
+
+[node name="IncomeLabel" type="Label" parent="ShiftReport/ShiftReportTab/VBoxContainer/General/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_6rmm1")
+
+[node name="DamageLabel" type="Label" parent="ShiftReport/ShiftReportTab/VBoxContainer/General/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_6rmm1")
+
+[node name="UpkeepLabel" type="Label" parent="ShiftReport/ShiftReportTab/VBoxContainer/General/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_6rmm1")
+
+[node name="UpkeepDamageLabel" type="Label" parent="ShiftReport/ShiftReportTab/VBoxContainer/General/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_6rmm1")
+
+[node name="ShiftDuration" type="Label" parent="ShiftReport/ShiftReportTab/VBoxContainer/General/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TotalDuration" type="Label" parent="ShiftReport/ShiftReportTab/VBoxContainer/General/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="DamageReport" type="MarginContainer" parent="ShiftReport/ShiftReportTab/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShiftReport/ShiftReportTab/VBoxContainer/DamageReport"]
+layout_mode = 2
+
+[node name="DamageReportTitle" type="Label" parent="ShiftReport/ShiftReportTab/VBoxContainer/DamageReport/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+theme_type_variation = &"Heading"
+text = "Damage Report"
+
+[node name="VisitMessages" type="VBoxContainer" parent="ShiftReport/ShiftReportTab/VBoxContainer/DamageReport/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="NewSecurityRule" type="MarginContainer" parent="ShiftReport/ShiftReportTab/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShiftReport/ShiftReportTab/VBoxContainer/NewSecurityRule"]
+layout_mode = 2
+
+[node name="NewSecurityRuleTitle" type="Label" parent="ShiftReport/ShiftReportTab/VBoxContainer/NewSecurityRule/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_6rmm1")
+theme_type_variation = &"Heading"
+text = "New Security Rule"
+
+[node name="NewSecurityRule" type="VBoxContainer" parent="ShiftReport/ShiftReportTab/VBoxContainer/NewSecurityRule/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_6rmm1")
+
 [node name="HBoxContainer" type="HBoxContainer" parent="ShiftReport/ShiftReportTab"]
 layout_mode = 2
 
@@ -76,6 +159,11 @@ theme = ExtResource("2_6rmm1")
 layout_mode = 2
 theme_override_constants/separation = 13
 
+[node name="Title" type="Label" parent="ShiftReport/UpgradesTab/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"Heading"
+text = "Upgrades"
+
 [node name="ArmorUpgrade" parent="ShiftReport/UpgradesTab/VBoxContainer" instance=ExtResource("3_u3pg1")]
 layout_mode = 2
 
@@ -92,72 +180,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 8
 theme = ExtResource("2_6rmm1")
 text = "Back"
-
-[node name="ShiftReport_MarginContainer_VBoxContainer#General" type="MarginContainer" parent="."]
-theme_override_constants/margin_bottom = 10
-
-[node name="ShiftReport_MarginContainer_VBoxContainer_General#VBoxContainer" type="VBoxContainer" parent="."]
-
-[node name="ShiftReport_MarginContainer_VBoxContainer_General_VBoxContainer#ShiftTitle" type="Label" parent="."]
-unique_name_in_owner = true
-size_flags_vertical = 0
-theme = ExtResource("2_6rmm1")
-theme_type_variation = &"Heading"
-
-[node name="ShiftReport_MarginContainer_VBoxContainer_General_VBoxContainer#IncomeLabel" type="Label" parent="."]
-unique_name_in_owner = true
-size_flags_vertical = 0
-theme = ExtResource("2_6rmm1")
-
-[node name="ShiftReport_MarginContainer_VBoxContainer_General_VBoxContainer#DamageLabel" type="Label" parent="."]
-unique_name_in_owner = true
-size_flags_vertical = 0
-theme = ExtResource("2_6rmm1")
-
-[node name="ShiftReport_MarginContainer_VBoxContainer_General_VBoxContainer#UpkeepLabel" type="Label" parent="."]
-unique_name_in_owner = true
-size_flags_vertical = 0
-theme = ExtResource("2_6rmm1")
-
-[node name="ShiftReport_MarginContainer_VBoxContainer_General_VBoxContainer#UpkeepDamageLabel" type="Label" parent="."]
-unique_name_in_owner = true
-size_flags_vertical = 0
-theme = ExtResource("2_6rmm1")
-
-[node name="ShiftReport_MarginContainer_VBoxContainer_General_VBoxContainer#ShiftDuration" type="Label" parent="."]
-unique_name_in_owner = true
-
-[node name="ShiftReport_MarginContainer_VBoxContainer_General_VBoxContainer#TotalDuration" type="Label" parent="."]
-unique_name_in_owner = true
-
-[node name="ShiftReport_MarginContainer_VBoxContainer#DamageReport" type="MarginContainer" parent="."]
-theme_override_constants/margin_bottom = 10
-
-[node name="ShiftReport_MarginContainer_VBoxContainer_DamageReport#VBoxContainer" type="VBoxContainer" parent="."]
-
-[node name="ShiftReport_MarginContainer_VBoxContainer_DamageReport_VBoxContainer#DamageReportTitle" type="Label" parent="."]
-unique_name_in_owner = true
-size_flags_horizontal = 0
-theme_type_variation = &"Heading"
-text = "Damage Report"
-
-[node name="ShiftReport_MarginContainer_VBoxContainer_DamageReport_VBoxContainer#VisitMessages" type="VBoxContainer" parent="."]
-unique_name_in_owner = true
-
-[node name="ShiftReport_MarginContainer_VBoxContainer#NewSecurityRule" type="MarginContainer" parent="."]
-
-[node name="ShiftReport_MarginContainer_VBoxContainer_NewSecurityRule#VBoxContainer" type="VBoxContainer" parent="."]
-
-[node name="ShiftReport_MarginContainer_VBoxContainer_NewSecurityRule_VBoxContainer#NewSecurityRuleTitle" type="Label" parent="."]
-size_flags_vertical = 0
-theme = ExtResource("2_6rmm1")
-theme_type_variation = &"Heading"
-text = "New Security Rule"
-
-[node name="ShiftReport_MarginContainer_VBoxContainer_NewSecurityRule_VBoxContainer#NewSecurityRule" type="VBoxContainer" parent="."]
-unique_name_in_owner = true
-size_flags_vertical = 0
-theme = ExtResource("2_6rmm1")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="ShiftReport/ShiftReportTab/HBoxContainer/StartShiftButton" to="." method="_on_start_shift_button_pressed"]
