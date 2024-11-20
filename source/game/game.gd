@@ -13,7 +13,7 @@ var upgrades: Dictionary = {
 var armor: int = 0
 var hit_points: int = 100:
 	set(value):
-		if value <= 0:
+		if value <= 0 && hit_points > 0:
 			defeat_menu.show()
 			defeat_sound.play()
 			get_tree().paused = true
@@ -67,4 +67,4 @@ func upgrade_bought(id: Upgrade.Id) -> void:
 			Upgrade.Id.ARMOR:
 				armor = 1
 			Upgrade.Id.SCANNER_SPEED:
-				scanning_speed = 100.0
+				scanning_speed = base_scanning_speed * 2

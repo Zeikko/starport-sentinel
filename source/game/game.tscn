@@ -103,6 +103,7 @@ vertical_alignment = 1
 [node name="DefeatSound" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("4_u00hq")
+volume_db = 9.0
 bus = &"Effects"
 
 [connection signal="timeout" from="Cheatcodes/StartFade" to="Cheatcodes" method="_on_start_fade_timeout"]
