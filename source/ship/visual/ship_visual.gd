@@ -2,12 +2,12 @@ class_name ShipVisual extends Control
 
 var faction_map: Dictionary = {
 	Ship.Faction.VOID_INC: Vector2i(0, 0),
-	Ship.Faction.ARGUS_SYNDICATE: Vector2i(2, 0),
+	Ship.Faction.ARGUS: Vector2i(2, 0),
 	Ship.Faction.ZUBREZ: Vector2i(3, 0),
 	Ship.Faction.NHA: Vector2i(0, 1),
 	Ship.Faction.C3: Vector2i(1, 1),
-	Ship.Faction.HOUSE_FRUGI: Vector2i(2, 1),
-	Ship.Faction.FOLLOWERS_OF_OBUDU: Vector2i(3, 1),
+	Ship.Faction.FRUGI: Vector2i(2, 1),
+	Ship.Faction.OBUDU: Vector2i(3, 1),
 }
 var ship: Ship
 
@@ -57,7 +57,11 @@ func _ready() -> void:
 	hull_sprite.texture = hulls[ship.type]
 	thruster_sprite.texture = thrusters.pick_random()
 	cockpit_sprite.texture = cockpits.pick_random()
-	weapon_sprite.texture = weapons.pick_random()
+	if ship.weapon == 0:
+		weapon_sprite.visible = false
+	else:
+		weapon_sprite.visible = true
+		weapon_sprite.texture = weapons[ship.weapon - 1]
 	for logo_position: Vector2 in faction_logo_positions[ship.type]:
 		var faction_logo_tilemap: TileMapLayer = TileMapLayer.new()
 		faction_logo_tilemap.set_tile_set(factions_tile_set)

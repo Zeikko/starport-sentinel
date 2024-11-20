@@ -1,14 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://cjos4upoylry0"]
 
 [ext_resource type="Script" path="res://radar/radar.gd" id="1_itdff"]
-[ext_resource type="Texture2D" uid="uid://bnytmsqpdebp1" path="res://icon.svg" id="2_co45b"]
+[ext_resource type="Texture2D" uid="uid://b28uidk0q7asp" path="res://radar/starship_icon.png" id="2_emysf"]
 
 [node name="Radar" type="Node2D"]
 script = ExtResource("1_itdff")
 
 [node name="Spaceport" type="Sprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_co45b")
+texture = ExtResource("2_emysf")
 
 [node name="Ships" type="Node2D" parent="."]
 unique_name_in_owner = true

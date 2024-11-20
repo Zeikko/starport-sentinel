@@ -1,61 +1,136 @@
 class_name SecurityRule extends Object
 
-var type: Ship.Type = -1
-var faction: Ship.Faction = -1
-var cargo_type: CargoItem.Type = -1
+enum Type {
+	CARGO,
+	FACTION_SHIP_TYPE,
+	FACTION_WEAPON
+}
+var rule_type: Type
+var ship_type: Ship.Type
+var faction: Ship.Faction
+var cargo_type: CargoItem.Type
+var weapon: Ship.Weapon
 
-static func create_security_rule(security_rules: Array[SecurityRule]) -> SecurityRule:
-	var rule_type = randi_range(1, 2)
-	match rule_type:
-		1:
-			return create_cargo_rule(security_rules)
+static func create_security_rule() -> SecurityRule:
+	var random_rule_type: Type = Type.values().pick_random()
+	match random_rule_type:
+		Type.CARGO:
+			return create_cargo_rule()
+		Type.FACTION_SHIP_TYPE:
+			return create_faction_ship_type_rule()
+		Type.FACTION_WEAPON:
+			return create_faction_weapon_rule()
 		_:
-			return create_faction_class_rule(security_rules)
+			push_warning('Missing security rule creator')
+			return null
 
 
-static func create_faction_class_rule(security_rules: Array[SecurityRule]) -> SecurityRule:
+static func create_cargo_rule() -> SecurityRule:
+	var possible_new_rules = CargoItem.Type.values().map(
+		func (cargo_type: CargoItem.Type) -> SecurityRule:
+		var new_rule = SecurityRule.new()
+		new_rule.rule_type = Type.CARGO
+		new_rule.cargo_type = cargo_type
+		return new_rule
+	).filter(func(new_rule: SecurityRule) -> bool:
+		return !new_rule.has_identical_rule()
+	)
+	return possible_new_rules.pick_random()
+
+
+static func create_faction_ship_type_rule() -> SecurityRule:
 	var possible_new_rules: Array[SecurityRule] = []
 	for new_faction: Ship.Faction in Ship.Faction.values():
 		for new_type: Ship.Type in Ship.Type.values():
 			var new_rule = SecurityRule.new()
-			new_rule.type = new_type
+			new_rule.ship_type = new_type
 			new_rule.faction = new_faction
+			new_rule.rule_type = Type.FACTION_SHIP_TYPE
 			possible_new_rules.push_back(new_rule)
 	var nonexisting_rules: Array[SecurityRule] = possible_new_rules.filter(
-		func(new_rule: SecurityRule) -> bool:
-		var existing_identical_rules: Array[SecurityRule] = security_rules.filter(
-			func(existing_rule: SecurityRule) -> bool:
-			return new_rule.faction == existing_rule.faction && new_rule.type == existing_rule.type
-		)
-		return existing_identical_rules.size() == 0
+		func(new_rule: SecurityRule) -> bool: return !new_rule.has_identical_rule()
 	)
 	return nonexisting_rules.pick_random()
 
-static func create_cargo_rule(security_rules: Array[SecurityRule]) -> SecurityRule:
-	var possible_new_types = CargoItem.Type.values().filter(func(cargo_type: CargoItem.Type) -> bool:
-		var existing_identical_rules: Array[SecurityRule] = security_rules.filter(
-			func(existing_rule: SecurityRule) -> bool:
-			return cargo_type == existing_rule.cargo_type
-		)
-		return existing_identical_rules.size() == 0
+
+static func create_faction_weapon_rule() -> SecurityRule:
+	var possible_new_rules: Array[SecurityRule] = []
+	for new_faction: Ship.Faction in Ship.Faction.values():
+		for new_weapon: Ship.Weapon in Ship.Weapon.values():
+			if (new_weapon != Ship.Weapon.NONE):
+				var new_rule = SecurityRule.new()
+				new_rule.weapon = new_weapon
+				new_rule.faction = new_faction
+				new_rule.rule_type = Type.FACTION_WEAPON
+				possible_new_rules.push_back(new_rule)
+	var nonexisting_rules: Array[SecurityRule] = possible_new_rules.filter(
+		func(new_rule: SecurityRule) -> bool: return !new_rule.has_identical_rule()
 	)
-	var new_rule = SecurityRule.new()
-	new_rule.cargo_type = possible_new_types.pick_random()
-	return new_rule
+	return nonexisting_rules.pick_random()
+
+func get_visit_message(arg_ship: Ship) -> String:
+	match rule_type:
+		Type.CARGO:
+			for cargo_hold: CargoHold in arg_ship.cargo_holds:
+				for cargo_item: CargoItem in cargo_hold.cargo_items:
+					if cargo_item.type == cargo_type:
+						return str(
+						'Ship carrying ',
+						CargoItem.get_icon(cargo_type),
+						' dealt ' + str(arg_ship.damage) + ' damage')
+		Type.FACTION_SHIP_TYPE:
+			if faction == arg_ship.faction && ship_type == arg_ship.type:
+				return str(
+				Ship.Faction.find_key(arg_ship.faction).capitalize(),
+				' ',
+				Ship.Type.find_key(arg_ship.type).capitalize(),
+				' dealt ',
+				arg_ship.damage,
+				' damage')
+		Type.FACTION_WEAPON:
+			if faction == arg_ship.faction && weapon == arg_ship.weapon:
+				return str(
+				Ship.Faction.find_key(arg_ship.faction).capitalize(),
+				' with ',
+				Ship.Weapon.find_key(arg_ship.weapon).capitalize(),
+				' weapons dealt ',
+				arg_ship.damage,
+				' damage')
+		_:
+			push_warning('Missing security rule ship checker')
+	return ''
+
+func has_identical_rule() -> bool:
+	var existing_identical_rules: Array[SecurityRule] = Shift.security_rules.filter(
+		func(existing_rule: SecurityRule) -> bool:
+		return faction == existing_rule.faction && \
+		ship_type == existing_rule.ship_type && \
+		cargo_type == existing_rule.cargo_type && \
+		rule_type == existing_rule.rule_type && \
+		weapon == existing_rule.weapon
+	)
+	return existing_identical_rules.size() > 0
+
 
 func get_nodes() -> Node:
-	if faction != -1 && type != -1:
-		var label: Label = Label.new()
-		label.custom_minimum_size = Vector2(160, 0)
-		label.autowrap_mode = TextServer.AUTOWRAP_WORD
-		label.set_text(Ship.Faction.find_key(faction).capitalize() + ' '
-		+ Ship.Type.find_key(type).capitalize() + 's are not allowed')
-		return label
-	if cargo_type != -1:
-		var icon = CargoItem.get_icon(cargo_type)
-		var label: RichTextLabel = RichTextLabel.new()
-		label.bbcode_enabled = true
-		label.fit_content = true
-		label.set_text(icon + ' are not allowed')
-		return label
+	match rule_type:
+		Type.CARGO:
+			var icon = CargoItem.get_icon(cargo_type)
+			var label: RichTextLabel = RichTextLabel.new()
+			label.bbcode_enabled = true
+			label.fit_content = true
+			label.set_text('No ' + icon)
+			return label
+		Type.FACTION_SHIP_TYPE:
+			var label: Label = Label.new()
+			label.set_text('No ' + Ship.Faction.find_key(faction).capitalize() + ' '
+			+ Ship.Type.find_key(ship_type).capitalize() + 's')
+			return label
+		Type.FACTION_WEAPON:
+			var label: Label = Label.new()
+			label.set_text('No ' + Ship.Faction.find_key(faction).capitalize() + ' '
+			+ Ship.Weapon.find_key(weapon).capitalize() + ' weapons')
+			return label
+		_:
+			return null
 	return null

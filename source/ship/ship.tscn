@@ -12,11 +12,13 @@ script = ExtResource("1_xbnws")
 
 [node name="RadarBlip" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-modulate = Color(0.290196, 0.478431, 0.588235, 1)
+modulate = Color(0.933333, 0.52549, 0.584314, 1)
 
 [node name="Area2D" type="Area2D" parent="."]
+z_index = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+z_index = 1
 position = Vector2(-1, 0)
 shape = SubResource("CircleShape2D_h6lot")
 
