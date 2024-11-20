@@ -15,13 +15,13 @@ var hit_points: int = 100:
 	set(value):
 		if value <= 0:
 			defeat_menu.show()
-			print('Defeat!')
+			defeat_sound.play()
 			get_tree().paused = true
 		hit_points = value
 		Ui.update_starport()
 	get:
 		return hit_points
-var base_scanning_speed: float = 50.0
+var base_scanning_speed: float = 25.0
 var scanning_speed: float = base_scanning_speed
 var credits: int = 0:
 	set(value):
@@ -32,6 +32,7 @@ var credits: int = 0:
 		return credits
 
 @onready var defeat_menu: Panel = %DefeatMenu
+@onready var defeat_sound: AudioStreamPlayer2D = %DefeatSound
 
 func _ready() -> void:
 	Ui.update_starport()

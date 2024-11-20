@@ -63,6 +63,7 @@ var weapon: Weapon
 @onready var progress_bar: ProgressBar = %ProgressBar
 @onready var select_indicator: TextureRect = %SelectIndicator
 @onready var radar_blip: Node2D = %RadarBlip
+@onready var scan_sound: AudioStreamPlayer2D = $ScanSound
 
 func _ready() -> void:
 	position = Vector2(distance, 0).rotated(angle)
@@ -109,12 +110,14 @@ func _process(delta: float) -> void:
 		else:
 			wait_time_elapsed += delta
 		position = Vector2(distance, 0).rotated(angle)
-	if is_scanning:
-		progress_bar.value += delta * Game.scanning_speed
-	if progress_bar.value >= 100:
-		is_scanning = false
-		progress_bar.visible = false
-	select_indicator.visible = Ui.selected_ship == self
+	if Ui.selected_ship == self:
+		if is_scanning:
+			progress_bar.value += delta * Game.scanning_speed
+		if progress_bar.value >= 100:
+			is_scanning = false
+			scan_sound.stop()
+			progress_bar.visible = false
+		select_indicator.visible = Ui.selected_ship == self
 
 func visit_starport() -> void:
 	var visit_message: String
@@ -145,6 +148,8 @@ func remove() -> void:
 func start_scanning() -> void:
 	progress_bar.visible = true
 	is_scanning = true
+	scan_sound.play()
+
 
 func _on_area_2d_input_event(
 	_viewport: Node,

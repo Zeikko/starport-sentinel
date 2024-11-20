@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8djburogdndp"]
+[gd_scene load_steps=5 format=3 uid="uid://c8djburogdndp"]
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_85w3k"]
 [ext_resource type="Theme" uid="uid://cbimufccfad2e" path="res://theme.tres" id="2_sfxa4"]
 [ext_resource type="Script" path="res://game/cheatcodes.gd" id="3_26odb"]
+[ext_resource type="AudioStream" uid="uid://u41fu8o4bixm" path="res://game/defeat.wav" id="4_u00hq"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_85w3k")
@@ -98,5 +99,10 @@ grow_horizontal = 2
 grow_vertical = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="DefeatSound" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_u00hq")
+bus = &"Effects"
 
 [connection signal="timeout" from="Cheatcodes/StartFade" to="Cheatcodes" method="_on_start_fade_timeout"]
