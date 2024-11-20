@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bnic8xu24yggh"
+path="res://.godot/imported/Gameoff_24_Space Fugue-ure_v1_SG.mp3-583a0a553d5d6ec0179e7fb2c7202a16.mp3str"
+
+[deps]
+
+source_file="res://music/Gameoff_24_Space Fugue-ure_v1_SG.mp3"
+dest_files=["res://.godot/imported/Gameoff_24_Space Fugue-ure_v1_SG.mp3-583a0a553d5d6ec0179e7fb2c7202a16.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
