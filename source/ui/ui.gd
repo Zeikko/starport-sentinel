@@ -124,6 +124,13 @@ func _on_scan_button_pressed() -> void:
 		selected_ship.start_scanning()
 
 
-func _on_observe_button_pressed() -> void:
+func _on_view_button_pressed() -> void:
 	ship_visual_container.show()
 	scan_container.hide()
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("scan"):
+		_on_scan_button_pressed()
+	if event.is_action_pressed("view"):
+		_on_view_button_pressed()

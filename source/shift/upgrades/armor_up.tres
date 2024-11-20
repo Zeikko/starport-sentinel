@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=2 format=3 uid="uid://btmq5dxmmsftu"]
+
+[ext_resource type="Script" path="res://shift/upgrades/upgrade.gd" id="1_7oe43"]
+
+[resource]
+script = ExtResource("1_7oe43")
+id = 1
+cost = 300
+name = "Armor"
+description = "Protects from one hit"
+bought = false

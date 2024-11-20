@@ -79,7 +79,7 @@ func _ready() -> void:
 	visual.ship = self
 
 func pick_type() -> void:
-	var random_value: int = randi_range(1,6)
+	var random_value: int = randi_range(1, 6)
 	if (random_value == 6): # 1 of 6
 		type = Type.CRUISER
 	elif (random_value > 3): # 2 of 6
@@ -128,9 +128,13 @@ func visit_starport() -> void:
 		Game.credits += credits
 		Shift.income += credits
 	else:
-		Game.hit_points -= damage
-		Shift.damage += damage
-		Shift.visit_messages.push_back(visit_message)
+		if Game.armor <= 0:
+			Game.hit_points -= damage
+			Shift.damage += damage
+			Shift.visit_messages.push_back(visit_message)
+		else:
+			Shift.visit_messages.push_back(str('Armor protected you from ', damage, ' damage'))
+			Game.armor -= 1
 	remove()
 
 func remove() -> void:
