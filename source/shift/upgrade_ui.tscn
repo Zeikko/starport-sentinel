@@ -1,16 +1,15 @@
 [gd_scene load_steps=2 format=3 uid="uid://cpg8uu7j1s1n1"]
 
-[ext_resource type="Script" path="res://shift/upgrade.gd" id="1_umba3"]
+[ext_resource type="Script" path="res://shift/upgrade_ui.gd" id="1_ig6xw"]
 
-[node name="Upgrade" type="HBoxContainer"]
-script = ExtResource("1_umba3")
-id = "armor"
+[node name="UpgradeUI" type="HBoxContainer"]
+script = ExtResource("1_ig6xw")
 
 [node name="Description" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Description"
+text = "Edit in .tres"
 
 [node name="BuyButton" type="Button" parent="."]
 unique_name_in_owner = true
@@ -27,7 +26,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 9
-text = "100"
+text = "Edit in .tres"
 horizontal_alignment = 1
 
 [connection signal="pressed" from="BuyButton" to="." method="_on_buy_button_pressed"]

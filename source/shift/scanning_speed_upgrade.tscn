@@ -1,14 +1,5 @@
 [gd_scene load_steps=2 format=3 uid="uid://cosp8p4odekfw"]
 
-[ext_resource type="PackedScene" uid="uid://cpg8uu7j1s1n1" path="res://shift/upgrade.tscn" id="1_arjdw"]
+[ext_resource type="PackedScene" uid="uid://cpg8uu7j1s1n1" path="res://shift/upgrade_ui.tscn" id="1_arjdw"]
 
 [node name="ScanningSpeedUpgrade" instance=ExtResource("1_arjdw")]
-cost = 300
-id = "faster_scanner"
-
-[node name="Description" parent="." index="0"]
-text = "Improved Scanner: +100% scan speed"
-
-[node name="CostLabel" parent="BuyButton" index="0"]
-text = "100
-"

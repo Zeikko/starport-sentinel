@@ -2,7 +2,13 @@ extends Node
 
 signal credits_updated
 
-var bought_upgrades: Array[String] = []
+const UPGRADES_PATH: String = "res://shift/upgrades/"
+
+var upgrades: Dictionary  = {
+	Upgrade.Id.SCANNER_SPEED: preload(UPGRADES_PATH + "scanner_speed_up.tres"),
+	Upgrade.Id.ARMOR: preload(UPGRADES_PATH + "armor_up.tres")
+}
+
 var armor: int = 0
 
 var hit_points: int = 100:
@@ -31,7 +37,7 @@ func _ready() -> void:
 	Ui.update_starport()
 
 func shift_ended() -> void:
-	if bought_upgrades.has("armor"):
+	if upgrades[Upgrade.Id.ARMOR].bought:
 		armor = 1
 
 func get_ships() -> Array[Ship]:
@@ -41,17 +47,11 @@ func get_ships() -> Array[Ship]:
 			ships.push_back(ship)
 	return ships
 
-func upgrade_bought(id: String) -> void:
-	if !is_upgrade_bought(id):
-		bought_upgrades.append(id)
-		print(id)
+func upgrade_bought(id: Upgrade.Id) -> void:
+	if !upgrades[id].bought:
+		upgrades[id].bought = true
 		match id:
-			"armor":
+			Upgrade.Id.ARMOR:
 				armor = 1
-			"faster_scanner":
+			Upgrade.Id.SCANNER_SPEED:
 				scanning_speed = 100.0
-			"image_recognition":
-				pass # Unsure on implementation for this example
-
-func is_upgrade_bought(id: String) -> bool:
-	return bought_upgrades.has(id)

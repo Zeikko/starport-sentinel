@@ -1,40 +1,33 @@
-@tool
 extends HBoxContainer
 
-@export var cost: int = 100 :
-	set(value):
-		cost = value
-		update_info()
-
-@export var id: String
-
-var bought: bool = false :
-	set(value):
-		bought = value
-		update_info()
+@export var id: Upgrade.Id
 
 @onready var cost_label: Label = %CostLabel
 @onready var buy_button: Button = %BuyButton
 @onready var description: Label = %Description
 
+var upgrade: Upgrade
+
 func _ready() -> void:
 	Game.credits_updated.connect(update_info)
-	bought = Game.is_upgrade_bought(id)
+	upgrade = Game.upgrades[id]
+	update_info()
 
 func update_info() -> void:
 	if is_node_ready():
-		cost_label.text = str(cost)
-		if Game.credits < cost or bought:
+		cost_label.text = str(upgrade.cost)
+		description.text = upgrade.name + " : " + upgrade.description
+		if Game.credits < upgrade.cost or upgrade.bought:
 			buy_button.disabled = true
 		else:
 			buy_button.disabled = false
-		if bought:
-			buy_button.text = "Sold"
+		if upgrade.bought:
+			buy_button.text = "Bought"
 		else:
 			buy_button.text = "Buy"
 
 func _on_buy_button_pressed() -> void:
-	if Game.credits >= cost and !bought:
-		Game.credits -= cost
-		bought = true
+	if Game.credits >= upgrade.cost and !upgrade.bought:
+		Game.credits -= upgrade.cost
 		Game.upgrade_bought(id)
+		update_info()
