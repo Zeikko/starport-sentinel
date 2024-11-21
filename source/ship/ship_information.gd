@@ -14,7 +14,7 @@ func _init(arg_ship: Ship) -> void:
 
 func set_faction(arg_ship: Ship) -> void:
 	faction = arg_ship.faction
-	for security_rule: SecurityRule in Shift.security_rules:
+	for security_rule: SecurityRule in Global.shift.security_rules:
 		if security_rule.rule_type == SecurityRule.Type.FACTION_SHIP_TYPE && \
 		security_rule.rule_type == SecurityRule.Type.FACTION_WEAPON:
 			var visit_message: String = security_rule.get_visit_message(arg_ship)
@@ -27,7 +27,7 @@ func set_cargo_items(arg_ship: Ship) -> void:
 	for cargo_hold: CargoHold in arg_ship.cargo_holds:
 		for cargo_item: CargoItem in cargo_hold.cargo_items:
 			var is_item_dangerous: bool = false
-			for security_rule: SecurityRule in Shift.security_rules:
+			for security_rule: SecurityRule in Global.shift.security_rules:
 				if security_rule.rule_type == SecurityRule.Type.CARGO && \
 				security_rule.cargo_type == cargo_item.type:
 					is_item_dangerous = true
@@ -42,7 +42,7 @@ func set_cargo_items(arg_ship: Ship) -> void:
 
 func set_weapon(arg_ship: Ship) -> void:
 	weapon = arg_ship.weapon
-	for security_rule: SecurityRule in Shift.security_rules:
+	for security_rule: SecurityRule in Global.shift.security_rules:
 		if security_rule.rule_type == SecurityRule.Type.FACTION_WEAPON:
 			var visit_message: String = security_rule.get_visit_message(arg_ship)
 			if !visit_message.is_empty():
@@ -51,7 +51,7 @@ func set_weapon(arg_ship: Ship) -> void:
 
 func set_ship_type(arg_ship: Ship) -> void:
 	ship_type = arg_ship.type
-	for security_rule: SecurityRule in Shift.security_rules:
+	for security_rule: SecurityRule in Global.shift.security_rules:
 		if security_rule.rule_type == SecurityRule.Type.FACTION_SHIP_TYPE:
 			var visit_message: String = security_rule.get_visit_message(arg_ship)
 			if !visit_message.is_empty():

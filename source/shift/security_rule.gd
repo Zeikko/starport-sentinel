@@ -101,7 +101,7 @@ func get_visit_message(arg_ship: Ship) -> String:
 	return ''
 
 func has_identical_rule() -> bool:
-	var existing_identical_rules: Array[SecurityRule] = Shift.security_rules.filter(
+	var existing_identical_rules: Array[SecurityRule] = Global.shift.security_rules.filter(
 		func(existing_rule: SecurityRule) -> bool:
 		return faction == existing_rule.faction && \
 		ship_type == existing_rule.ship_type && \

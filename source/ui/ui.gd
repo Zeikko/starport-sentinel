@@ -1,4 +1,4 @@
-extends Control
+class_name Ui extends Control
 
 var selected_ship: Ship:
 	set(value):
@@ -32,6 +32,8 @@ var selected_ship: Ship:
 @onready var cargo_manifest_container: VBoxContainer = %CargoManifestContainer
 @onready var explosion: Node2D = %Explosion
 
+func _ready() -> void:
+	Global.ui = self
 
 func _process(_delta: float) -> void:
 	update_scan()
@@ -66,14 +68,14 @@ func update_cargo_manifest() -> void:
 func update_security_briefing() -> void:
 	for child: Node in security_rules.get_children():
 		security_rules.remove_child(child)
-	for security_rule: SecurityRule in Shift.security_rules:
+	for security_rule: SecurityRule in Global.shift.security_rules:
 		#for i in 50: #debugging scroll
 			security_rules.add_child(security_rule.get_nodes())
 
 
 func update_starport() -> void:
-	hit_bar.set_value(Game.hit_points)
-	credits.set_text('Credits: ' + str(Game.credits))
+	hit_bar.set_value(Global.game.hit_points)
+	credits.set_text('Credits: ' + str(Global.game.credits))
 
 
 func update_scan() -> void:

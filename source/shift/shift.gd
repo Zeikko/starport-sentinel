@@ -1,4 +1,4 @@
-extends Node
+class_name Shift extends Control
 
 var shift_number: int = 1
 var ships_per_shift: int = 10
@@ -31,10 +31,11 @@ var visit_messages: Array[String] = []
 @onready var upgrades_tab: MarginContainer = %UpgradesTab
 
 func _ready() -> void:
+	Global.shift = self
 	create_possible_angles()
 	create_ship()
 	security_rules.push_back(SecurityRule.create_security_rule())
-	Ui.update_security_briefing()
+	Global.ui.update_security_briefing()
 	shift_report.hide()
 	time_tracker.start_shift()
 
@@ -52,7 +53,7 @@ func create_ship() -> bool:
 		var ship: Ship = ship_scene.instantiate()
 		ship.angle = possible_angles.pick_random()
 		possible_angles = possible_angles.filter(func(angle: float) -> float: return ship.angle != angle)
-		Ui.radar.ships.add_child(ship)
+		Global.ui.radar.ships.add_child(ship)
 		ship_counter += 1
 		return true
 	return false
@@ -71,7 +72,7 @@ func _input(event: InputEvent) -> void:
 
 func is_shift_over(altered_ship: Ship) -> void:
 	var is_undecided_ships: bool = false
-	var ships: Array[Ship] = Game.get_ships()
+	var ships: Array[Ship] = Global.game.get_ships()
 	for ship: Ship in ships:
 		if ship.status == Ship.Status.UNDECIDED && ship != altered_ship:
 			is_undecided_ships = true
@@ -86,22 +87,22 @@ func end_shift(ships: Array[Ship]) -> void:
 		else:
 			ship.remove()
 	pay_upkeep()
-	if Game.hit_points > 0:
+	if Global.game.hit_points > 0:
 		time_tracker.end_shift()
 		show_shift_report()
-		Game.shift_ended()
+		Global.game.shift_ended()
 
 func pay_upkeep() -> void:
-	paid_upkeep = clamp(Game.credits, 0, upkeep)
+	paid_upkeep = clamp(Global.game.credits, 0, upkeep)
 	upkeep_damage = upkeep - paid_upkeep
-	Game.hit_points -= upkeep_damage
-	Game.credits -= paid_upkeep
+	Global.game.hit_points -= upkeep_damage
+	Global.game.credits -= paid_upkeep
 
 
 func show_shift_report() -> void:
 	var new_security_rule: SecurityRule = SecurityRule.create_security_rule()
 	security_rules.push_back(new_security_rule)
-	Ui.update_security_briefing()
+	Global.ui.update_security_briefing()
 	for child: Node in visit_messages_container.get_children():
 		visit_messages_container.remove_child(child)
 	for visit_message: String in visit_messages:

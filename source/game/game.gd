@@ -1,4 +1,4 @@
-extends Node
+class_name Game extends Node
 
 signal credits_updated
 
@@ -18,7 +18,7 @@ var hit_points: int = 100:
 			defeat_sound.play()
 			get_tree().paused = true
 		hit_points = value
-		Ui.update_starport()
+		Global.ui.update_starport()
 	get:
 		return hit_points
 var base_scanning_speed: float = 25.0
@@ -26,7 +26,7 @@ var scanning_speed: float = base_scanning_speed
 var credits: int = 0:
 	set(value):
 		credits = value
-		Ui.update_starport()
+		Global.ui.update_starport()
 		credits_updated.emit()
 	get:
 		return credits
@@ -34,14 +34,17 @@ var credits: int = 0:
 @onready var defeat_menu: Panel = %DefeatMenu
 @onready var defeat_sound: AudioStreamPlayer2D = %DefeatSound
 
+func _init() -> void:
+	Global.game = self
+
 func _ready() -> void:
-	Ui.update_starport()
+	Global.ui.update_starport()
 	$Cheatcodes.cheatcode_entered.connect(_on_cheatcode_entered)
 
 func _on_cheatcode_entered(code: Cheatcode) -> void:
 	match code.id:
 		Cheatcode.Id.SPAWN_SHIPS:
-			Shift.create_all_ships()
+			Global.shift.create_all_ships()
 		Cheatcode.Id.FAST_SHIPS:
 			for ship: Ship in get_ships():
 				ship.speed = SHIP_TURBO_SPEED
@@ -55,7 +58,7 @@ func shift_ended() -> void:
 
 func get_ships() -> Array[Ship]:
 	var ships: Array[Ship] = []
-	for ship: Ship in Ui.radar.ships.get_children():
+	for ship: Ship in Global.ui.radar.ships.get_children():
 		if ship is Ship:
 			ships.push_back(ship)
 	return ships
@@ -68,3 +71,7 @@ func upgrade_bought(id: Upgrade.Id) -> void:
 				armor = 1
 			Upgrade.Id.SCANNER_SPEED:
 				scanning_speed = base_scanning_speed * 2
+
+
+func _on_main_menu_button_pressed() -> void:
+	Global.load_main_menu()

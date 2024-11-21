@@ -17,9 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Ui="*res://ui/ui.tscn"
-Game="*res://game/game.tscn"
-Shift="*res://shift/shift.tscn"
+Global="*res://global.gd"
 
 [debug]
 
