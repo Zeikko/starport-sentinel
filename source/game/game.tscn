@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8djburogdndp"]
+[gd_scene load_steps=10 format=3 uid="uid://c8djburogdndp"]
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_85w3k"]
 [ext_resource type="Theme" uid="uid://cbimufccfad2e" path="res://theme.tres" id="2_sfxa4"]
@@ -6,6 +6,13 @@
 [ext_resource type="AudioStream" uid="uid://u41fu8o4bixm" path="res://game/defeat.wav" id="4_u00hq"]
 [ext_resource type="PackedScene" uid="uid://t13h716inaso" path="res://ui/ui.tscn" id="5_m2tri"]
 [ext_resource type="PackedScene" uid="uid://bpgfvwxjiu6bp" path="res://shift/shift.tscn" id="6_kudon"]
+[ext_resource type="AudioStream" uid="uid://7vhvt6j3g2h5" path="res://music/Gameoff_24_Scan or Scam_v1_SG.mp3" id="7_uxj0w"]
+[ext_resource type="AudioStream" uid="uid://bnic8xu24yggh" path="res://music/Gameoff_24_Space Fugue-ure_v1_SG.mp3" id="8_avbln"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_t1byw"]
+stream_count = 2
+stream_0 = ExtResource("7_uxj0w")
+stream_1 = ExtResource("8_avbln")
 
 [node name="Game" type="Node"]
 script = ExtResource("1_85w3k")
@@ -130,6 +137,10 @@ process_mode = 3
 stream = ExtResource("4_u00hq")
 volume_db = 9.0
 bus = &"Effects"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamPlaylist_t1byw")
+autoplay = true
 
 [connection signal="pressed" from="DefeatMenu/MarginContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="timeout" from="Cheatcodes/StartFade" to="Cheatcodes" method="_on_start_fade_timeout"]
