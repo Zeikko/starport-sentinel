@@ -11,8 +11,15 @@
 script = ExtResource("1_85w3k")
 
 [node name="Ui" parent="." instance=ExtResource("5_m2tri")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
 
 [node name="Shift" parent="." instance=ExtResource("6_kudon")]
+mouse_filter = 2
 
 [node name="DefeatMenu" type="Panel" parent="."]
 unique_name_in_owner = true
