@@ -43,8 +43,8 @@ var status: Status = Status.UNDECIDED:
 			speed = abs(speed) * -1
 		status = value
 		radar_blip.update()
-		Ui.update_ship_information()
-		Shift.is_shift_over(self)
+		Global.ui.update_ship_information()
+		Global.shift.is_shift_over(self)
 var type: Type
 var faction: Faction
 var is_scanning: bool = false:
@@ -65,7 +65,7 @@ var weapon: Weapon
 
 @onready var progress_bar: ProgressBar = %ProgressBar
 @onready var select_indicator: TextureRect = %SelectIndicator
-@onready var radar_blip: Node2D = %RadarBlip
+@onready var radar_blip: Node2D
 @onready var scan_sound: AudioStreamPlayer2D = $ScanSound
 
 func _ready() -> void:
@@ -98,10 +98,10 @@ func pick_type() -> void:
 func _process(delta: float) -> void:
 	if distance < min_distance:
 		visit_starport()
-		Shift.is_shift_over(self)
+		Global.shift.is_shift_over(self)
 	if distance > max_distance:
 		remove()
-		Shift.is_shift_over(self)
+		Global.shift.is_shift_over(self)
 	elif self != null:
 		if status in [Status.APPROVED, Status.REJECTED] or \
 		distance > waiting_distance:
@@ -109,38 +109,38 @@ func _process(delta: float) -> void:
 		else:
 			wait_time_elapsed += delta
 		position = Vector2(distance, 0).rotated(angle)
-	if Ui.selected_ship == self:
+	if Global.ui.selected_ship == self:
 		if is_scanning:
-			progress_bar.value += delta * Game.scanning_speed
+			progress_bar.value += delta * Global.game.scanning_speed
 		if progress_bar.value >= 100:
 			is_scanning = false
-	select_indicator.visible = Ui.selected_ship == self
+	select_indicator.visible = Global.ui.selected_ship == self
 
 func visit_starport() -> void:
 	var visit_message: String
-	for security_rule in Shift.security_rules:
+	for security_rule in Global.shift.security_rules:
 		visit_message = security_rule.get_visit_message(self)
 		if !visit_message.is_empty():
 			break
 	if visit_message.is_empty():
 		var credits: int = 10 * (type + 1)
 		credits *= 1 - wait_time_elapsed / max_wait_time
-		Game.credits += credits
-		Shift.income += credits
+		Global.game.credits += credits
+		Global.shift.income += credits
 	else:
-		Ui.explosion.play(damage / 10)
-		if Game.armor <= 0:
-			Game.hit_points -= damage
-			Shift.damage += damage
-			Shift.visit_messages.push_back(visit_message)
+		Global.ui.explosion.play(damage / 10)
+		if Global.game.armor <= 0:
+			Global.game.hit_points -= damage
+			Global.shift.damage += damage
+			Global.shift.visit_messages.push_back(visit_message)
 		else:
-			Shift.visit_messages.push_back(str('Armor protected you from ', damage, ' damage'))
-			Game.armor -= 1
+			Global.shift.visit_messages.push_back(str('Armor protected you from ', damage, ' damage'))
+			Global.game.armor -= 1
 	remove()
 
 func remove() -> void:
-	if Ui.selected_ship == self:
-		Ui.selected_ship = null
+	if Global.ui.selected_ship == self:
+		Global.ui.selected_ship = null
 	queue_free()
 
 
@@ -152,13 +152,13 @@ func _on_area_2d_input_event(
 	if event is InputEventMouseButton \
 	and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) \
 	and (event as InputEventMouseButton).pressed:
-		if Ui.selected_ship == self:
-			Ui.selected_ship = null
+		if Global.ui.selected_ship == self:
+			Global.ui.selected_ship = null
 		else:
-			Ui.selected_ship = self
+			Global.ui.selected_ship = self
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("approve") && self == Ui.selected_ship:
+	if event.is_action_pressed("approve") && self == Global.ui.selected_ship:
 		status = Status.APPROVED
-	if event.is_action_pressed("reject") && self == Ui.selected_ship:
+	if event.is_action_pressed("reject") && self == Global.ui.selected_ship:
 		status = Status.REJECTED
