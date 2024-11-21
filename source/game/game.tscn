@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://bnic8xu24yggh" path="res://music/Gameoff_24_Space Fugue-ure_v1_SG.mp3" id="8_avbln"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_t1byw"]
+shuffle = true
 stream_count = 2
 stream_0 = ExtResource("7_uxj0w")
 stream_1 = ExtResource("8_avbln")
