@@ -141,6 +141,7 @@ bus = &"Effects"
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamPlaylist_t1byw")
 autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="DefeatMenu/MarginContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="timeout" from="Cheatcodes/StartFade" to="Cheatcodes" method="_on_start_fade_timeout"]
