@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Gameoff_24_Theme_v1_SG.mp3-fee99493ad3d15ac0b
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

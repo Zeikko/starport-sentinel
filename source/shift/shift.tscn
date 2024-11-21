@@ -188,6 +188,7 @@ size_flags_vertical = 8
 theme = ExtResource("2_6rmm1")
 text = "Back"
 
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="ShiftReport/ShiftReportTab/HBoxContainer/StartShiftButton" to="." method="_on_start_shift_button_pressed"]
 [connection signal="pressed" from="ShiftReport/ShiftReportTab/HBoxContainer/UpgradesButton" to="." method="_on_upgrades_button_pressed"]
 [connection signal="pressed" from="ShiftReport/UpgradesTab/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

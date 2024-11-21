@@ -132,6 +132,8 @@ func _on_scan_button_pressed() -> void:
 func _on_view_button_pressed() -> void:
 	ship_visual_container.show()
 	scan_container.hide()
+	if selected_ship:
+		selected_ship.is_scanning = false
 
 
 func _input(event: InputEvent) -> void:
