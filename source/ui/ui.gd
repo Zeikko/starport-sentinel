@@ -125,10 +125,10 @@ func _on_reject_button_pressed() -> void:
 
 
 func _on_scan_button_pressed() -> void:
-	update_cargo_holds()
 	ship_visual_container.hide()
 	scan_container.show()
 	if selected_ship:
+		update_cargo_holds()
 		selected_ship.is_scanning = true
 
 
