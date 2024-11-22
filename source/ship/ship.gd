@@ -141,6 +141,7 @@ func visit_starport() -> void:
 func remove() -> void:
 	if Global.ui.selected_ship == self:
 		Global.ui.selected_ship = null
+	visual.queue_free()
 	queue_free()
 
 

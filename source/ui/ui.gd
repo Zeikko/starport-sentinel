@@ -57,6 +57,7 @@ func update_cargo_manifest() -> void:
 		cargo_manifest_container.show()
 		for child: Node in cargo_manifest.get_children():
 			cargo_manifest.remove_child(child)
+			child.queue_free()
 		var total: int = 0
 		for cargo_item: CargoItem in selected_ship.information.cargo_items:
 			total += cargo_item.quantity
@@ -68,6 +69,7 @@ func update_cargo_manifest() -> void:
 func update_security_briefing() -> void:
 	for child: Node in security_rules.get_children():
 		security_rules.remove_child(child)
+		child.queue_free()
 	for security_rule: SecurityRule in Global.shift.security_rules:
 		#for i in 50: #debugging scroll
 			security_rules.add_child(security_rule.get_nodes())
@@ -90,13 +92,13 @@ func update_scan() -> void:
 			scan_status.show()
 			progress_bar.show()
 			cargo_holds_container.hide()
-			update_cargo_holds()
 		progress_bar.value = selected_ship.progress_bar.value
 
 
 func update_cargo_holds() -> void:
 	for child: Node in cargo_holds_container.get_children():
 		cargo_holds_container.remove_child(child)
+		child.queue_free()
 	for cargo_hold: CargoHold in selected_ship.cargo_holds:
 		var cargo_hold_container: VBoxContainer = VBoxContainer.new()
 		cargo_holds_container.add_child(cargo_hold_container)
@@ -126,6 +128,7 @@ func _on_scan_button_pressed() -> void:
 	ship_visual_container.hide()
 	scan_container.show()
 	if selected_ship:
+		update_cargo_holds()
 		selected_ship.is_scanning = true
 
 
