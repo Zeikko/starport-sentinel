@@ -105,6 +105,7 @@ func show_shift_report() -> void:
 	Global.ui.update_security_briefing()
 	for child: Node in visit_messages_container.get_children():
 		visit_messages_container.remove_child(child)
+		child.queue_free()
 	for visit_message: String in visit_messages:
 		var label: RichTextLabel = RichTextLabel.new()
 		label.bbcode_enabled = true
@@ -113,6 +114,7 @@ func show_shift_report() -> void:
 		visit_messages_container.add_child(label)
 	for child: Node in new_security_rule_container.get_children():
 		new_security_rule_container.remove_child(child)
+		child.queue_free()
 	new_security_rule_container.add_child(new_security_rule.get_nodes())
 	shift_title.set_text('Shift ' + str(shift_number) + ' complete!')
 	income_label.set_text('You earned ' + str(income) + ' credits')
