@@ -22,6 +22,8 @@ enum Type {
 	BATTERIES
 }
 
+var type: Type
+var quantity: int
 static var textures: Dictionary = {
 	Type.CLOTHING: "res://ship/cargo/icons/clothing.png",
 	Type.MEDICALS:  "res://ship/cargo/icons/medicals.png",
@@ -44,8 +46,6 @@ static var textures: Dictionary = {
 	Type.BATTERIES: "res://ship/cargo/icons/batteries.png"
 }
 
-var type: Type
-var quantity: int
 
 
 func _init(arg_type: Type, arg_quantity: int) -> void:
