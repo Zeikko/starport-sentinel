@@ -28,13 +28,11 @@ stream = ExtResource("1_keqw6")
 max_polyphony = 3
 bus = &"Effects"
 
-[node name="Partikles" type="GPUParticles2D" parent="."]
+[node name="Particles" type="GPUParticles2D" parent="."]
 unique_name_in_owner = true
 modulate = Color(0.933333, 0.52549, 0.584314, 1)
 emitting = false
-amount = 80
 process_material = SubResource("ParticleProcessMaterial_ys8ds")
-lifetime = 0.5
 one_shot = true
 explosiveness = 0.75
 visibility_rect = Rect2(0, 0, 1920, 200)
