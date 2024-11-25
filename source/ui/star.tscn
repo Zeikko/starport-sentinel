@@ -1,10 +1,34 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5glm4y8dqehu"]
+[gd_scene load_steps=7 format=3 uid="uid://c5glm4y8dqehu"]
 
-[ext_resource type="Texture2D" uid="uid://wu8c3bsyk8aj" path="res://ui/stars.png" id="1_ctv2m"]
+[ext_resource type="Texture2D" uid="uid://7or4q0ca7qu2" path="res://ui/star0.png" id="1_3d376"]
 [ext_resource type="Script" path="res://ui/star.gd" id="2_5aw7h"]
+[ext_resource type="Texture2D" uid="uid://dsjhdfdisdorc" path="res://ui/star1.png" id="2_pucrr"]
+[ext_resource type="Texture2D" uid="uid://hqud81gbx4fd" path="res://ui/star2.png" id="3_kip2e"]
+[ext_resource type="Texture2D" uid="uid://b6svk04jkn78h" path="res://ui/star3.png" id="4_f34sk"]
 
-[node name="Star" type="Sprite2D"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_pothq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3d376")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_pucrr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kip2e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_f34sk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Star" type="AnimatedSprite2D"]
 z_index = -1
-texture = ExtResource("1_ctv2m")
-hframes = 3
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_pothq")
 script = ExtResource("2_5aw7h")
