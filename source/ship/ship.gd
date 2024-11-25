@@ -115,6 +115,7 @@ func _process(delta: float) -> void:
 		if progress_bar.value >= 100:
 			is_scanning = false
 	select_indicator.visible = Global.ui.selected_ship == self
+	if Input.is_action_just_pressed("ui_select"): Global.ui.explosion.play(damage / 10) #DEBUG!
 
 func visit_starport() -> void:
 	var visit_message: String

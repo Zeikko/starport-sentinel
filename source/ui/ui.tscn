@@ -197,6 +197,7 @@ text = "Scan"
 
 [node name="Explosion" parent="." instance=ExtResource("6_is7p8")]
 unique_name_in_owner = true
+z_index = -1
 
 [connection signal="pressed" from="Buttons/ApproveButton" to="." method="_on_approve_button_pressed"]
 [connection signal="pressed" from="Buttons/RejectButton" to="." method="_on_reject_button_pressed"]
