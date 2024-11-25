@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cf0snp2y7xytp"
+path="res://.godot/imported/Gameoff_24_Let 'Em In_v1_SG.mp3-842b89d54187aebea8cf69c508e7995c.mp3str"
+
+[deps]
+
+source_file="res://music/Gameoff_24_Let 'Em In_v1_SG.mp3"
+dest_files=["res://.godot/imported/Gameoff_24_Let 'Em In_v1_SG.mp3-842b89d54187aebea8cf69c508e7995c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
