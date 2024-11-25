@@ -35,7 +35,7 @@ var selected_ship: Ship:
 
 func _ready() -> void:
 	Global.ui = self
-	for i in 10:
+	for i in 50:
 		var star = star_resource.instantiate()
 		star.position = Vector2(randi_range(0,1920),randi_range(0,64))
 		add_child(star)
