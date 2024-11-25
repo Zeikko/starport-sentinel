@@ -14,5 +14,5 @@ func _process(_delta: float) -> void:
 func generate():
 	var size: float = abs(randfn(1,1))
 	if randf() > 0.75: frame = floor(size)
-	speed = abs((size-3.0)/10.0) * size
+	speed = abs((size-3.0)/20.0) * size
 	modulate = [Color("ee8695"), Color("4a7a96"), Color("333f58")].pick_random() #generate colour
