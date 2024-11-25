@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c8djburogdndp"]
+[gd_scene load_steps=11 format=3 uid="uid://c8djburogdndp"]
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_85w3k"]
 [ext_resource type="Theme" uid="uid://cbimufccfad2e" path="res://theme.tres" id="2_sfxa4"]
@@ -8,12 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://bpgfvwxjiu6bp" path="res://shift/shift.tscn" id="6_kudon"]
 [ext_resource type="AudioStream" uid="uid://7vhvt6j3g2h5" path="res://music/Gameoff_24_Scan or Scam_v1_SG.mp3" id="7_uxj0w"]
 [ext_resource type="AudioStream" uid="uid://bnic8xu24yggh" path="res://music/Gameoff_24_Space Fugue-ure_v1_SG.mp3" id="8_avbln"]
+[ext_resource type="AudioStream" uid="uid://cf0snp2y7xytp" path="res://music/Gameoff_24_Let 'Em In_v1_SG.mp3" id="9_80n6u"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_t1byw"]
 shuffle = true
-stream_count = 2
+stream_count = 3
 stream_0 = ExtResource("7_uxj0w")
 stream_1 = ExtResource("8_avbln")
+stream_2 = ExtResource("9_80n6u")
 
 [node name="Game" type="Node"]
 script = ExtResource("1_85w3k")
