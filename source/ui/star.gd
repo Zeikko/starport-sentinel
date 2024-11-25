@@ -11,9 +11,8 @@ func _process(_delta: float) -> void:
 		position.x = -10
 		position.y = randi_range(0,64)
 
-func generate(regen: bool = false):
+func generate():
 	var size: float = abs(randfn(1,1))
 	if randf() > 0.75: frame = floor(size)
 	speed = abs((size-3.0)/10.0) * size
 	modulate = [Color("ee8695"), Color("4a7a96"), Color("333f58")].pick_random() #generate colour
-	#print(str(frame) + " "+ str(size))
