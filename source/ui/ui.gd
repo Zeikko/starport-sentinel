@@ -31,9 +31,14 @@ var selected_ship: Ship:
 @onready var ship_information_container: VBoxContainer = %ShipInformationContainer
 @onready var cargo_manifest_container: VBoxContainer = %CargoManifestContainer
 @onready var explosion: Node2D = %Explosion
+@onready var star_resource = preload("res://ui/star.tscn")
 
 func _ready() -> void:
 	Global.ui = self
+	for i in 10:
+		var star = star_resource.instantiate()
+		star.position = Vector2(randi_range(0,1920),randi_range(0,64))
+		add_child(star)
 
 func _process(_delta: float) -> void:
 	update_scan()
