@@ -5,7 +5,7 @@ var speed: float = 0.0
 func _ready() -> void:
 	generate()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	position.x += speed
 	if position.x > 1930: #should be from resolution width, just hardcoded +10 here...
 		position.x = -10
