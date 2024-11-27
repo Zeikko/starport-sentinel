@@ -1,4 +1,5 @@
-class_name UIFX extends Node2D #https://forum.godotengine.org/t/best-proper-way-to-do-ui-sounds-hover-click/39081/2
+#https://forum.godotengine.org/t/best-proper-way-to-do-ui-sounds-hover-click/39081/2
+class_name UIFX extends Node2D 
 
 var playback: AudioStreamPlaybackPolyphonic
 
@@ -23,7 +24,21 @@ func _on_node_added(node:Node) -> void:
 		node.pressed.connect(_play_pressed)
 
 func _play_hover() -> void:
-	playback.play_stream(preload("res://ui/effects/hover.wav"), 0,-6, randf_range(0.9, 1.1), 0, "Effects")
+	playback.play_stream(
+		preload("res://ui/effects/hover.wav"),
+		0,
+		-6,
+		randf_range(0.9, 1.1),
+		0,
+		"Effects"
+	)
 
 func _play_pressed() -> void:
-	playback.play_stream(preload("res://ui/effects/click.wav"), 0,-6, randf_range(0.9, 1.1), 0, "Effects")
+	playback.play_stream(
+		preload("res://ui/effects/click.wav"),
+		0,
+		-6,
+		randf_range(0.9, 1.1),
+		0,
+		"Effects"
+	)
