@@ -21,8 +21,8 @@ general/default_playback_type.web=0
 
 [autoload]
 
-Global="*res://global.gd"
 UiSounds="*res://ui/effects/ui_sounds.gd"
+Global="*res://global.gd"
 
 [debug]
 
