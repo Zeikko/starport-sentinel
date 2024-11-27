@@ -31,6 +31,7 @@ var selected_ship: Ship:
 @onready var ship_information_container: VBoxContainer = %ShipInformationContainer
 @onready var cargo_manifest_container: VBoxContainer = %CargoManifestContainer
 @onready var explosion: Node2D = %Explosion
+@onready var trade: Node2D = %Trade
 @onready var star_resource = preload("res://ui/star.tscn")
 
 func _ready() -> void:

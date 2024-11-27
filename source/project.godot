@@ -15,9 +15,14 @@ run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[audio]
+
+general/default_playback_type.web=0
+
 [autoload]
 
 Global="*res://global.gd"
+UiSounds="*res://ui/effects/ui_sounds.gd"
 
 [debug]
 
@@ -33,6 +38,11 @@ gdscript/warnings/unsafe_call_argument=1
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
+
+[editor]
+
+movie_writer/movie_file="/home/arello/Videot/star.avi"
+movie_writer/fps=30
 
 [gui]
 

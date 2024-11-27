@@ -2,7 +2,7 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://u41fu8o4bixm"
+uid="uid://qrc55fpyemhw"
 path="res://.godot/imported/defeat.wav-3e14fdf9228c565b4e0cf232a877f2ff.sample"
 
 [deps]
@@ -21,4 +21,4 @@ edit/normalize=false
 edit/loop_mode=0
 edit/loop_begin=0
 edit/loop_end=-1
-compress/mode=0
+compress/mode=1
