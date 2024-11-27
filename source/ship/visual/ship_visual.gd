@@ -1,5 +1,7 @@
 class_name ShipVisual extends Control
 
+const FACTION_ICON_SCENE: PackedScene = preload("res://factions/faction_icon.tscn")
+
 var faction_map: Dictionary = {
 	Ship.Faction.VOID_INC: Vector2i(0, 0),
 	Ship.Faction.ARGUS: Vector2i(2, 0),
@@ -13,8 +15,6 @@ var type: Ship.Type
 var faction: Ship.Faction
 var weapon: Ship.Weapon
 var randomize_parts = true
-
-const faction_icon_scene: PackedScene = preload("res://factions/faction_icon.tscn")
 
 var hulls: Array[Resource] = [
 	preload("res://ship/visual/parts/base_0.png"),
@@ -67,7 +67,7 @@ func _ready() -> void:
 		weapon_sprite.visible = true
 		weapon_sprite.texture = weapons[weapon - 1]
 	for logo_position: Vector2 in faction_logo_positions[type]:
-		var faction_icon = faction_icon_scene.instantiate()
+		var faction_icon = FACTION_ICON_SCENE.instantiate()
 		faction_icon.faction = faction
 		faction_icon.position = logo_position
 		faction_icon.scale = Vector2(0.35, 0.35)
