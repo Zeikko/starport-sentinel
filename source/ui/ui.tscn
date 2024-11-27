@@ -84,10 +84,10 @@ layout_mode = 2
 
 [node name="Buttons" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 750.0
-offset_top = 823.0
-offset_right = 1088.0
-offset_bottom = 927.0
+offset_left = 751.0
+offset_top = 839.0
+offset_right = 1166.0
+offset_bottom = 943.0
 
 [node name="ApproveButton" type="Button" parent="Buttons"]
 unique_name_in_owner = true
@@ -141,10 +141,10 @@ size_flags_horizontal = 0
 [node name="Credits" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
-offset_left = 801.0
-offset_top = 104.0
-offset_right = 802.0
-offset_bottom = 128.0
+offset_left = 751.0
+offset_top = 814.0
+offset_right = 752.0
+offset_bottom = 838.0
 size_flags_horizontal = 0
 theme_type_variation = &"Heading"
 
