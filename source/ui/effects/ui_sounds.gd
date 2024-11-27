@@ -1,5 +1,5 @@
 #https://forum.godotengine.org/t/best-proper-way-to-do-ui-sounds-hover-click/39081/2
-class_name UIFX extends Node2D 
+class_name UIFX extends Node2D
 
 var playback: AudioStreamPlaybackPolyphonic
 
