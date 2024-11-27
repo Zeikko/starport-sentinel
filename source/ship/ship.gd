@@ -66,7 +66,8 @@ var weapon: Weapon
 @onready var progress_bar: ProgressBar = %ProgressBar
 @onready var select_indicator: TextureRect = %SelectIndicator
 @onready var radar_blip: Node2D
-@onready var scan_sound: AudioStreamPlayer2D = $ScanSound
+@onready var scan_sound: AudioStreamPlayer2D = %ScanSound
+@onready var scan_complete_sound: AudioStreamPlayer2D = %ScanCompleteSound
 
 func _ready() -> void:
 	position = Vector2(distance, 0).rotated(angle)
@@ -112,8 +113,9 @@ func _process(delta: float) -> void:
 	if Global.ui.selected_ship == self:
 		if is_scanning:
 			progress_bar.value += delta * Global.game.scanning_speed
-		if progress_bar.value >= 100:
-			is_scanning = false
+			if progress_bar.value >= 100:
+				is_scanning = false
+				scan_complete_sound.play()
 	select_indicator.visible = Global.ui.selected_ship == self
 
 func visit_starport() -> void:
@@ -123,12 +125,13 @@ func visit_starport() -> void:
 		if !visit_message.is_empty():
 			break
 	if visit_message.is_empty():
+		Global.ui.trade.play(type + 1)
 		var credits: int = 10 * (type + 1)
 		credits *= 1 - wait_time_elapsed / max_wait_time
 		Global.game.credits += credits
 		Global.shift.income += credits
 	else:
-		Global.ui.explosion.play(damage / 10)
+		Global.ui.explosion.play(type + 1)
 		if Global.game.armor <= 0:
 			Global.game.hit_points -= damage
 			Global.shift.damage += damage

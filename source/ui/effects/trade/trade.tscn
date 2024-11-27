@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmrau084ipgc8"]
+
+[ext_resource type="Script" path="res://ui/effects/trade/trade.gd" id="1_a6kkj"]
+[ext_resource type="AudioStream" uid="uid://bcf4gv0fr6giu" path="res://ui/effects/trade/trade.wav" id="2_oqcet"]
+
+[node name="Trade" type="Node2D"]
+script = ExtResource("1_a6kkj")
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_oqcet")
+max_polyphony = 3
+bus = &"Effects"
