@@ -10,4 +10,4 @@ func _ready() -> void:
 	faction_icon.faction = faction
 	%Label.set_text(Ship.Faction.find_key(faction).capitalize())
 	%Icon.add_child(faction_icon)
-	%Icon.scale = Vector2(3,3)
+	%Icon.scale = Vector2(3, 3)
