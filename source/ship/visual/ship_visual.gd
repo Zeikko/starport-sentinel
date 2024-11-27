@@ -9,9 +9,12 @@ var faction_map: Dictionary = {
 	Ship.Faction.FRUGI: Vector2i(2, 1),
 	Ship.Faction.OBUDU: Vector2i(3, 1),
 }
-var ship: Ship
+var type: Ship.Type
+var faction: Ship.Faction
+var weapon: Ship.Weapon
+var randomize_parts = true
 
-var factions_tile_set: Resource = preload("res://ship/visual/factions_tileset.tres")
+const faction_icon_scene: PackedScene = preload("res://factions/faction_icon.tscn")
 
 var hulls: Array[Resource] = [
 	preload("res://ship/visual/parts/base_0.png"),
@@ -41,9 +44,9 @@ var wings: Array[Resource] = [
 	preload("res://ship/visual/parts/wings_4.png")
 ]
 var faction_logo_positions: Dictionary = {
-	Ship.Type.SHUTTLE: [Vector2(56, 66)],
-	Ship.Type.FRIGATE: [Vector2(56, 66)],
-	Ship.Type.CRUISER: [Vector2(40, 64), Vector2(72, 64)]
+	Ship.Type.SHUTTLE: [Vector2(61, 71)],
+	Ship.Type.FRIGATE: [Vector2(61, 71)],
+	Ship.Type.CRUISER: [Vector2(45, 69), Vector2(77, 69)]
 }
 
 @onready var wings_sprite: Sprite2D = %Wings
@@ -53,18 +56,19 @@ var faction_logo_positions: Dictionary = {
 @onready var weapon_sprite: Sprite2D = %Weapon
 
 func _ready() -> void:
-	wings_sprite.texture = wings.pick_random()
-	hull_sprite.texture = hulls[ship.type]
-	thruster_sprite.texture = thrusters.pick_random()
-	cockpit_sprite.texture = cockpits.pick_random()
-	if ship.weapon == 0:
+	if randomize_parts:
+		wings_sprite.texture = wings.pick_random()
+		thruster_sprite.texture = thrusters.pick_random()
+		cockpit_sprite.texture = cockpits.pick_random()
+	hull_sprite.texture = hulls[type]
+	if weapon == 0:
 		weapon_sprite.visible = false
 	else:
 		weapon_sprite.visible = true
-		weapon_sprite.texture = weapons[ship.weapon - 1]
-	for logo_position: Vector2 in faction_logo_positions[ship.type]:
-		var faction_logo_tilemap: TileMapLayer = TileMapLayer.new()
-		faction_logo_tilemap.set_tile_set(factions_tile_set)
-		faction_logo_tilemap.set_cell(Vector2i(0, 0), 0, faction_map[ship.faction])
-		faction_logo_tilemap.position = logo_position
-		add_child(faction_logo_tilemap)
+		weapon_sprite.texture = weapons[weapon - 1]
+	for logo_position: Vector2 in faction_logo_positions[type]:
+		var faction_icon = faction_icon_scene.instantiate()
+		faction_icon.faction = faction
+		faction_icon.position = logo_position
+		faction_icon.scale = Vector2(0.35, 0.35)
+		add_child(faction_icon)

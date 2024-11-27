@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://dt1ubj75gup2a"]
+
+[ext_resource type="Script" path="res://help_menu/weapon_row.gd" id="1_a2n5d"]
+[ext_resource type="Texture2D" uid="uid://fjkdt2keyjl0" path="res://ship/visual/parts/weapon_1.png" id="2_vss6b"]
+
+[node name="WeaponsRow" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a2n5d")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(230, 150)
+layout_mode = 2
+
+[node name="Weapon" type="Sprite2D" parent="HBoxContainer/Control"]
+unique_name_in_owner = true
+position = Vector2(-100, -50)
+scale = Vector2(3, 3)
+texture = ExtResource("2_vss6b")
+centered = false
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"Heading"

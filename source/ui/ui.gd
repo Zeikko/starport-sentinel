@@ -33,6 +33,7 @@ var selected_ship: Ship:
 @onready var explosion: Node2D = %Explosion
 @onready var trade: Node2D = %Trade
 @onready var star_resource = preload("res://ui/star.tscn")
+@onready var help_menu: HelpMenu = %HelpMenu
 
 func _ready() -> void:
 	Global.ui = self
@@ -150,3 +151,7 @@ func _input(event: InputEvent) -> void:
 		_on_scan_button_pressed()
 	if event.is_action_pressed("view"):
 		_on_view_button_pressed()
+
+
+func _on_help_button_pressed() -> void:
+	help_menu.show()
