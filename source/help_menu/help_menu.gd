@@ -16,14 +16,9 @@ func _ready() -> void:
 		%Ships.add_child(ship_row)
 	for weapon in Ship.Weapon.values():
 		if weapon > 0:
-			var WEAPON_ROW_SCENE = WEAPON_ROW_SCENE.instantiate()
-			WEAPON_ROW_SCENE.weapon = weapon
-			%Weapons.add_child(WEAPON_ROW_SCENE)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+			var weapon_row = WEAPON_ROW_SCENE.instantiate()
+			weapon_row.weapon = weapon
+			%Weapons.add_child(weapon_row)
 
 
 func _on_close_button_pressed() -> void:
