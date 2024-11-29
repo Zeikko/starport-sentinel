@@ -14,7 +14,6 @@ var armor: int = 0
 var hit_points: int = 100:
 	set(value):
 		if value <= 0 && hit_points > 0:
-			defeat_menu.show()
 			defeat_sound.play()
 			camera.shake(10)
 			%DefeatEffect1.start()
@@ -85,6 +84,7 @@ func _on_main_menu_button_pressed() -> void:
 
 
 func _on_defeat_effect_1_timeout() -> void:
+	defeat_menu.show()
 	%Music.stop()
 	%Ambience.stop()
 	%DefeatBackground.modulate = Color.html('#ee8695')
