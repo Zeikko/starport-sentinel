@@ -12,12 +12,13 @@ var tutorial: Tutorial
 func load_game() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_packed(GAME_SCENE)
-	
+
+
 func load_tutorial() -> void:
 	tutorial = TUTORIAL_SCENE.instantiate()
 	get_tree().paused = false
 	get_tree().change_scene_to_packed(GAME_SCENE)
-	
+
 
 func load_main_menu() -> void:
 	get_tree().paused = false
