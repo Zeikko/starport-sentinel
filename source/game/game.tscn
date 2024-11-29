@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c8djburogdndp"]
+[gd_scene load_steps=13 format=3 uid="uid://c8djburogdndp"]
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_85w3k"]
 [ext_resource type="Theme" uid="uid://cbimufccfad2e" path="res://theme.tres" id="2_sfxa4"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://bnic8xu24yggh" path="res://music/Gameoff_24_Space Fugue-ure_v1_SG.mp3" id="8_avbln"]
 [ext_resource type="AudioStream" uid="uid://cf0snp2y7xytp" path="res://music/Gameoff_24_Let 'Em In_v1_SG.mp3" id="9_80n6u"]
 [ext_resource type="AudioStream" uid="uid://pty8yanuil0q" path="res://game/ambience.wav" id="10_jxn7b"]
+[ext_resource type="Script" path="res://game/camera.gd" id="11_jftwn"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_t1byw"]
 shuffle = true
@@ -144,17 +145,49 @@ volume_db = 9.0
 bus = &"Effects"
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
 process_mode = 3
 stream = SubResource("AudioStreamPlaylist_t1byw")
 autoplay = true
 bus = &"Music"
 
 [node name="Ambience" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
 process_mode = 3
 stream = ExtResource("10_jxn7b")
 volume_db = -5.0
 autoplay = true
 bus = &"Effects"
 
+[node name="Camera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+anchor_mode = 0
+script = ExtResource("11_jftwn")
+
+[node name="DefeatBackground" type="ColorRect" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+z_index = 5
+custom_minimum_size = Vector2(1920, 1080)
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="DefeatEffect1" type="Timer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+wait_time = 1.9
+one_shot = true
+
+[node name="DefeatEffect2" type="Timer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+wait_time = 2.0
+one_shot = true
+
 [connection signal="pressed" from="DefeatMenu/MarginContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="timeout" from="Cheatcodes/StartFade" to="Cheatcodes" method="_on_start_fade_timeout"]
+[connection signal="timeout" from="DefeatEffect1" to="." method="_on_defeat_effect_1_timeout"]
+[connection signal="timeout" from="DefeatEffect2" to="." method="_on_defeat_effect_2_timeout"]

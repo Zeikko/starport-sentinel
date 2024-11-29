@@ -8,3 +8,4 @@ func play(intensity: float) -> void:
 	%Particles.process_material.set_emission_shape_offset(Vector3(randi_range(320,1600),96,0))
 	%Particles.amount = pow(intensity, 2) * 100
 	%Particles.emitting = true
+	Global.game.camera.shake(intensity)
