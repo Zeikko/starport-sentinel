@@ -70,7 +70,10 @@ func update_cargo_manifest() -> void:
 			total += cargo_item.quantity
 			cargo_manifest.add_child(cargo_item.get_nodes())
 		var total_label: Label = Label.new()
-		total_label.set_text('Total: ' + str(total) + ' tons')
+		var max_capacity = 0
+		for cargo_hold in selected_ship.cargo_holds:
+			max_capacity += cargo_hold.capacity_max
+		total_label.set_text(str('Total: ', total, ' / ', max_capacity))
 		cargo_manifest.add_child(total_label)
 
 func update_security_briefing() -> void:
