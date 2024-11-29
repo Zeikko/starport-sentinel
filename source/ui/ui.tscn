@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://t13h716inaso"]
+[gd_scene load_steps=13 format=3 uid="uid://t13h716inaso"]
 
 [ext_resource type="PackedScene" uid="uid://cjos4upoylry0" path="res://radar/radar.tscn" id="1_75arv"]
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_wpl0o"]
@@ -8,6 +8,25 @@
 [ext_resource type="PackedScene" uid="uid://g6sli6utyqnn" path="res://ui/effects/explosion/explosion.tscn" id="6_is7p8"]
 [ext_resource type="PackedScene" uid="uid://cmrau084ipgc8" path="res://ui/effects/trade/trade.tscn" id="7_cnqb0"]
 [ext_resource type="PackedScene" uid="uid://c4jdl6ydcom0w" path="res://help_menu/help_menu.tscn" id="8_m71sl"]
+[ext_resource type="Shader" path="res://ui/effects/scanning.gdshader" id="9_bo7o1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_omyd6"]
+shader = ExtResource("9_bo7o1")
+shader_parameter/lightning_color = Color(0.933333, 0.52549, 0.584314, 1)
+shader_parameter/size = 0.1
+shader_parameter/width = 1.0
+shader_parameter/speed = 0.2
+shader_parameter/cycle = 0.5
+shader_parameter/ratio = 0.0
+shader_parameter/time_shift = 10.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_txkax"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jlqen"]
+bg_color = Color(1, 1, 1, 1)
+corner_detail = 1
+expand_margin_bottom = 256.0
+anti_aliasing = false
 
 [node name="Ui" type="Control"]
 layout_mode = 3
@@ -155,8 +174,8 @@ theme_type_variation = &"Heading"
 layout_mode = 2
 offset_left = 1329.0
 offset_top = 649.0
-offset_right = 1457.0
-offset_bottom = 806.0
+offset_right = 1777.0
+offset_bottom = 814.0
 
 [node name="ShipVisualContainer" type="Container" parent="ShipObservations"]
 unique_name_in_owner = true
@@ -173,9 +192,12 @@ layout_mode = 2
 
 [node name="ProgressBar" type="ProgressBar" parent="ShipObservations/ScanContainer"]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_omyd6")
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("3_q76rh")
+theme_override_styles/background = SubResource("StyleBoxEmpty_txkax")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jlqen")
 show_percentage = false
 
 [node name="CargoHoldsContainer" type="VBoxContainer" parent="ShipObservations/ScanContainer"]
