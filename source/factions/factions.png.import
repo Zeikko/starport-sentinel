@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://vaxqoy2xhvuu"
-path="res://.godot/imported/factions.png-fb792c354ff877fe26f3ac34cc93edff.ctex"
+path="res://.godot/imported/factions.png-98fb5b2193ed7439af37d7a07b9b5cc4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ship/visual/factions.png"
-dest_files=["res://.godot/imported/factions.png-fb792c354ff877fe26f3ac34cc93edff.ctex"]
+source_file="res://factions/factions.png"
+dest_files=["res://.godot/imported/factions.png-98fb5b2193ed7439af37d7a07b9b5cc4.ctex"]
 
 [params]
 

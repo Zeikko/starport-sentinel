@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://co4womfimt4rg"]
+
+[ext_resource type="Script" path="res://help_menu/ship_row.gd" id="1_w20lk"]
+[ext_resource type="Texture2D" uid="uid://dhhg1k6m07hvs" path="res://ship/visual/parts/base_2.png" id="2_8074s"]
+
+[node name="ShipRow" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w20lk")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Ship" type="Control" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="Hull" type="Sprite2D" parent="HBoxContainer/Ship"]
+unique_name_in_owner = true
+position = Vector2(-120, -120)
+scale = Vector2(3, 3)
+texture = ExtResource("2_8074s")
+centered = false
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"Heading"

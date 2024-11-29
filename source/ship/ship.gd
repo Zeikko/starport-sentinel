@@ -80,7 +80,9 @@ func _ready() -> void:
 		cargo_holds.push_back(CargoHold.new(cargo_hold_number + 1, type))
 	information = ShipInformation.new(self)
 	visual = ship_visual_scene.instantiate()
-	visual.ship = self
+	visual.weapon = weapon
+	visual.type = type
+	visual.faction = faction
 	radar_blip = radar_blip_scene.instantiate()
 	radar_blip.ship = self
 	add_child(radar_blip)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dtha4c88yb14"]
+[gd_scene load_steps=7 format=3 uid="uid://dtha4c88yb14"]
 
 [ext_resource type="Script" path="res://ship/visual/ship_visual.gd" id="1_7r63g"]
 [ext_resource type="Texture2D" uid="uid://kgfotn31jm8s" path="res://ship/visual/parts/wings_0.png" id="2_0153x"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://bl2lx4153k22c" path="res://ship/visual/parts/thruster_1.png" id="4_hun21"]
 [ext_resource type="Texture2D" uid="uid://bh0c6o6d447rg" path="res://ship/visual/parts/cockpit_1.png" id="5_q5g37"]
 [ext_resource type="Texture2D" uid="uid://fjkdt2keyjl0" path="res://ship/visual/parts/weapon_1.png" id="6_x016n"]
-[ext_resource type="TileSet" uid="uid://d20onltuir435" path="res://ship/visual/factions_tileset.tres" id="7_mdpbf"]
 
 [node name="ShipVisual" type="Control"]
 custom_minimum_size = Vector2(128, 128)
@@ -41,9 +40,3 @@ centered = false
 unique_name_in_owner = true
 texture = ExtResource("6_x016n")
 centered = false
-
-[node name="FactionLogo" type="TileMapLayer" parent="."]
-unique_name_in_owner = true
-visible = false
-position = Vector2(72, 64)
-tile_set = ExtResource("7_mdpbf")

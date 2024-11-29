@@ -1,0 +1,130 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4jdl6ydcom0w"]
+
+[ext_resource type="Script" path="res://help_menu/help_menu.gd" id="1_3td1p"]
+[ext_resource type="Theme" uid="uid://cbimufccfad2e" path="res://theme.tres" id="2_yohrr"]
+
+[node name="HelpMenu" type="Control"]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3td1p")
+
+[node name="Container" type="Panel" parent="."]
+unique_name_in_owner = true
+z_index = 10
+custom_minimum_size = Vector2(680, 1000)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+theme = ExtResource("2_yohrr")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_yohrr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="Container/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_yohrr")
+theme_type_variation = &"Heading"
+text = "Help"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Container/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Container/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="FactionsButton" type="Button" parent="Container/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Factions"
+
+[node name="WeaponsButtons" type="Button" parent="Container/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Weapons"
+
+[node name="ShipsButton" type="Button" parent="Container/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Ships"
+
+[node name="Factions" type="VBoxContainer" parent="Container/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SectionTitle" type="Label" parent="Container/MarginContainer/VBoxContainer/Factions"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_yohrr")
+theme_type_variation = &"Heading"
+text = "Factions"
+horizontal_alignment = 1
+
+[node name="Ships" type="VBoxContainer" parent="Container/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="SectionTitle" type="Label" parent="Container/MarginContainer/VBoxContainer/Ships"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_yohrr")
+theme_type_variation = &"Heading"
+text = "Ships"
+horizontal_alignment = 1
+
+[node name="Weapons" type="VBoxContainer" parent="Container/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="SectionTitle" type="Label" parent="Container/MarginContainer/VBoxContainer/Weapons"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_yohrr")
+theme_type_variation = &"Heading"
+text = "Weapons"
+horizontal_alignment = 1
+
+[node name="Text" type="Label" parent="Container/MarginContainer/VBoxContainer/Weapons"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_yohrr")
+
+[node name="CloseButton" type="Button" parent="Container/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Close"
+
+[connection signal="pressed" from="Container/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/FactionsButton" to="." method="_on_factions_button_pressed"]
+[connection signal="pressed" from="Container/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsButtons" to="." method="_on_weapons_buttons_pressed"]
+[connection signal="pressed" from="Container/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/ShipsButton" to="." method="_on_ships_button_pressed"]
+[connection signal="pressed" from="Container/MarginContainer/CloseButton" to="." method="_on_close_button_pressed"]

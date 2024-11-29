@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://t13h716inaso"]
+[gd_scene load_steps=9 format=3 uid="uid://t13h716inaso"]
 
 [ext_resource type="PackedScene" uid="uid://cjos4upoylry0" path="res://radar/radar.tscn" id="1_75arv"]
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_wpl0o"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://burek3c8wquv7" path="res://ui/health_fill.png" id="5_vg1un"]
 [ext_resource type="PackedScene" uid="uid://g6sli6utyqnn" path="res://ui/effects/explosion/explosion.tscn" id="6_is7p8"]
 [ext_resource type="PackedScene" uid="uid://cmrau084ipgc8" path="res://ui/effects/trade/trade.tscn" id="7_cnqb0"]
+[ext_resource type="PackedScene" uid="uid://c4jdl6ydcom0w" path="res://help_menu/help_menu.tscn" id="8_m71sl"]
 
 [node name="Ui" type="Control"]
 layout_mode = 3
@@ -181,10 +182,10 @@ layout_mode = 2
 
 [node name="ObservationButtons" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 1325.0
-offset_top = 961.0
-offset_right = 1707.0
-offset_bottom = 1011.0
+offset_left = 1318.0
+offset_top = 973.0
+offset_right = 1700.0
+offset_bottom = 1023.0
 
 [node name="ViewButton" type="Button" parent="ObservationButtons"]
 unique_name_in_owner = true
@@ -203,7 +204,30 @@ z_index = -1
 [node name="Trade" parent="." instance=ExtResource("7_cnqb0")]
 unique_name_in_owner = true
 
+[node name="HelpButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1601.0
+offset_top = 88.0
+offset_right = 1841.0
+offset_bottom = 132.0
+theme = ExtResource("3_q76rh")
+text = "Help"
+
+[node name="HelpMenu" parent="." instance=ExtResource("8_m71sl")]
+unique_name_in_owner = true
+visible = false
+z_index = 10
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 1
+grow_vertical = 1
+
 [connection signal="pressed" from="Buttons/ApproveButton" to="." method="_on_approve_button_pressed"]
 [connection signal="pressed" from="Buttons/RejectButton" to="." method="_on_reject_button_pressed"]
 [connection signal="pressed" from="ObservationButtons/ViewButton" to="." method="_on_view_button_pressed"]
 [connection signal="pressed" from="ObservationButtons/ScanButton" to="." method="_on_scan_button_pressed"]
+[connection signal="pressed" from="HelpButton" to="." method="_on_help_button_pressed"]
