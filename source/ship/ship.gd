@@ -4,12 +4,21 @@ enum Status {UNDECIDED, APPROVED, REJECTED}
 enum Type {SHUTTLE, FRIGATE, CRUISER}
 enum Faction {
 	VOID_INC,
-	ARGUS,
-	ZUBREZ,
+	ALTUK_COMBINE,
+	ARGUS_SYNDICATE,
+	ZUBIRE,
 	NHA,
 	C3,
 	FRUGI,
-	OBUDU
+	OBUDU,
+	CASTUS_CISTERHOOD,
+	KYDONIA,
+	HOUSE_GRUMIO,
+	DESCENDANTS_OF_SHAH,
+	PHITEOL_INDUSTRIES,
+	PAVVIS_UNION,
+	HOUSE_VERUS,
+	APO_UNITED
 }
 enum Weapon {
 	NONE,
@@ -75,7 +84,7 @@ func _ready() -> void:
 	type = Type.values().pick_random()
 	weapon = Weapon.values().pick_random()
 	damage = 10 * (type + 1)
-	faction = Faction.values().pick_random()
+	faction = Global.game.factions.pick_random()
 	for cargo_hold_number: int in range(type + 1):
 		cargo_holds.push_back(CargoHold.new(cargo_hold_number + 1, type))
 	information = ShipInformation.new(self)

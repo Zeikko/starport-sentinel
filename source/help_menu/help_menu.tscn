@@ -16,7 +16,7 @@ script = ExtResource("1_3td1p")
 [node name="Container" type="Panel" parent="."]
 unique_name_in_owner = true
 z_index = 10
-custom_minimum_size = Vector2(680, 1000)
+custom_minimum_size = Vector2(680, 800)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -76,11 +76,15 @@ text = "Weapons"
 layout_mode = 2
 text = "Ships"
 
-[node name="Factions" type="VBoxContainer" parent="Container/MarginContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Container/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(580, 600)
+layout_mode = 2
+
+[node name="Factions" type="VBoxContainer" parent="Container/MarginContainer/VBoxContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="SectionTitle" type="Label" parent="Container/MarginContainer/VBoxContainer/Factions"]
+[node name="SectionTitle" type="Label" parent="Container/MarginContainer/VBoxContainer/ScrollContainer/Factions"]
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("2_yohrr")

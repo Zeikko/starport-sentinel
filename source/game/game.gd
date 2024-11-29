@@ -30,16 +30,21 @@ var credits: int = 0:
 		credits_updated.emit()
 	get:
 		return credits
+var factions: Array
 
 @onready var defeat_menu: Panel = %DefeatMenu
 @onready var defeat_sound: AudioStreamPlayer2D = %DefeatSound
 
 func _init() -> void:
 	Global.game = self
+	var all_factions = Ship.Faction.values()
+	all_factions.shuffle()
+	factions = all_factions.slice(0, 5)
 
 func _ready() -> void:
 	Global.ui.update_starport()
 	$Cheatcodes.cheatcode_entered.connect(_on_cheatcode_entered)
+
 
 func _on_cheatcode_entered(code: Cheatcode) -> void:
 	match code.id:
