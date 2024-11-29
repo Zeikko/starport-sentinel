@@ -23,6 +23,7 @@ func _ready() -> void:
 
 func _on_close_button_pressed() -> void:
 	hide()
+	get_tree().paused = false
 
 
 func _on_factions_button_pressed() -> void:

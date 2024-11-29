@@ -14,8 +14,13 @@ var current_step: Step:
 	set (value):
 		current_step = value
 		update_instructions()
+var enabled: bool = false:
+	set(value):
+		enabled = value
+		visible = value
 
 func _ready() -> void:
+	Global.tutorial = self
 	update_instructions()
 
 
@@ -23,7 +28,7 @@ func complete(arg_step: Step) -> void:
 	if current_step == arg_step:
 		current_step += 1
 	if current_step == Step.COMPLETE:
-		hide()
+		enabled = false
 
 func update_instructions() -> void:
 	match current_step:

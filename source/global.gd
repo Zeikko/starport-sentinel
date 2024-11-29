@@ -10,12 +10,15 @@ var shift: Shift
 var tutorial: Tutorial
 
 func load_game() -> void:
+	tutorial = TUTORIAL_SCENE.instantiate()
+	tutorial.enabled = false
 	get_tree().paused = false
 	get_tree().change_scene_to_packed(GAME_SCENE)
 
 
 func load_tutorial() -> void:
 	tutorial = TUTORIAL_SCENE.instantiate()
+	tutorial.enabled = true
 	get_tree().paused = false
 	get_tree().change_scene_to_packed(GAME_SCENE)
 

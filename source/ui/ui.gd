@@ -161,3 +161,4 @@ func _input(event: InputEvent) -> void:
 func _on_help_button_pressed() -> void:
 	help_menu.show()
 	Global.tutorial.complete(Tutorial.Step.OPEN_HELP)
+	get_tree().paused = true
