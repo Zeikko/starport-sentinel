@@ -40,7 +40,7 @@ static func create_cargo_rule() -> SecurityRule:
 
 static func create_faction_ship_type_rule() -> SecurityRule:
 	var possible_new_rules: Array[SecurityRule] = []
-	for new_faction: Ship.Faction in Ship.Faction.values():
+	for new_faction: Ship.Faction in Global.game.factions:
 		for new_type: Ship.Type in Ship.Type.values():
 			var new_rule = SecurityRule.new()
 			new_rule.ship_type = new_type
@@ -55,7 +55,7 @@ static func create_faction_ship_type_rule() -> SecurityRule:
 
 static func create_faction_weapon_rule() -> SecurityRule:
 	var possible_new_rules: Array[SecurityRule] = []
-	for new_faction: Ship.Faction in Ship.Faction.values():
+	for new_faction: Ship.Faction in Global.game.factions:
 		for new_weapon: Ship.Weapon in Ship.Weapon.values():
 			if (new_weapon != Ship.Weapon.NONE):
 				var new_rule = SecurityRule.new()

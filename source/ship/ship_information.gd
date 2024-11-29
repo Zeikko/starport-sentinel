@@ -19,7 +19,7 @@ func set_faction(arg_ship: Ship) -> void:
 		security_rule.rule_type == SecurityRule.Type.FACTION_WEAPON:
 			var visit_message: String = security_rule.get_visit_message(arg_ship)
 			if !visit_message.is_empty():
-				faction = Ship.Faction.values().pick_random()
+				faction = Global.game.factions.pick_random()
 
 
 func set_cargo_items(arg_ship: Ship) -> void:
