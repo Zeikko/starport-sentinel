@@ -34,13 +34,12 @@ func update_info() -> void:
 			else:
 				buy_button.text = "Buy"
 			return
-			
 		if Global.game.credits < upgrade.cost or upgrade.bought:
 			buy_button.disabled = true
 		else:
 			buy_button.disabled = false
 
-		if upgrade.bought:				
+		if upgrade.bought:
 			buy_button.text = "Bought"
 		else:
 			buy_button.text = "Buy"
