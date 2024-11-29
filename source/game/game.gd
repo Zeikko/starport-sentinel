@@ -16,7 +16,8 @@ var hit_points: int = 100:
 		if value <= 0 && hit_points > 0:
 			defeat_menu.show()
 			defeat_sound.play()
-			get_tree().paused = true
+			camera.shake(10)
+			%DefeatEffect1.start()
 		hit_points = value
 		Global.ui.update_starport()
 	get:
@@ -34,6 +35,7 @@ var factions: Array
 
 @onready var defeat_menu: Panel = %DefeatMenu
 @onready var defeat_sound: AudioStreamPlayer2D = %DefeatSound
+@onready var camera: Camera2D = %Camera
 
 func _init() -> void:
 	Global.game = self
@@ -80,3 +82,15 @@ func upgrade_bought(id: Upgrade.Id) -> void:
 
 func _on_main_menu_button_pressed() -> void:
 	Global.load_main_menu()
+
+
+func _on_defeat_effect_1_timeout() -> void:
+	%Music.stop()
+	%Ambience.stop()
+	%DefeatBackground.modulate = Color.html('#ee8695')
+	%DefeatBackground.show()
+	%DefeatEffect2.start()
+
+
+func _on_defeat_effect_2_timeout() -> void:
+	%DefeatBackground.modulate = Color.html('#333f58')
