@@ -4,6 +4,7 @@
 [ext_resource type="Theme" uid="uid://cbimufccfad2e" path="res://theme.tres" id="2_yohrr"]
 
 [node name="HelpMenu" type="Control"]
+process_mode = 3
 custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 3
 anchors_preset = 15
@@ -16,7 +17,7 @@ script = ExtResource("1_3td1p")
 [node name="Container" type="Panel" parent="."]
 unique_name_in_owner = true
 z_index = 10
-custom_minimum_size = Vector2(680, 800)
+custom_minimum_size = Vector2(680, 1000)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -76,15 +77,16 @@ text = "Weapons"
 layout_mode = 2
 text = "Ships"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Container/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(580, 600)
+[node name="FactionsScroll" type="ScrollContainer" parent="Container/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(580, 800)
 layout_mode = 2
 
-[node name="Factions" type="VBoxContainer" parent="Container/MarginContainer/VBoxContainer/ScrollContainer"]
+[node name="Factions" type="VBoxContainer" parent="Container/MarginContainer/VBoxContainer/FactionsScroll"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="SectionTitle" type="Label" parent="Container/MarginContainer/VBoxContainer/ScrollContainer/Factions"]
+[node name="SectionTitle" type="Label" parent="Container/MarginContainer/VBoxContainer/FactionsScroll/Factions"]
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("2_yohrr")

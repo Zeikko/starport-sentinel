@@ -144,11 +144,13 @@ volume_db = 9.0
 bus = &"Effects"
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
 stream = SubResource("AudioStreamPlaylist_t1byw")
 autoplay = true
 bus = &"Music"
 
 [node name="Ambience" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
 stream = ExtResource("10_jxn7b")
 volume_db = -5.0
 autoplay = true

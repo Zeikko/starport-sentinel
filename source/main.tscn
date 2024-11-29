@@ -44,7 +44,7 @@ text = "Play Game"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-text = "Tutorial (nonfunctional)"
+text = "Tutorial"
 
 [node name="SettingsButton" type="Button" parent="CanvasLayer/Main/CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
