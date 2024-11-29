@@ -52,8 +52,10 @@ size_flags_horizontal = 0
 
 [node name="Faction" type="Label" parent="ShipInformationContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(196, 0)
 layout_mode = 2
 size_flags_horizontal = 0
+autowrap_mode = 2
 
 [node name="ShipType" type="Label" parent="ShipInformationContainer"]
 unique_name_in_owner = true
