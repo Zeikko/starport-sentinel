@@ -6,6 +6,7 @@
 script = ExtResource("1_ofs70")
 id = 0
 cost = 200
+bought_times = 0
 name = "Advanced Scanner"
 description = "Speed +100%"
 bought = false

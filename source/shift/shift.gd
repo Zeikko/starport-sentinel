@@ -81,6 +81,7 @@ func is_shift_over(altered_ship: Ship) -> void:
 
 
 func end_shift(ships: Array[Ship]) -> void:
+	Global.tutorial.complete(Tutorial.Step.FINISH_SHIFT)
 	for ship: Ship in ships:
 		if ship.status == Ship.Status.APPROVED:
 			ship.visit_starport()

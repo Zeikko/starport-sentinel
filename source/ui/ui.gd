@@ -37,6 +37,8 @@ var selected_ship: Ship:
 
 func _ready() -> void:
 	Global.ui = self
+	if Global.tutorial:
+		add_child(Global.tutorial)
 	for i in 50:
 		var star = star_resource.instantiate()
 		star.position = Vector2(randi_range(0,1920),randi_range(0,64))
@@ -158,3 +160,4 @@ func _input(event: InputEvent) -> void:
 
 func _on_help_button_pressed() -> void:
 	help_menu.show()
+	Global.tutorial.complete(Tutorial.Step.OPEN_HELP)

@@ -69,7 +69,6 @@ var damage: int
 var information: ShipInformation
 var cargo_holds: Array[CargoHold] = []
 var visual: ShipVisual
-var visit_message: String
 var weapon: Weapon
 
 @onready var progress_bar: ProgressBar = %ProgressBar
@@ -125,16 +124,21 @@ func _process(delta: float) -> void:
 		if is_scanning:
 			progress_bar.value += delta * Global.game.scanning_speed
 			if progress_bar.value >= 100:
+				Global.tutorial.complete(Tutorial.Step.SCAN_SHIP)
 				is_scanning = false
 				scan_complete_sound.play()
 	select_indicator.visible = Global.ui.selected_ship == self
 
-func visit_starport() -> void:
+func get_visit_message() -> String:
 	var visit_message: String
 	for security_rule in Global.shift.security_rules:
 		visit_message = security_rule.get_visit_message(self)
 		if !visit_message.is_empty():
 			break
+	return visit_message
+
+func visit_starport() -> void:
+	var visit_message = get_visit_message()
 	if visit_message.is_empty():
 		Global.ui.trade.play(type + 1)
 		var credits: int = 10 * (type + 1)
@@ -171,9 +175,16 @@ func _on_area_2d_input_event(
 			Global.ui.selected_ship = null
 		else:
 			Global.ui.selected_ship = self
+			Global.tutorial.complete(Tutorial.Step.SELECT_SHIP)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("approve") && self == Global.ui.selected_ship:
 		status = Status.APPROVED
+		Global.tutorial.complete(Tutorial.Step.APPROVE_SHIP)
 	if event.is_action_pressed("reject") && self == Global.ui.selected_ship:
 		status = Status.REJECTED
+		Global.tutorial.complete(Tutorial.Step.REJECT_SHIP)
+		if Global.tutorial.current_step == Tutorial.Step.REJECT_DANGEROUS_SHIP:
+			var visit_message = get_visit_message()
+			if !visit_message.is_empty():
+				Global.tutorial.complete(Tutorial.Step.REJECT_DANGEROUS_SHIP)
