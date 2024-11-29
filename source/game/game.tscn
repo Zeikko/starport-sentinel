@@ -159,11 +159,13 @@ bus = &"Effects"
 
 [node name="Camera" type="Camera2D" parent="."]
 unique_name_in_owner = true
+process_mode = 3
 anchor_mode = 0
 script = ExtResource("11_jftwn")
 
 [node name="DefeatBackground" type="ColorRect" parent="."]
 unique_name_in_owner = true
+process_mode = 3
 visible = false
 z_index = 5
 custom_minimum_size = Vector2(1920, 1080)
@@ -173,11 +175,13 @@ mouse_filter = 2
 
 [node name="DefeatEffect1" type="Timer" parent="."]
 unique_name_in_owner = true
+process_mode = 3
 wait_time = 1.9
 one_shot = true
 
 [node name="DefeatEffect2" type="Timer" parent="."]
 unique_name_in_owner = true
+process_mode = 3
 wait_time = 2.0
 one_shot = true
 

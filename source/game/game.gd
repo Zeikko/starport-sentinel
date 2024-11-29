@@ -14,6 +14,7 @@ var armor: int = 0
 var hit_points: int = 100:
 	set(value):
 		if value <= 0 && hit_points > 0:
+			get_tree().paused = true
 			defeat_sound.play()
 			camera.shake(10)
 			%DefeatEffect1.start()
