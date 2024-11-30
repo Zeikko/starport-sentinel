@@ -1,5 +1,6 @@
 class_name Ui extends Control
 
+@export var scanlight: Resource
 var selected_ship: Ship:
 	set(value):
 		if selected_ship:
@@ -22,6 +23,7 @@ var selected_ship: Ship:
 @onready var hit_points: Label = %HitPoints
 @onready var credits: Label = %Credits
 @onready var progress_bar: ProgressBar = %ProgressBar
+@onready var scan_frame: TextureRect = %ScanFrame
 @onready var scan_status: Label = %ScanStatus
 @onready var cargo_holds_container: VBoxContainer = %CargoHoldsContainer
 @onready var ship_visual_container: Container = %ShipVisualContainer
@@ -97,12 +99,22 @@ func update_scan() -> void:
 		if selected_ship.progress_bar.value == 100:
 			scan_status.hide()
 			progress_bar.hide()
+			scan_frame.hide()
+			for child in scan_container.get_children():
+				if child is Panel:
+					scan_container.remove_child(child)
+					child.queue_free()
 			cargo_holds_container.show()
 			update_cargo_holds()
 		elif selected_ship.progress_bar.value > 0:
 			scan_status.text = "Scanning..."
+			if !progress_bar.visible:
+				for scanning in 10:
+					var scan = scanlight.instantiate()
+					scan_container.add_child(scan)
 			scan_status.show()
 			progress_bar.show()
+			scan_frame.show()
 			cargo_holds_container.hide()
 		progress_bar.value = selected_ship.progress_bar.value
 

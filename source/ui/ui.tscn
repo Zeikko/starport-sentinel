@@ -1,19 +1,26 @@
-[gd_scene load_steps=9 format=3 uid="uid://t13h716inaso"]
+[gd_scene load_steps=13 format=3 uid="uid://t13h716inaso"]
 
 [ext_resource type="PackedScene" uid="uid://cjos4upoylry0" path="res://radar/radar.tscn" id="1_75arv"]
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_wpl0o"]
 [ext_resource type="Texture2D" uid="uid://chdr7bghllmsh" path="res://ui/starship_interface.png" id="2_cenmb"]
+[ext_resource type="PackedScene" uid="uid://b4fidpgfjtwq1" path="res://ui/effects/Scanlight.tscn" id="3_pxavu"]
 [ext_resource type="Theme" uid="uid://cbimufccfad2e" path="res://theme.tres" id="3_q76rh"]
 [ext_resource type="Texture2D" uid="uid://burek3c8wquv7" path="res://ui/health_fill.png" id="5_vg1un"]
 [ext_resource type="PackedScene" uid="uid://g6sli6utyqnn" path="res://ui/effects/explosion/explosion.tscn" id="6_is7p8"]
 [ext_resource type="PackedScene" uid="uid://cmrau084ipgc8" path="res://ui/effects/trade/trade.tscn" id="7_cnqb0"]
 [ext_resource type="PackedScene" uid="uid://c4jdl6ydcom0w" path="res://help_menu/help_menu.tscn" id="8_m71sl"]
+[ext_resource type="Texture2D" uid="uid://buev830b12glc" path="res://ui/scan_frame.png" id="10_ea2yc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_txkax"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rddgv"]
 
 [node name="Ui" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 theme = ExtResource("3_q76rh")
 script = ExtResource("1_wpl0o")
+scanlight = ExtResource("3_pxavu")
 
 [node name="Background" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)
@@ -155,8 +162,8 @@ theme_type_variation = &"Heading"
 layout_mode = 2
 offset_left = 1329.0
 offset_top = 649.0
-offset_right = 1457.0
-offset_bottom = 806.0
+offset_right = 1777.0
+offset_bottom = 814.0
 
 [node name="ShipVisualContainer" type="Container" parent="ShipObservations"]
 unique_name_in_owner = true
@@ -173,9 +180,12 @@ layout_mode = 2
 
 [node name="ProgressBar" type="ProgressBar" parent="ShipObservations/ScanContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("3_q76rh")
+theme_override_styles/background = SubResource("StyleBoxEmpty_txkax")
+theme_override_styles/fill = SubResource("StyleBoxEmpty_rddgv")
 show_percentage = false
 
 [node name="CargoHoldsContainer" type="VBoxContainer" parent="ShipObservations/ScanContainer"]
@@ -227,6 +237,16 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="ScanFrame" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1317.0
+offset_top = 636.0
+offset_right = 1477.0
+offset_bottom = 742.0
+scale = Vector2(3, 3)
+texture = ExtResource("10_ea2yc")
 
 [connection signal="pressed" from="Buttons/ApproveButton" to="." method="_on_approve_button_pressed"]
 [connection signal="pressed" from="Buttons/RejectButton" to="." method="_on_reject_button_pressed"]
