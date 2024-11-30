@@ -52,6 +52,12 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 text = "Settings"
 
+[node name="CreditsButton" type="Button" parent="CanvasLayer/Main/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Credits"
+
 [node name="QuitButton" type="Button" parent="CanvasLayer/Main/CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
@@ -91,8 +97,170 @@ offset_right = 209.0
 offset_bottom = 108.0
 text = "Back"
 
+[node name="Credits" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="People" type="VBoxContainer" parent="CanvasLayer/Credits"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="CanvasLayer/Credits/People"]
+layout_mode = 2
+theme_type_variation = &"Heading"
+text = "Credits"
+
+[node name="Bogdan" type="MarginContainer" parent="CanvasLayer/Credits/People"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Credits/People/Bogdan"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="CanvasLayer/Credits/People/Bogdan/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"Heading"
+text = "Bogdan"
+
+[node name="Responsibilities" type="Label" parent="CanvasLayer/Credits/People/Bogdan/VBoxContainer"]
+layout_mode = 2
+text = "- Graphics"
+
+[node name="Giovanni" type="MarginContainer" parent="CanvasLayer/Credits/People"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Credits/People/Giovanni"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="CanvasLayer/Credits/People/Giovanni/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"Heading"
+text = "Giovanni Bariona"
+
+[node name="Responsibilities" type="Label" parent="CanvasLayer/Credits/People/Giovanni/VBoxContainer"]
+layout_mode = 2
+text = "- Sound Effects"
+
+[node name="Hamazon" type="MarginContainer" parent="CanvasLayer/Credits/People"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Credits/People/Hamazon"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="CanvasLayer/Credits/People/Hamazon/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"Heading"
+text = "Hamazon"
+
+[node name="Responsibilities" type="Label" parent="CanvasLayer/Credits/People/Hamazon/VBoxContainer"]
+layout_mode = 2
+text = "- Programming"
+
+[node name="Jaakko" type="MarginContainer" parent="CanvasLayer/Credits/People"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Credits/People/Jaakko"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="CanvasLayer/Credits/People/Jaakko/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"Heading"
+text = "Jaakko Ojalehto"
+
+[node name="Responsibilities" type="Label" parent="CanvasLayer/Credits/People/Jaakko/VBoxContainer"]
+layout_mode = 2
+text = "- Programming
+- Game Design"
+
+[node name="Omar" type="MarginContainer" parent="CanvasLayer/Credits/People"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Credits/People/Omar"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="CanvasLayer/Credits/People/Omar/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"Heading"
+text = "Omar Mannaa"
+
+[node name="Responsibilities" type="Label" parent="CanvasLayer/Credits/People/Omar/VBoxContainer"]
+layout_mode = 2
+text = "- Programming"
+
+[node name="Shalev" type="MarginContainer" parent="CanvasLayer/Credits/People"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Credits/People/Shalev"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="CanvasLayer/Credits/People/Shalev/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"Heading"
+text = "Shalev Grados"
+
+[node name="Responsibilities" type="Label" parent="CanvasLayer/Credits/People/Shalev/VBoxContainer"]
+layout_mode = 2
+text = "- Music Composition"
+
+[node name="Woffelsson" type="MarginContainer" parent="CanvasLayer/Credits/People"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Credits/People/Woffelsson"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="CanvasLayer/Credits/People/Woffelsson/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"Heading"
+text = "Woffelson"
+
+[node name="Responsibilities" type="Label" parent="CanvasLayer/Credits/People/Woffelsson/VBoxContainer"]
+layout_mode = 2
+text = "- Graphics
+- Programming"
+
+[node name="Yilun" type="MarginContainer" parent="CanvasLayer/Credits/People"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Credits/People/Yilun"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="CanvasLayer/Credits/People/Yilun/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"Heading"
+text = "Yilun Sun"
+
+[node name="Responsibilities" type="Label" parent="CanvasLayer/Credits/People/Yilun/VBoxContainer"]
+layout_mode = 2
+text = "- Programming"
+
+[node name="Back" type="Button" parent="CanvasLayer/Credits"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 209.0
+offset_bottom = 108.0
+text = "Back"
+
 [connection signal="pressed" from="CanvasLayer/Main/CenterContainer/VBoxContainer/PlayGameButton" to="." method="_on_play_game_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Main/CenterContainer/VBoxContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Main/CenterContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Main/CenterContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Main/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Settings/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="CanvasLayer/Credits/Back" to="." method="_on_back_pressed"]
