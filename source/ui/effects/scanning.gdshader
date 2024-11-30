@@ -11,11 +11,11 @@ uniform float ratio;
 uniform float time_shift;
 
 float rand(float x){
-	return TIME/4.0; //fract(sin(x)*100000.0);
+	return x/speed; //fract(sin(x)*100000.0);
 }
 
 void fragment(){
-	float bolt = abs(mod(UV.x/3.0 * cycle + (rand(TIME) + time_shift) * speed * -10., 0.5)-0.25)-0.125;
+	float bolt = abs(mod(UV.x * cycle + (rand(TIME) + time_shift) * speed * -1., 0.5)-0.25)-0.125;
 	bolt *= 4. * width;
 	// why 4 ? Because we use mod 0.5, the value be devide by half
 	// and we -0.25 (which is half again) for abs function. So it 25%!
@@ -33,6 +33,5 @@ void fragment(){
 	wave *= blink;
 	
 	vec4 display = lightning_color * vec4(wave);
-	
 	COLOR = display;
 }
