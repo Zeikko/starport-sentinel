@@ -115,8 +115,8 @@ text = "Reject"
 layout_mode = 2
 offset_left = 136.0
 offset_top = 648.0
-offset_right = 576.0
-offset_bottom = 938.0
+offset_right = 594.0
+offset_bottom = 951.0
 
 [node name="SecurityBriefing" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
