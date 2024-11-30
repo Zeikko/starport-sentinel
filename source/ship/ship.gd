@@ -47,13 +47,20 @@ var ship_name: String = 'Default Ship'
 var status: Status = Status.UNDECIDED:
 	set(value):
 		if value == Status.APPROVED:
+			Global.tutorial.complete(Tutorial.Step.APPROVE_SHIP)
 			speed = abs(speed)
 		if value == Status.REJECTED:
+			Global.tutorial.complete(Tutorial.Step.REJECT_SHIP)
 			speed = abs(speed) * -1
+			if Global.tutorial.current_step == Tutorial.Step.REJECT_DANGEROUS_SHIP:
+				var visit_message = get_visit_message()
+				if !visit_message.is_empty():
+					Global.tutorial.complete(Tutorial.Step.REJECT_DANGEROUS_SHIP)
 		status = value
 		radar_blip.update()
 		Global.ui.update_ship_information()
-		Global.shift.is_shift_over(self)
+		Global.shift.are_all_ships_handled(self)
+		set_handle_message()
 var type: Type
 var faction: Faction
 var is_scanning: bool = false:
@@ -80,7 +87,7 @@ var weapon: Weapon
 func _ready() -> void:
 	position = Vector2(distance, 0).rotated(angle)
 	ship_name = str(randi())
-	type = Type.values().pick_random()
+	Global.ui.top_bar.show_message(str(Ship.Type.find_key(type).capitalize(), ' incoming'), 3)
 	weapon = Weapon.values().pick_random()
 	damage = 10 * (type + 1)
 	faction = Global.game.factions.pick_random()
@@ -94,6 +101,7 @@ func _ready() -> void:
 	radar_blip = radar_blip_scene.instantiate()
 	radar_blip.ship = self
 	add_child(radar_blip)
+	speed = 0.5 + randf() + (Global.shift.shift_number * 0.2)
 
 
 func pick_type() -> void:
@@ -109,10 +117,8 @@ func pick_type() -> void:
 func _process(delta: float) -> void:
 	if distance < min_distance:
 		visit_starport()
-		Global.shift.is_shift_over(self)
 	if distance > max_distance:
 		remove()
-		Global.shift.is_shift_over(self)
 	elif self != null:
 		if status in [Status.APPROVED, Status.REJECTED] or \
 		distance > waiting_distance:
@@ -147,6 +153,7 @@ func visit_starport() -> void:
 		Global.shift.income += credits
 	else:
 		Global.ui.explosion.play(type + 1)
+		Global.ui.top_bar.show_message('Alert!', 3)
 		if Global.game.armor <= 0:
 			Global.game.hit_points -= damage
 			Global.shift.damage += damage
@@ -178,13 +185,22 @@ func _on_area_2d_input_event(
 			Global.tutorial.complete(Tutorial.Step.SELECT_SHIP)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("approve") && self == Global.ui.selected_ship:
-		status = Status.APPROVED
-		Global.tutorial.complete(Tutorial.Step.APPROVE_SHIP)
-	if event.is_action_pressed("reject") && self == Global.ui.selected_ship:
-		status = Status.REJECTED
-		Global.tutorial.complete(Tutorial.Step.REJECT_SHIP)
-		if Global.tutorial.current_step == Tutorial.Step.REJECT_DANGEROUS_SHIP:
-			var visit_message = get_visit_message()
-			if !visit_message.is_empty():
-				Global.tutorial.complete(Tutorial.Step.REJECT_DANGEROUS_SHIP)
+	if Global.ui.selected_ship == self:
+		if event.is_action_pressed("approve"):
+			status = Status.APPROVED
+		if event.is_action_pressed("reject"):
+			status = Status.REJECTED
+
+
+func set_handle_message() -> void:
+	var ships: Array[Ship] = Global.game.get_ships()
+	var processed_ships = ships.filter(func(ship: Ship):
+		return ship.status == Ship.Status.APPROVED || ship.status == Ship.Status.REJECTED
+	)
+	Global.ui.top_bar.show_message(str(
+		'Handled ',
+		processed_ships.size(),
+		'/',
+		ships.size(),
+		' ships'
+	), 3)

@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://ci0ndcr7gnsfm"]
+
+[ext_resource type="Script" path="res://ui/top_bar.gd" id="1_jvsxd"]
+
+[node name="Node2D" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_jvsxd")
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 24.0
+theme_type_variation = &"Heading"
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

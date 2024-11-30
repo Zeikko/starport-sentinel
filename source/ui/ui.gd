@@ -37,6 +37,7 @@ var selected_ship: Ship:
 @onready var trade: Node2D = %Trade
 @onready var star_resource = preload("res://ui/star.tscn")
 @onready var help_menu: HelpMenu = %HelpMenu
+@onready var top_bar: TopBar = %TopBar
 
 func _ready() -> void:
 	Global.ui = self

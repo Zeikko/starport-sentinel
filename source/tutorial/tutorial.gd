@@ -25,10 +25,12 @@ func _ready() -> void:
 
 
 func complete(arg_step: Step) -> void:
-	if current_step == arg_step:
-		current_step += 1
-	if current_step == Step.COMPLETE:
-		enabled = false
+	if enabled:
+		if current_step == arg_step:
+			current_step += 1
+			Global.ui.top_bar.show_message('great work!', 3)
+		if current_step == Step.COMPLETE:
+			enabled = false
 
 func update_instructions() -> void:
 	match current_step:
