@@ -86,7 +86,7 @@ func update_security_briefing() -> void:
 		security_rules.remove_child(child)
 		child.queue_free()
 	for security_rule: SecurityRule in Global.shift.security_rules:
-		#for i in 50: #debugging scroll
+		for i in 50: #debugging scroll
 			security_rules.add_child(security_rule.get_nodes())
 
 

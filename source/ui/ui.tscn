@@ -111,20 +111,23 @@ layout_mode = 2
 theme = ExtResource("3_q76rh")
 text = "Reject"
 
-[node name="SecurityBriefing" type="VBoxContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2
 offset_left = 136.0
 offset_top = 648.0
 offset_right = 576.0
 offset_bottom = 938.0
 
-[node name="Title" type="Label" parent="SecurityBriefing"]
+[node name="SecurityBriefing" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ScrollContainer/SecurityBriefing"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_type_variation = &"Heading"
 text = "Security Briefing"
 
-[node name="SecurityRules" type="VBoxContainer" parent="SecurityBriefing"]
+[node name="SecurityRules" type="VBoxContainer" parent="ScrollContainer/SecurityBriefing"]
 unique_name_in_owner = true
 layout_mode = 2
 
