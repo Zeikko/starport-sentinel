@@ -82,9 +82,17 @@ func _animate_menu_transition(main_x: float, settings_x: float) -> void:
 	var tween = create_tween()
 	tween.parallel().tween_property(main, "position:x", main_x, 0.3)
 	tween.parallel().tween_property(settings, "position:x", settings_x, 0.3)
+	tween.parallel().tween_property(credits, "position:x", settings_x, 0.3)
 
 func _on_settings_button_pressed() -> void:
+	settings.show()
+	credits.hide()
 	_animate_menu_transition(-get_viewport_rect().size.x, 0)
 
 func _on_back_pressed() -> void:
 	_animate_menu_transition(0, get_viewport_rect().size.x)
+	
+func _on_credits_button_pressed() -> void:
+	settings.hide()
+	credits.show()
+	_animate_menu_transition(-get_viewport_rect().size.x, 0)
