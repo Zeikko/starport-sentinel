@@ -3,6 +3,12 @@ class_name Ui extends Control
 @export var scanlight: Resource
 var selected_ship: Ship:
 	set(value):
+		if value:
+			scan_button.show()
+			scan_container.show()
+		else:
+			scan_button.hide()
+			scan_container.hide()
 		if selected_ship:
 			selected_ship.is_scanning = false
 		selected_ship = value
@@ -10,7 +16,7 @@ var selected_ship: Ship:
 		update_ship_visual()
 		update_cargo_manifest()
 		ship_visual_container.show()
-		scan_container.hide()
+		update_scan()
 	get:
 		return selected_ship
 @onready var radar: Radar = %Radar
@@ -25,6 +31,7 @@ var selected_ship: Ship:
 @onready var progress_bar: ProgressBar = %ProgressBar
 @onready var scan_frame: TextureRect = %ScanFrame
 @onready var scan_status: Label = %ScanStatus
+@onready var scan_button: Button = %ScanButton
 @onready var cargo_holds_container: VBoxContainer = %CargoHoldsContainer
 @onready var ship_visual_container: Container = %ShipVisualContainer
 @onready var scan_container: Container = %ScanContainer
@@ -98,16 +105,20 @@ func update_starport() -> void:
 func update_scan() -> void:
 	if selected_ship != null:
 		if selected_ship.progress_bar.value == 100:
+			scan_button.hide()
+			scan_frame.hide()
+			scan_container.show()
 			scan_status.hide()
 			progress_bar.hide()
-			scan_frame.hide()
 			for child in scan_container.get_children():
 				if child is Panel:
 					scan_container.remove_child(child)
 					child.queue_free()
 			cargo_holds_container.show()
 			update_cargo_holds()
-		elif selected_ship.progress_bar.value > 0:
+		elif selected_ship.progress_bar.value > 0 && selected_ship.is_scanning:
+			scan_button.hide()
+			scan_container.show()
 			scan_status.text = "Scanning..."
 			if !progress_bar.visible:
 				for scanning in 10:
@@ -117,6 +128,10 @@ func update_scan() -> void:
 			progress_bar.show()
 			scan_frame.show()
 			cargo_holds_container.hide()
+		else:
+			scan_button.show()
+			scan_frame.show()
+			scan_container.hide()
 		progress_bar.value = selected_ship.progress_bar.value
 
 
@@ -150,25 +165,15 @@ func _on_reject_button_pressed() -> void:
 
 
 func _on_scan_button_pressed() -> void:
-	ship_visual_container.hide()
 	scan_container.show()
 	if selected_ship:
 		update_cargo_holds()
 		selected_ship.is_scanning = true
 
 
-func _on_view_button_pressed() -> void:
-	ship_visual_container.show()
-	scan_container.hide()
-	if selected_ship:
-		selected_ship.is_scanning = false
-
-
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("scan"):
 		_on_scan_button_pressed()
-	if event.is_action_pressed("view"):
-		_on_view_button_pressed()
 
 
 func _on_help_button_pressed() -> void:

@@ -113,21 +113,20 @@ func has_identical_rule() -> bool:
 
 
 func get_nodes() -> Node:
+	var label: RichTextLabel = RichTextLabel.new()
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD
 	match rule_type:
 		Type.CARGO:
 			var icon = CargoItem.get_icon(cargo_type)
-			var label: RichTextLabel = RichTextLabel.new()
 			label.bbcode_enabled = true
 			label.fit_content = true
 			label.set_text('No ' + icon)
 			return label
 		Type.FACTION_SHIP_TYPE:
-			var label: Label = Label.new()
 			label.set_text('No ' + Ship.Faction.find_key(faction).capitalize() + ' '
 			+ Ship.Type.find_key(ship_type).capitalize() + 's')
 			return label
 		Type.FACTION_WEAPON:
-			var label: Label = Label.new()
 			label.set_text('No ' + Ship.Faction.find_key(faction).capitalize() + ' '
 			+ Ship.Weapon.find_key(weapon).capitalize() + ' weapons')
 			return label

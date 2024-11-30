@@ -3,13 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://cjos4upoylry0" path="res://radar/radar.tscn" id="1_75arv"]
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_wpl0o"]
 [ext_resource type="Texture2D" uid="uid://chdr7bghllmsh" path="res://ui/starship_interface.png" id="2_cenmb"]
-[ext_resource type="PackedScene" path="res://ui/effects/Scanlight.tscn" id="3_pxavu"]
+[ext_resource type="PackedScene" uid="uid://btgexb7evtbu7" path="res://ui/effects/Scanlight.tscn" id="3_pxavu"]
 [ext_resource type="Theme" uid="uid://cbimufccfad2e" path="res://theme.tres" id="3_q76rh"]
 [ext_resource type="Texture2D" uid="uid://burek3c8wquv7" path="res://ui/health_fill.png" id="5_vg1un"]
 [ext_resource type="PackedScene" uid="uid://g6sli6utyqnn" path="res://ui/effects/explosion/explosion.tscn" id="6_is7p8"]
 [ext_resource type="PackedScene" uid="uid://cmrau084ipgc8" path="res://ui/effects/trade/trade.tscn" id="7_cnqb0"]
 [ext_resource type="PackedScene" uid="uid://c4jdl6ydcom0w" path="res://help_menu/help_menu.tscn" id="8_m71sl"]
-[ext_resource type="PackedScene" uid="uid://bwr7w1b8u4mpr" path="res://ui/top_bar.tscn" id="9_lh3gh"]
+[ext_resource type="PackedScene" uid="uid://22pj1vdwtpmx" path="res://ui/top_bar.tscn" id="9_lh3gh"]
 [ext_resource type="Texture2D" uid="uid://buev830b12glc" path="res://ui/scan_frame.png" id="10_ea2yc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_txkax"]
@@ -112,20 +112,24 @@ layout_mode = 2
 theme = ExtResource("3_q76rh")
 text = "Reject"
 
-[node name="SecurityBriefing" type="VBoxContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2
-offset_left = 1333.0
-offset_top = 233.0
-offset_right = 1773.0
-offset_bottom = 523.0
+offset_left = 136.0
+offset_top = 648.0
+offset_right = 594.0
+offset_bottom = 951.0
+horizontal_scroll_mode = 0
 
-[node name="Title" type="Label" parent="SecurityBriefing"]
+[node name="SecurityBriefing" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ScrollContainer/SecurityBriefing"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_type_variation = &"Heading"
 text = "Security Briefing"
 
-[node name="SecurityRules" type="VBoxContainer" parent="SecurityBriefing"]
+[node name="SecurityRules" type="VBoxContainer" parent="ScrollContainer/SecurityBriefing"]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -159,17 +163,31 @@ offset_bottom = 838.0
 size_flags_horizontal = 0
 theme_type_variation = &"Heading"
 
+[node name="ShipVisualContainer" type="Container" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+offset_left = 1432.0
+offset_top = 248.0
+offset_right = 1680.0
+offset_bottom = 480.0
+
+[node name="ScanFrame" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1317.0
+offset_top = 636.0
+offset_right = 1477.0
+offset_bottom = 742.0
+scale = Vector2(3, 3)
+texture = ExtResource("10_ea2yc")
+
 [node name="ShipObservations" type="VBoxContainer" parent="."]
 layout_mode = 2
 offset_left = 1329.0
 offset_top = 649.0
 offset_right = 1777.0
 offset_bottom = 814.0
-
-[node name="ShipVisualContainer" type="Container" parent="ShipObservations"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 2
 
 [node name="ScanContainer" type="VBoxContainer" parent="ShipObservations"]
 unique_name_in_owner = true
@@ -195,15 +213,11 @@ layout_mode = 2
 
 [node name="ObservationButtons" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 1318.0
-offset_top = 973.0
-offset_right = 1700.0
-offset_bottom = 1023.0
-
-[node name="ViewButton" type="Button" parent="ObservationButtons"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "View"
+offset_left = 1320.0
+offset_top = 768.0
+offset_right = 1792.0
+offset_bottom = 818.0
+alignment = 1
 
 [node name="ScanButton" type="Button" parent="ObservationButtons"]
 unique_name_in_owner = true
@@ -228,7 +242,6 @@ text = "Help"
 
 [node name="HelpMenu" parent="." instance=ExtResource("8_m71sl")]
 unique_name_in_owner = true
-process_mode = 0
 visible = false
 z_index = 10
 layout_mode = 1
@@ -247,18 +260,7 @@ offset_top = 103.0
 offset_right = 720.0
 offset_bottom = 103.0
 
-[node name="ScanFrame" type="TextureRect" parent="."]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 1317.0
-offset_top = 636.0
-offset_right = 1477.0
-offset_bottom = 742.0
-scale = Vector2(3, 3)
-texture = ExtResource("10_ea2yc")
-
 [connection signal="pressed" from="Buttons/ApproveButton" to="." method="_on_approve_button_pressed"]
 [connection signal="pressed" from="Buttons/RejectButton" to="." method="_on_reject_button_pressed"]
-[connection signal="pressed" from="ObservationButtons/ViewButton" to="." method="_on_view_button_pressed"]
 [connection signal="pressed" from="ObservationButtons/ScanButton" to="." method="_on_scan_button_pressed"]
 [connection signal="pressed" from="HelpButton" to="." method="_on_help_button_pressed"]

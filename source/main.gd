@@ -1,6 +1,6 @@
 extends Node2D
 
-const INPUT_KEYS = ['approve', 'reject', 'scan', 'view']
+const INPUT_KEYS = ['approve', 'reject', 'scan']
 
 var is_rebinding_key = false
 var current_action_to_rebind: String = ""

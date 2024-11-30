@@ -19,19 +19,19 @@ void fragment(){
 	bolt *= 4. * width;
 	// why 4 ? Because we use mod 0.5, the value be devide by half
 	// and we -0.25 (which is half again) for abs function. So it 25%!
-	
+
 	// scale down at start and end
-	bolt *=  (0.5 - abs(UV.x-0.5)) * 2.; 
-	
+	bolt *=  (0.5 - abs(UV.x-0.5)) * 2.;
+
 	// turn to a line
 	// center align line
 	float wave = abs(UV.y - 0.5 + bolt);
 	// invert and ajust size
 	wave = 1. - step(size*.5, wave);
-	
+
 	float blink = step(rand(TIME)*ratio, .5);
 	wave *= blink;
-	
+
 	vec4 display = lightning_color * vec4(wave);
 	COLOR = display;
 }
