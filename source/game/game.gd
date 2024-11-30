@@ -18,6 +18,7 @@ var hit_points: int = 100:
 			defeat_sound.play()
 			camera.shake(10)
 			%DefeatEffect1.start()
+			Global.ui.top_bar.show_message('Status Critical!', 3)
 		hit_points = value
 		Global.ui.update_starport()
 	get:

@@ -141,12 +141,12 @@ func update_ship_visual() -> void:
 
 func _on_approve_button_pressed() -> void:
 	if selected_ship:
-		selected_ship.approve()
+		selected_ship.status = Ship.Status.APPROVED
 
 
 func _on_reject_button_pressed() -> void:
 	if selected_ship:
-		selected_ship.reject()
+		selected_ship.status = Ship.Status.REJECTED
 
 
 func _on_scan_button_pressed() -> void:
