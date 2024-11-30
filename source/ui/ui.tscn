@@ -113,10 +113,10 @@ text = "Reject"
 
 [node name="SecurityBriefing" type="VBoxContainer" parent="."]
 layout_mode = 2
-offset_left = 1333.0
-offset_top = 233.0
-offset_right = 1773.0
-offset_bottom = 523.0
+offset_left = 136.0
+offset_top = 648.0
+offset_right = 576.0
+offset_bottom = 938.0
 
 [node name="Title" type="Label" parent="SecurityBriefing"]
 layout_mode = 2
@@ -158,17 +158,31 @@ offset_bottom = 838.0
 size_flags_horizontal = 0
 theme_type_variation = &"Heading"
 
+[node name="ShipVisualContainer" type="Container" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+offset_left = 1432.0
+offset_top = 248.0
+offset_right = 1680.0
+offset_bottom = 480.0
+
+[node name="ScanFrame" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1317.0
+offset_top = 636.0
+offset_right = 1477.0
+offset_bottom = 742.0
+scale = Vector2(3, 3)
+texture = ExtResource("10_ea2yc")
+
 [node name="ShipObservations" type="VBoxContainer" parent="."]
 layout_mode = 2
 offset_left = 1329.0
 offset_top = 649.0
 offset_right = 1777.0
 offset_bottom = 814.0
-
-[node name="ShipVisualContainer" type="Container" parent="ShipObservations"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 2
 
 [node name="ScanContainer" type="VBoxContainer" parent="ShipObservations"]
 unique_name_in_owner = true
@@ -194,15 +208,11 @@ layout_mode = 2
 
 [node name="ObservationButtons" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 1318.0
-offset_top = 973.0
-offset_right = 1700.0
-offset_bottom = 1023.0
-
-[node name="ViewButton" type="Button" parent="ObservationButtons"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "View"
+offset_left = 1320.0
+offset_top = 768.0
+offset_right = 1792.0
+offset_bottom = 818.0
+alignment = 1
 
 [node name="ScanButton" type="Button" parent="ObservationButtons"]
 unique_name_in_owner = true
@@ -238,18 +248,7 @@ offset_bottom = 1080.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="ScanFrame" type="TextureRect" parent="."]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 1317.0
-offset_top = 636.0
-offset_right = 1477.0
-offset_bottom = 742.0
-scale = Vector2(3, 3)
-texture = ExtResource("10_ea2yc")
-
 [connection signal="pressed" from="Buttons/ApproveButton" to="." method="_on_approve_button_pressed"]
 [connection signal="pressed" from="Buttons/RejectButton" to="." method="_on_reject_button_pressed"]
-[connection signal="pressed" from="ObservationButtons/ViewButton" to="." method="_on_view_button_pressed"]
 [connection signal="pressed" from="ObservationButtons/ScanButton" to="." method="_on_scan_button_pressed"]
 [connection signal="pressed" from="HelpButton" to="." method="_on_help_button_pressed"]
