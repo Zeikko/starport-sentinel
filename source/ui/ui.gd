@@ -3,6 +3,12 @@ class_name Ui extends Control
 @export var scanlight: Resource
 var selected_ship: Ship:
 	set(value):
+		if value:
+			scan_button.show()
+			scan_container.show()
+		else:
+			scan_button.hide()
+			scan_container.hide()
 		if selected_ship:
 			selected_ship.is_scanning = false
 		selected_ship = value
