@@ -118,6 +118,7 @@ offset_left = 136.0
 offset_top = 648.0
 offset_right = 594.0
 offset_bottom = 951.0
+horizontal_scroll_mode = 0
 
 [node name="SecurityBriefing" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
