@@ -54,7 +54,7 @@ func create_possible_angles() -> void:
 	for angle_number: int in range(1, number_of_angles):
 		possible_angles.push_back(float(angle_number) * angle_diff)
 	possible_angles.shuffle()
-		
+
 func create_possible_ship_types() -> void:
 	possible_ship_types = [
 		Ship.Type.SHUTTLE,
