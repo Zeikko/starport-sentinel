@@ -81,7 +81,7 @@ func are_all_ships_handled(altered_ship: Ship) -> void:
 			is_unhandled_ships = true
 	if !is_unhandled_ships && ship_counter == ships_per_shift:
 		for ship: Ship in Global.game.get_ships():
-			ship.speed = 20
+			ship.speed *= 20
 
 
 func is_shift_over() -> void:
