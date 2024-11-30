@@ -91,7 +91,7 @@ func _on_settings_button_pressed() -> void:
 
 func _on_back_pressed() -> void:
 	_animate_menu_transition(0, get_viewport_rect().size.x)
-	
+
 func _on_credits_button_pressed() -> void:
 	settings.hide()
 	credits.show()
