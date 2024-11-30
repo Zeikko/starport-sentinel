@@ -191,7 +191,7 @@ func approve() -> void:
 	status = Status.APPROVED
 	Global.tutorial.complete(Tutorial.Step.APPROVE_SHIP)
 	handle()
-		
+
 func reject() -> void:
 	status = Status.REJECTED
 	Global.tutorial.complete(Tutorial.Step.REJECT_SHIP)
