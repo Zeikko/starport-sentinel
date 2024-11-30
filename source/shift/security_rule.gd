@@ -115,11 +115,11 @@ func has_identical_rule() -> bool:
 func get_nodes() -> Node:
 	var label: RichTextLabel = RichTextLabel.new()
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD
+	label.bbcode_enabled = true
+	label.fit_content = true
 	match rule_type:
 		Type.CARGO:
 			var icon = CargoItem.get_icon(cargo_type)
-			label.bbcode_enabled = true
-			label.fit_content = true
 			label.set_text('No ' + icon)
 			return label
 		Type.FACTION_SHIP_TYPE:

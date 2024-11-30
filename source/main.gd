@@ -8,12 +8,14 @@ var current_button_to_update: Button
 
 @onready var main: Control = $CanvasLayer/Main
 @onready var settings: Control = %Settings
+@onready var credits: Control = %Credits
 @onready var input_key_v_box_container: VBoxContainer = %InputKeyVBoxContainer
 
 func _ready() -> void:
 	create_input_key_buttons()
 	# Initialize settings panel position off screen to the right
 	settings.position.x = get_viewport_rect().size.x
+	credits.position.x = get_viewport_rect().size.x
 
 func create_input_key_buttons() -> void:
 	for key in INPUT_KEYS:
