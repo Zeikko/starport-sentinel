@@ -87,7 +87,6 @@ var weapon: Weapon
 func _ready() -> void:
 	position = Vector2(distance, 0).rotated(angle)
 	ship_name = str(randi())
-	type = Type.values().pick_random()
 	Global.ui.top_bar.show_message(str(Ship.Type.find_key(type).capitalize(), ' incoming'), 3)
 	weapon = Weapon.values().pick_random()
 	damage = 10 * (type + 1)
@@ -102,6 +101,7 @@ func _ready() -> void:
 	radar_blip = radar_blip_scene.instantiate()
 	radar_blip.ship = self
 	add_child(radar_blip)
+	speed = 0.5 + randf() + (Global.shift.shift_number * 0.2)
 
 
 func pick_type() -> void:
