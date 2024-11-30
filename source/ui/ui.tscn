@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://g6sli6utyqnn" path="res://ui/effects/explosion/explosion.tscn" id="6_is7p8"]
 [ext_resource type="PackedScene" uid="uid://cmrau084ipgc8" path="res://ui/effects/trade/trade.tscn" id="7_cnqb0"]
 [ext_resource type="PackedScene" uid="uid://c4jdl6ydcom0w" path="res://help_menu/help_menu.tscn" id="8_m71sl"]
-[ext_resource type="PackedScene" uid="uid://ci0ndcr7gnsfm" path="res://ui/top_bar.tscn" id="9_lh3gh"]
+[ext_resource type="PackedScene" uid="uid://bwr7w1b8u4mpr" path="res://ui/top_bar.tscn" id="9_lh3gh"]
 [ext_resource type="Texture2D" uid="uid://buev830b12glc" path="res://ui/scan_frame.png" id="10_ea2yc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_txkax"]

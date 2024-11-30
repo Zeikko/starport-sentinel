@@ -11,6 +11,7 @@ var ship_scene: PackedScene = preload('res://ship/ship.tscn')
 var time_tracker: TimeTracker = preload('res://shift/time_tracker.gd').new()
 var security_rules: Array[SecurityRule] = []
 var possible_angles: Array[float] = []
+var possible_ship_types: Array[Ship.Type] = []
 var income: int = 0
 var damage: int = 0
 var upkeep: int = 50
@@ -35,6 +36,7 @@ var shift_over: bool = false
 func _ready() -> void:
 	Global.shift = self
 	create_possible_angles()
+	create_possible_ship_types()
 	create_ship()
 	security_rules.push_back(SecurityRule.create_security_rule())
 	Global.ui.update_security_briefing()
@@ -46,16 +48,37 @@ func _process(delta: float) -> void:
 	is_shift_over()
 
 func create_possible_angles() -> void:
+	possible_angles = []
 	var number_of_angles: int = 16
 	var angle_diff: float = 2 * PI / number_of_angles
 	for angle_number: int in range(1, number_of_angles):
 		possible_angles.push_back(float(angle_number) * angle_diff)
+	possible_angles.shuffle()
+
+func create_possible_ship_types() -> void:
+	possible_ship_types = [
+		Ship.Type.SHUTTLE,
+		Ship.Type.SHUTTLE,
+		Ship.Type.SHUTTLE,
+		Ship.Type.SHUTTLE,
+		Ship.Type.SHUTTLE,
+		Ship.Type.SHUTTLE,
+		Ship.Type.SHUTTLE,
+		Ship.Type.SHUTTLE,
+		Ship.Type.FRIGATE,
+		Ship.Type.FRIGATE,
+		Ship.Type.FRIGATE,
+		Ship.Type.FRIGATE,
+		Ship.Type.CRUISER,
+		Ship.Type.CRUISER,
+	]
+	possible_ship_types.shuffle()
 
 func create_ship() -> bool:
 	if ship_counter < ships_per_shift:
 		var ship: Ship = ship_scene.instantiate()
-		ship.angle = possible_angles.pick_random()
-		possible_angles = possible_angles.filter(func(angle: float) -> float: return ship.angle != angle)
+		ship.angle = possible_angles.pop_front()
+		ship.type = possible_ship_types.pop_front()
 		Global.ui.radar.ships.add_child(ship)
 		ship_counter += 1
 		return true
@@ -142,6 +165,7 @@ func show_shift_report() -> void:
 
 func _on_start_shift_button_pressed() -> void:
 	create_possible_angles()
+	create_possible_ship_types()
 	ship_counter = 0
 	visit_messages = []
 	income = 0

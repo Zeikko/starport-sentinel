@@ -20,6 +20,7 @@ tangential_accel_max = 100.0
 scale_max = 8.0
 
 [node name="Explosion" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_wpdqo")
 
 [node name="Sound" type="AudioStreamPlayer2D" parent="."]
