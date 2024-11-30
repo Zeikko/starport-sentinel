@@ -84,7 +84,7 @@ border_color = Color(0.933333, 0.52549, 0.584314, 1)
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khgtn"]
-bg_color = Color(0.984314, 0.733333, 0.678431, 0.65098)
+bg_color = Color(0.933333, 0.52549, 0.584314, 1)
 
 [sub_resource type="Image" id="Image_l525x"]
 data = {
