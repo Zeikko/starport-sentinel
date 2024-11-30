@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://t13h716inaso"]
+[gd_scene load_steps=10 format=3 uid="uid://t13h716inaso"]
 
 [ext_resource type="PackedScene" uid="uid://cjos4upoylry0" path="res://radar/radar.tscn" id="1_75arv"]
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_wpl0o"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://g6sli6utyqnn" path="res://ui/effects/explosion/explosion.tscn" id="6_is7p8"]
 [ext_resource type="PackedScene" uid="uid://cmrau084ipgc8" path="res://ui/effects/trade/trade.tscn" id="7_cnqb0"]
 [ext_resource type="PackedScene" uid="uid://c4jdl6ydcom0w" path="res://help_menu/help_menu.tscn" id="8_m71sl"]
+[ext_resource type="PackedScene" uid="uid://ci0ndcr7gnsfm" path="res://ui/top_bar.tscn" id="9_lh3gh"]
 
 [node name="Ui" type="Control"]
 layout_mode = 3
@@ -217,6 +218,7 @@ text = "Help"
 
 [node name="HelpMenu" parent="." instance=ExtResource("8_m71sl")]
 unique_name_in_owner = true
+process_mode = 0
 visible = false
 z_index = 10
 layout_mode = 1
@@ -227,6 +229,13 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="TopBar" parent="." instance=ExtResource("9_lh3gh")]
+unique_name_in_owner = true
+offset_left = 720.0
+offset_top = 103.0
+offset_right = 720.0
+offset_bottom = 103.0
 
 [connection signal="pressed" from="Buttons/ApproveButton" to="." method="_on_approve_button_pressed"]
 [connection signal="pressed" from="Buttons/RejectButton" to="." method="_on_reject_button_pressed"]

@@ -81,6 +81,7 @@ func _ready() -> void:
 	position = Vector2(distance, 0).rotated(angle)
 	ship_name = str(randi())
 	type = Type.values().pick_random()
+	Global.ui.top_bar.show_message(str(Ship.Type.find_key(type).capitalize(), ' incoming'), 3)
 	weapon = Weapon.values().pick_random()
 	damage = 10 * (type + 1)
 	faction = Global.game.factions.pick_random()
@@ -147,6 +148,7 @@ func visit_starport() -> void:
 		Global.shift.income += credits
 	else:
 		Global.ui.explosion.play(type + 1)
+		Global.ui.top_bar.show_message('Alert!', 3)
 		if Global.game.armor <= 0:
 			Global.game.hit_points -= damage
 			Global.shift.damage += damage
@@ -178,13 +180,37 @@ func _on_area_2d_input_event(
 			Global.tutorial.complete(Tutorial.Step.SELECT_SHIP)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("approve") && self == Global.ui.selected_ship:
-		status = Status.APPROVED
-		Global.tutorial.complete(Tutorial.Step.APPROVE_SHIP)
-	if event.is_action_pressed("reject") && self == Global.ui.selected_ship:
-		status = Status.REJECTED
-		Global.tutorial.complete(Tutorial.Step.REJECT_SHIP)
-		if Global.tutorial.current_step == Tutorial.Step.REJECT_DANGEROUS_SHIP:
-			var visit_message = get_visit_message()
-			if !visit_message.is_empty():
-				Global.tutorial.complete(Tutorial.Step.REJECT_DANGEROUS_SHIP)
+	if Global.ui.selected_ship == self:
+		if event.is_action_pressed("approve"):
+			approve()
+		if event.is_action_pressed("reject"):
+			reject()
+
+
+func approve() -> void:
+	status = Status.APPROVED
+	Global.tutorial.complete(Tutorial.Step.APPROVE_SHIP)
+	handle()
+		
+func reject() -> void:
+	status = Status.REJECTED
+	Global.tutorial.complete(Tutorial.Step.REJECT_SHIP)
+	if Global.tutorial.current_step == Tutorial.Step.REJECT_DANGEROUS_SHIP:
+		var visit_message = get_visit_message()
+		if !visit_message.is_empty():
+			Global.tutorial.complete(Tutorial.Step.REJECT_DANGEROUS_SHIP)
+	handle()
+
+func handle() -> void:
+	var ships: Array[Ship] = Global.game.get_ships()
+	var processed_ships = ships.filter(func(ship: Ship):
+		return ship.status == Ship.Status.APPROVED || ship.status == Ship.Status.REJECTED
+	)
+	Global.shift.shift_end_duration_counter = Global.shift.shift_end_duration
+	Global.ui.top_bar.show_message(str(
+		'Handled ',
+		processed_ships.size(),
+		'/',
+		ships.size(),
+		' ships'
+	), 3)

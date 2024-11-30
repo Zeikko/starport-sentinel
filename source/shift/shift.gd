@@ -17,6 +17,8 @@ var upkeep: int = 50
 var paid_upkeep: int = 0
 var upkeep_damage: int = 0
 var visit_messages: Array[String] = []
+var shift_end_duration: int = 3
+var shift_end_duration_counter: int
 @onready var shift_report: Panel = %ShiftReport
 @onready var shift_title: Label = %ShiftTitle
 @onready var income_label: Label = %IncomeLabel
@@ -29,6 +31,7 @@ var visit_messages: Array[String] = []
 @onready var visit_messages_container: VBoxContainer = %VisitMessages
 @onready var shift_report_tab: MarginContainer = %ShiftReportTab
 @onready var upgrades_tab: MarginContainer = %UpgradesTab
+@onready var shift_end_timer: Timer = %ShiftEndTimer
 
 func _ready() -> void:
 	Global.shift = self
@@ -38,6 +41,7 @@ func _ready() -> void:
 	Global.ui.update_security_briefing()
 	shift_report.hide()
 	time_tracker.start_shift()
+	shift_end_duration_counter = shift_end_duration
 
 func _process(delta: float) -> void:
 	time_tracker.update_timetracker(delta)
@@ -61,7 +65,7 @@ func create_ship() -> bool:
 func create_all_ships() -> void:
 	while create_ship(): pass
 
-func _on_timer_timeout() -> void:
+func _on_ship_spawn_timer_timeout() -> void:
 	create_ship()
 
 
@@ -77,10 +81,13 @@ func is_shift_over(altered_ship: Ship) -> void:
 		if ship.status == Ship.Status.UNDECIDED && ship != altered_ship:
 			is_undecided_ships = true
 	if !is_undecided_ships && ship_counter == ships_per_shift:
-		end_shift(ships)
+		Global.ui.top_bar.show_message(str('Ending shift in ', shift_end_duration_counter), 1)
+		shift_end_timer.start()
 
 
-func end_shift(ships: Array[Ship]) -> void:
+func end_shift() -> void:
+	shift_end_duration_counter = shift_end_duration
+	var ships: Array[Ship] = Global.game.get_ships()
 	Global.tutorial.complete(Tutorial.Step.FINISH_SHIFT)
 	for ship: Ship in ships:
 		if ship.status == Ship.Status.APPROVED:
@@ -152,3 +159,12 @@ func _on_upgrades_button_pressed() -> void:
 func _on_back_button_pressed() -> void:
 	shift_report_tab.show()
 	upgrades_tab.hide()
+
+
+func _on_shift_end_timer_timeout() -> void:
+	shift_end_duration_counter -= 1
+	if shift_end_duration_counter == 0:
+		end_shift()
+	else:
+		Global.ui.top_bar.show_message(str('Ending shift in ', shift_end_duration_counter), 1)
+		shift_end_timer.start()

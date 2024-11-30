@@ -34,6 +34,7 @@ var selected_ship: Ship:
 @onready var trade: Node2D = %Trade
 @onready var star_resource = preload("res://ui/star.tscn")
 @onready var help_menu: HelpMenu = %HelpMenu
+@onready var top_bar: TopBar = %TopBar
 
 func _ready() -> void:
 	Global.ui = self
@@ -128,12 +129,12 @@ func update_ship_visual() -> void:
 
 func _on_approve_button_pressed() -> void:
 	if selected_ship:
-		selected_ship.status = Ship.Status.APPROVED
+		selected_ship.approve()
 
 
 func _on_reject_button_pressed() -> void:
 	if selected_ship:
-		selected_ship.status = Ship.Status.REJECTED
+		selected_ship.reject()
 
 
 func _on_scan_button_pressed() -> void:
