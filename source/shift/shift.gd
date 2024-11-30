@@ -117,6 +117,7 @@ func end_shift() -> void:
 	shift_over = true
 	pay_upkeep()
 	if Global.game.hit_points > 0:
+		Global.tutorial.complete(Tutorial.Step.FINISH_SHIFT)
 		Global.ui.top_bar.show_message('Great work!', 3)
 		time_tracker.end_shift()
 		show_shift_report()
