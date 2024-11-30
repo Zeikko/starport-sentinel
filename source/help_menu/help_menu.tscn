@@ -81,6 +81,7 @@ text = "Ships"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(580, 800)
 layout_mode = 2
+horizontal_scroll_mode = 0
 
 [node name="Factions" type="VBoxContainer" parent="Container/MarginContainer/VBoxContainer/FactionsScroll"]
 unique_name_in_owner = true

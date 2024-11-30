@@ -241,7 +241,6 @@ text = "Help"
 
 [node name="HelpMenu" parent="." instance=ExtResource("8_m71sl")]
 unique_name_in_owner = true
-process_mode = 0
 visible = false
 z_index = 10
 layout_mode = 1
