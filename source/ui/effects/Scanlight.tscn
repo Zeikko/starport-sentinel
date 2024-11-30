@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4fidpgfjtwq1"]
+[gd_scene load_steps=5 format=3 uid="uid://btgexb7evtbu7"]
 
 [ext_resource type="Shader" path="res://ui/effects/scanning.gdshader" id="1_3dvh0"]
 [ext_resource type="Script" path="res://ui/effects/scanlight.gd" id="2_0saun"]

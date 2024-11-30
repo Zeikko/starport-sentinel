@@ -104,7 +104,6 @@ func update_scan() -> void:
 			scan_container.show()
 			scan_status.hide()
 			progress_bar.hide()
-			
 			for child in scan_container.get_children():
 				if child is Panel:
 					scan_container.remove_child(child)
