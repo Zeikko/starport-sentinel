@@ -161,7 +161,11 @@ func visit_starport() -> void:
 			Global.shift.damage += damage
 			Global.shift.visit_messages.push_back(visit_message)
 		else:
-			Global.shift.visit_messages.push_back(str('Shield generator protected you from ', damage, ' damage'))
+			Global.shift.visit_messages.push_back(str(
+				'Shield generator protected you from ',
+				damage,
+				' damage')
+			)
 			Global.game.shield -= 1
 	remove()
 
