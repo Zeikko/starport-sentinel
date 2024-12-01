@@ -12,6 +12,10 @@ var current_button_to_update: Button
 @onready var input_key_v_box_container: VBoxContainer = %InputKeyVBoxContainer
 
 func _ready() -> void:
+	var tween_a = create_tween().set_loops()
+	tween_a.tween_property(%Ball, "rotation", -1.0, 20.0).as_relative()
+	var tween_b = create_tween().set_loops()
+	tween_b.tween_property(%Radar, "rotation", 5.0, 2.0).as_relative()
 	create_input_key_buttons()
 	# Initialize settings panel position off screen to the right
 	settings.position.x = get_viewport_rect().size.x

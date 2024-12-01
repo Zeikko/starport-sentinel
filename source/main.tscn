@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://bds72hx33kpw6"]
+[gd_scene load_steps=8 format=3 uid="uid://bds72hx33kpw6"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_iyu0j"]
 [ext_resource type="AudioStream" uid="uid://ccopr3jp4von1" path="res://music/Gameoff_24_Theme_v1_SG.mp3" id="2_7opm5"]
+[ext_resource type="Texture2D" uid="uid://c8tri3nhq1cml" path="res://title/title0.png" id="3_1wsiw"]
+[ext_resource type="Texture2D" uid="uid://b2woihkxj75a7" path="res://title/titleb0.png" id="4_ek63t"]
+[ext_resource type="Texture2D" uid="uid://ckfwmskxuvp54" path="res://title/titleb1.png" id="5_68eer"]
+[ext_resource type="Texture2D" uid="uid://djs3xjgbcgjpd" path="res://title/titleb2.png" id="6_jrhs5"]
+[ext_resource type="Texture2D" uid="uid://bv6m2tstnjhx1" path="res://title/title1.png" id="7_e5us6"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_iyu0j")
@@ -12,6 +17,54 @@ autoplay = true
 bus = &"Music"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_1wsiw")
+
+[node name="Ball" type="TextureRect" parent="CanvasLayer/TextureRect"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 884.0
+offset_top = 173.0
+offset_right = 1031.0
+offset_bottom = 320.0
+scale = Vector2(3, 3)
+pivot_offset = Vector2(73, 73)
+texture = ExtResource("4_ek63t")
+
+[node name="Grid" type="TextureRect" parent="CanvasLayer/TextureRect"]
+layout_mode = 1
+offset_left = 738.0
+offset_top = 27.0
+offset_right = 885.0
+offset_bottom = 174.0
+scale = Vector2(3, 3)
+texture = ExtResource("5_68eer")
+
+[node name="Radar" type="TextureRect" parent="CanvasLayer/TextureRect"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 884.0
+offset_top = 173.0
+offset_right = 1031.0
+offset_bottom = 320.0
+scale = Vector2(3, 3)
+pivot_offset = Vector2(73, 73)
+texture = ExtResource("6_jrhs5")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_e5us6")
 
 [node name="Main" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -26,41 +79,42 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 360.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Main/CenterContainer"]
 custom_minimum_size = Vector2(600, 400)
 layout_mode = 2
-theme_override_constants/separation = 26
+theme_override_constants/separation = 18
 
 [node name="PlayGameButton" type="Button" parent="CanvasLayer/Main/CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 text = "Play Game"
 
 [node name="TutorialButton" type="Button" parent="CanvasLayer/Main/CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 text = "Tutorial"
 
 [node name="SettingsButton" type="Button" parent="CanvasLayer/Main/CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 text = "Settings"
 
 [node name="CreditsButton" type="Button" parent="CanvasLayer/Main/CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 text = "Credits"
 
 [node name="QuitButton" type="Button" parent="CanvasLayer/Main/CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 text = "Quit"
 
@@ -83,9 +137,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -300.0
-offset_top = -200.0
+offset_top = -44.0
 offset_right = 300.0
-offset_bottom = 200.0
+offset_bottom = 356.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -106,146 +160,166 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="People" type="VBoxContainer" parent="CanvasLayer/Credits"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(600, 400)
+[node name="Panel" type="Panel" parent="CanvasLayer/Credits"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -200.0
-offset_right = 300.0
-offset_bottom = 200.0
-grow_horizontal = 2
+offset_left = -1264.0
+offset_top = -60.0
+offset_bottom = 412.0
+grow_horizontal = 0
 grow_vertical = 2
 
-[node name="Title" type="Label" parent="CanvasLayer/Credits/People"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Credits"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1204.0
+offset_top = -28.0
+offset_bottom = 395.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="People" type="VBoxContainer" parent="CanvasLayer/Credits/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CanvasLayer/Credits/HBoxContainer/People"]
 layout_mode = 2
 theme_type_variation = &"Heading"
 text = "Credits"
 
-[node name="Bogdan" type="MarginContainer" parent="CanvasLayer/Credits/People"]
+[node name="Bogdan" type="MarginContainer" parent="CanvasLayer/Credits/HBoxContainer/People"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Credits/People/Bogdan"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Credits/HBoxContainer/People/Bogdan"]
 layout_mode = 2
 
-[node name="Name" type="Label" parent="CanvasLayer/Credits/People/Bogdan/VBoxContainer"]
+[node name="Name" type="Label" parent="CanvasLayer/Credits/HBoxContainer/People/Bogdan/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"Heading"
 text = "Bogdan"
 
-[node name="Responsibilities" type="Label" parent="CanvasLayer/Credits/People/Bogdan/VBoxContainer"]
+[node name="Responsibilities" type="Label" parent="CanvasLayer/Credits/HBoxContainer/People/Bogdan/VBoxContainer"]
 layout_mode = 2
 text = "- Graphics"
 
-[node name="Giovanni" type="MarginContainer" parent="CanvasLayer/Credits/People"]
+[node name="Giovanni" type="MarginContainer" parent="CanvasLayer/Credits/HBoxContainer/People"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Credits/People/Giovanni"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Credits/HBoxContainer/People/Giovanni"]
 layout_mode = 2
 
-[node name="Name" type="Label" parent="CanvasLayer/Credits/People/Giovanni/VBoxContainer"]
+[node name="Name" type="Label" parent="CanvasLayer/Credits/HBoxContainer/People/Giovanni/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"Heading"
 text = "Giovanni Bariona"
 
-[node name="Responsibilities" type="Label" parent="CanvasLayer/Credits/People/Giovanni/VBoxContainer"]
+[node name="Responsibilities" type="Label" parent="CanvasLayer/Credits/HBoxContainer/People/Giovanni/VBoxContainer"]
 layout_mode = 2
 text = "- Sound Effects"
 
-[node name="Hamazon" type="MarginContainer" parent="CanvasLayer/Credits/People"]
+[node name="Hamazon" type="MarginContainer" parent="CanvasLayer/Credits/HBoxContainer/People"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Credits/People/Hamazon"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Credits/HBoxContainer/People/Hamazon"]
 layout_mode = 2
 
-[node name="Name" type="Label" parent="CanvasLayer/Credits/People/Hamazon/VBoxContainer"]
+[node name="Name" type="Label" parent="CanvasLayer/Credits/HBoxContainer/People/Hamazon/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"Heading"
 text = "Hamazon"
 
-[node name="Responsibilities" type="Label" parent="CanvasLayer/Credits/People/Hamazon/VBoxContainer"]
+[node name="Responsibilities" type="Label" parent="CanvasLayer/Credits/HBoxContainer/People/Hamazon/VBoxContainer"]
 layout_mode = 2
 text = "- Programming"
 
-[node name="Jaakko" type="MarginContainer" parent="CanvasLayer/Credits/People"]
+[node name="Jaakko" type="MarginContainer" parent="CanvasLayer/Credits/HBoxContainer/People"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Credits/People/Jaakko"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Credits/HBoxContainer/People/Jaakko"]
 layout_mode = 2
 
-[node name="Name" type="Label" parent="CanvasLayer/Credits/People/Jaakko/VBoxContainer"]
+[node name="Name" type="Label" parent="CanvasLayer/Credits/HBoxContainer/People/Jaakko/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"Heading"
 text = "Jaakko Ojalehto"
 
-[node name="Responsibilities" type="Label" parent="CanvasLayer/Credits/People/Jaakko/VBoxContainer"]
+[node name="Responsibilities" type="Label" parent="CanvasLayer/Credits/HBoxContainer/People/Jaakko/VBoxContainer"]
 layout_mode = 2
 text = "- Programming
 - Game Design"
 
-[node name="Omar" type="MarginContainer" parent="CanvasLayer/Credits/People"]
+[node name="People2" type="VBoxContainer" parent="CanvasLayer/Credits/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(600, 400)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Credits/People/Omar"]
+[node name="Omar" type="MarginContainer" parent="CanvasLayer/Credits/HBoxContainer/People2"]
 layout_mode = 2
 
-[node name="Name" type="Label" parent="CanvasLayer/Credits/People/Omar/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Credits/HBoxContainer/People2/Omar"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="CanvasLayer/Credits/HBoxContainer/People2/Omar/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"Heading"
 text = "Omar Mannaa"
 
-[node name="Responsibilities" type="Label" parent="CanvasLayer/Credits/People/Omar/VBoxContainer"]
+[node name="Responsibilities" type="Label" parent="CanvasLayer/Credits/HBoxContainer/People2/Omar/VBoxContainer"]
 layout_mode = 2
 text = "- Programming"
 
-[node name="Shalev" type="MarginContainer" parent="CanvasLayer/Credits/People"]
+[node name="Shalev" type="MarginContainer" parent="CanvasLayer/Credits/HBoxContainer/People2"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Credits/People/Shalev"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Credits/HBoxContainer/People2/Shalev"]
 layout_mode = 2
 
-[node name="Name" type="Label" parent="CanvasLayer/Credits/People/Shalev/VBoxContainer"]
+[node name="Name" type="Label" parent="CanvasLayer/Credits/HBoxContainer/People2/Shalev/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"Heading"
 text = "Shalev Grados"
 
-[node name="Responsibilities" type="Label" parent="CanvasLayer/Credits/People/Shalev/VBoxContainer"]
+[node name="Responsibilities" type="Label" parent="CanvasLayer/Credits/HBoxContainer/People2/Shalev/VBoxContainer"]
 layout_mode = 2
 text = "- Music Composition"
 
-[node name="Woffelsson" type="MarginContainer" parent="CanvasLayer/Credits/People"]
+[node name="Woffelsson" type="MarginContainer" parent="CanvasLayer/Credits/HBoxContainer/People2"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Credits/People/Woffelsson"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Credits/HBoxContainer/People2/Woffelsson"]
 layout_mode = 2
 
-[node name="Name" type="Label" parent="CanvasLayer/Credits/People/Woffelsson/VBoxContainer"]
+[node name="Name" type="Label" parent="CanvasLayer/Credits/HBoxContainer/People2/Woffelsson/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"Heading"
 text = "Woffelson"
 
-[node name="Responsibilities" type="Label" parent="CanvasLayer/Credits/People/Woffelsson/VBoxContainer"]
+[node name="Responsibilities" type="Label" parent="CanvasLayer/Credits/HBoxContainer/People2/Woffelsson/VBoxContainer"]
 layout_mode = 2
 text = "- Graphics
 - Programming"
 
-[node name="Yilun" type="MarginContainer" parent="CanvasLayer/Credits/People"]
+[node name="Yilun" type="MarginContainer" parent="CanvasLayer/Credits/HBoxContainer/People2"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Credits/People/Yilun"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Credits/HBoxContainer/People2/Yilun"]
 layout_mode = 2
 
-[node name="Name" type="Label" parent="CanvasLayer/Credits/People/Yilun/VBoxContainer"]
+[node name="Name" type="Label" parent="CanvasLayer/Credits/HBoxContainer/People2/Yilun/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"Heading"
 text = "Yilun Sun"
 
-[node name="Responsibilities" type="Label" parent="CanvasLayer/Credits/People/Yilun/VBoxContainer"]
+[node name="Responsibilities" type="Label" parent="CanvasLayer/Credits/HBoxContainer/People2/Yilun/VBoxContainer"]
 layout_mode = 2
 text = "- Programming"
 
