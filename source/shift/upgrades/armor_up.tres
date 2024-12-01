@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_7oe43")
 id = 1
-cost = 300
+cost = 500
 name = "Armor"
-description = "Protects from one hit"
+description = "Absorbs 50% of ship damage"
 bought = false
