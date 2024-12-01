@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn37os4qoafst"]
+
+[ext_resource type="PackedScene" uid="uid://bwjvjabhwi8fg" path="res://shift/upgrade_ui.tscn" id="1_6pb8c"]
+
+[node name="UpgradeUI" instance=ExtResource("1_6pb8c")]
+id = 3

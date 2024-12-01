@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=2 format=3 uid="uid://cjhlx2ldcj88v"]
+
+[ext_resource type="Script" path="res://shift/upgrades/upgrade.gd" id="1_mx7ti"]
+
+[resource]
+script = ExtResource("1_mx7ti")
+id = 3
+cost = 300
+name = "Shield Generator"
+description = "Absorbs one hit / shift"
+bought = false

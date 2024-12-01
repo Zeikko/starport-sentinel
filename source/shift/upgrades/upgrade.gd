@@ -2,7 +2,9 @@ class_name Upgrade extends Resource
 
 enum Id {
 	SCANNER_SPEED,
-	ARMOR
+	ARMOR,
+	REPAIR_BOTS,
+	SHIELD_GENERATOR
 }
 
 @export var id: Id

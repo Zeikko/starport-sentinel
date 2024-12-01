@@ -117,6 +117,8 @@ func end_shift() -> void:
 	shift_over = true
 	pay_upkeep()
 	if Global.game.hit_points > 0:
+		if Global.game.upgrades[Upgrade.Id.REPAIR_BOTS].bought:
+			Global.game.hit_points += 10
 		Global.tutorial.complete(Tutorial.Step.FINISH_SHIFT)
 		Global.ui.top_bar.show_message('Great work!', 3)
 		time_tracker.end_shift()
@@ -142,6 +144,10 @@ func show_shift_report() -> void:
 		label.bbcode_enabled = true
 		label.fit_content = true
 		label.set_text(visit_message)
+		visit_messages_container.add_child(label)
+	if Global.game.upgrades[Upgrade.Id.REPAIR_BOTS].bought:
+		var label: Label = Label.new()
+		label.set_text('Repair bots repaired 10 damage')
 		visit_messages_container.add_child(label)
 	for child: Node in new_security_rule_container.get_children():
 		new_security_rule_container.remove_child(child)

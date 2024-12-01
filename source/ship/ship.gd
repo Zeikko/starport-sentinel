@@ -90,6 +90,8 @@ func _ready() -> void:
 	Global.ui.top_bar.show_message(str(Ship.Type.find_key(type).capitalize(), ' incoming'), 3)
 	weapon = Weapon.values().pick_random()
 	damage = 10 * (type + 1)
+	if Global.game.upgrades[Upgrade.Id.ARMOR].bought:
+		damage *= 0.5
 	faction = Global.game.factions.pick_random()
 	for cargo_hold_number: int in range(type + 1):
 		cargo_holds.push_back(CargoHold.new(cargo_hold_number + 1, type))
@@ -154,13 +156,17 @@ func visit_starport() -> void:
 	else:
 		Global.ui.explosion.play(type + 1)
 		Global.ui.top_bar.show_message('Alert!', 3)
-		if Global.game.armor <= 0:
+		if Global.game.shield <= 0:
 			Global.game.hit_points -= damage
 			Global.shift.damage += damage
 			Global.shift.visit_messages.push_back(visit_message)
 		else:
-			Global.shift.visit_messages.push_back(str('Armor protected you from ', damage, ' damage'))
-			Global.game.armor -= 1
+			Global.shift.visit_messages.push_back(str(
+				'Shield generator protected you from ',
+				damage,
+				' damage')
+			)
+			Global.game.shield -= 1
 	remove()
 
 func remove() -> void:

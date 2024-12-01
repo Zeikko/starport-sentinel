@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=2 format=3 uid="uid://bmg7dqa5glh2l"]
+
+[ext_resource type="Script" path="res://shift/upgrades/upgrade.gd" id="1_32p7p"]
+
+[resource]
+script = ExtResource("1_32p7p")
+id = 2
+cost = 200
+name = "Repair Bots"
+description = "Repairs 10 damage / shift"
+bought = false
