@@ -1,6 +1,7 @@
 extends AnimatedSprite2D
 
 var speed: float = 0.0
+var gen_range: int = 64
 
 func _ready() -> void:
 	generate()
@@ -9,7 +10,7 @@ func _process(_delta: float) -> void:
 	position.x += speed
 	if position.x > 1930: #should be from resolution width, just hardcoded +10 here...
 		position.x = -10
-		position.y = randi_range(0,64)
+		position.y = randi_range(0,gen_range)
 
 func generate():
 	var size: float = abs(randfn(1,1))
