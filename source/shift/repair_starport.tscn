@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2fukyq7u0jcq"]
+
+[ext_resource type="PackedScene" uid="uid://bwjvjabhwi8fg" path="res://shift/upgrade_ui.tscn" id="1_4gqp5"]
+
+[node name="RepairStarport" instance=ExtResource("1_4gqp5")]
+offset_right = 260.0
+offset_bottom = 44.0
+id = 2

@@ -8,8 +8,9 @@ const UPGRADES_PATH: String = "res://shift/upgrades/"
 
 var upgrades: Dictionary = {
 	Upgrade.Id.SCANNER_SPEED: preload(UPGRADES_PATH + "scanner_speed_up.tres"),
-	Upgrade.Id.ARMOR: preload(UPGRADES_PATH + "armor_up.tres")
-}
+	Upgrade.Id.ARMOR: preload(UPGRADES_PATH + "armor_up.tres"),
+	Upgrade.Id.REPAIR: preload(UPGRADES_PATH + "repair_starport.tres")
+	}
 var armor: int = 0
 var hit_points: int = 100:
 	set(value):
@@ -79,7 +80,11 @@ func upgrade_bought(id: Upgrade.Id) -> void:
 				armor = 1
 			Upgrade.Id.SCANNER_SPEED:
 				scanning_speed = base_scanning_speed * 2
-
+			Upgrade.Id.REPAIR:
+				if hit_points > 80:
+					hit_points += 100 - hit_points
+				else:
+					hit_points += 20
 
 func _on_main_menu_button_pressed() -> void:
 	Global.load_main_menu()

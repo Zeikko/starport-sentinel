@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpgfvwxjiu6bp"]
+[gd_scene load_steps=6 format=3 uid="uid://bpgfvwxjiu6bp"]
 
 [ext_resource type="Script" path="res://shift/shift.gd" id="1_yq6q2"]
 [ext_resource type="Theme" uid="uid://cbimufccfad2e" path="res://theme.tres" id="2_6rmm1"]
 [ext_resource type="PackedScene" uid="uid://bjri5inpq66lr" path="res://shift/armor_upgrade.tscn" id="3_u3pg1"]
 [ext_resource type="PackedScene" uid="uid://drvjhje3812ml" path="res://shift/scanning_speed_upgrade.tscn" id="4_64o3e"]
+[ext_resource type="PackedScene" uid="uid://c2fukyq7u0jcq" path="res://shift/repair_starport.tscn" id="5_lcyrr"]
 
 [node name="Shift" type="Control"]
 layout_mode = 3
@@ -21,7 +22,6 @@ autostart = true
 
 [node name="ShiftReport" type="Panel" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -154,7 +154,6 @@ text = "Upgrades"
 
 [node name="UpgradesTab" type="MarginContainer" parent="ShiftReport"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -176,6 +175,9 @@ text = "Upgrades"
 layout_mode = 2
 
 [node name="ScanningSpeedUpgrade" parent="ShiftReport/UpgradesTab/VBoxContainer" instance=ExtResource("4_64o3e")]
+layout_mode = 2
+
+[node name="RepairStarport" parent="ShiftReport/UpgradesTab/VBoxContainer" instance=ExtResource("5_lcyrr")]
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ShiftReport/UpgradesTab"]
