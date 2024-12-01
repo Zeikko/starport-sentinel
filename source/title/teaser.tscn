@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://qj7veebkijb3"]
+
+[ext_resource type="Script" path="res://title/teaser.gd" id="1_m0mcq"]
+[ext_resource type="Texture2D" uid="uid://1k0ckrs63kfd" path="res://title/starport.png" id="2_qk5t5"]
+[ext_resource type="PackedScene" uid="uid://g6sli6utyqnn" path="res://ui/effects/explosion/explosion.tscn" id="3_2sl8q"]
+[ext_resource type="Script" path="res://game/camera.gd" id="4_u20nc"]
+
+[node name="Teaser" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m0mcq")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = 2
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -121.0
+offset_top = -217.0
+offset_right = 121.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(3, 3)
+pivot_offset = Vector2(121, 217)
+texture = ExtResource("2_qk5t5")
+
+[node name="Explosion" parent="." instance=ExtResource("3_2sl8q")]
+unique_name_in_owner = true
+position = Vector2(0, 600)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
+anchor_mode = 0
+script = ExtResource("4_u20nc")

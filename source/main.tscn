@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://main.gd" id="1_iyu0j"]
 [ext_resource type="AudioStream" uid="uid://ccopr3jp4von1" path="res://music/Gameoff_24_Theme_v1_SG.mp3" id="2_7opm5"]
-[ext_resource type="Texture2D" uid="uid://c8tri3nhq1cml" path="res://title/title0.png" id="3_1wsiw"]
+[ext_resource type="Texture2D" uid="uid://bg8df6f31dxr" path="res://title/title0b.png" id="3_b6wac"]
 [ext_resource type="Texture2D" uid="uid://b2woihkxj75a7" path="res://title/titleb0.png" id="4_ek63t"]
 [ext_resource type="Texture2D" uid="uid://ckfwmskxuvp54" path="res://title/titleb1.png" id="5_68eer"]
 [ext_resource type="Texture2D" uid="uid://djs3xjgbcgjpd" path="res://title/titleb2.png" id="6_jrhs5"]
@@ -24,7 +24,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_1wsiw")
+texture = ExtResource("3_b6wac")
 
 [node name="Ball" type="TextureRect" parent="CanvasLayer/TextureRect"]
 unique_name_in_owner = true

@@ -10,8 +10,14 @@ var current_button_to_update: Button
 @onready var settings: Control = %Settings
 @onready var credits: Control = %Credits
 @onready var input_key_v_box_container: VBoxContainer = %InputKeyVBoxContainer
+@onready var star_resource = preload("res://ui/star.tscn")
 
 func _ready() -> void:
+	for i in 400:
+		var star = star_resource.instantiate()
+		star.position = Vector2(randi_range(0,1920),randi_range(0,1080))
+		star.gen_range = 1080
+		add_child(star)
 	var tween_a = create_tween().set_loops()
 	tween_a.tween_property(%Ball, "rotation", -1.0, 20.0).as_relative()
 	var tween_b = create_tween().set_loops()
